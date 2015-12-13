@@ -1,0 +1,23 @@
+%h2 Login
+%p.text-md
+  %span Do not have an account?
+  = link_to "Sign up", new_registration_path(:user)
+.social-auth.panel.panel-default
+  .panel-body
+    %h5.text-md Sign in with social networks
+    = render 'shared/social_buttons'
+
+.title-crossing
+  %span.title-crossing__title Or with e-mail:
+
+= form_for(:user, url: session_path(:user)) do |f|
+  %fieldscontainer
+    .form-group
+      = f.email_field :email, placeholder: 'Email', autofocus: true, class: 'form-control input-lg'
+    .form-group
+      = f.password_field :password, placeholder: "Password", autocomplete: "off", class: 'form-control input-lg'
+    .form-group
+      = link_to "Forgot password?", new_password_path(:user)
+  
+  
+  = f.submit "Log in", class: 'btn btn-hg btn-block btn-primary'

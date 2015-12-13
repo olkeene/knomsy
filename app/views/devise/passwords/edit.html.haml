@@ -1,0 +1,14 @@
+%h2 Forgot Password
+%p.text-md
+  %span Create new Password
+  
+= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }, label_errors: false, inline_errors: true) do |f|
+  = f.hidden_field :reset_password_token 
+  
+  %fieldscontainer
+    .form-group
+      = f.password_field :password, placeholder: 'Password', hide_label: true, autofocus: true, class: 'form-control input-lg'
+    .form-group
+      = f.password_field :password_confirmation, placeholder: 'Confirm New Password', hide_label: true, autofocus: true, class: 'form-control input-lg'
+
+  = f.submit "Create", class: 'btn btn-hg btn-block btn-primary'

@@ -1,0 +1,10 @@
+%h2 Forgot Password
+%p.text-md
+  %span We'll send you instructions on email
+  
+= bootstrap_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }, label_errors: false, inline_errors: true) do |f|
+  %fieldscontainer
+    .form-group
+      = f.email_field :email, placeholder: 'Email', hide_label: true, autofocus: true, class: 'form-control input-lg'
+
+  = f.submit "Reset my password", class: 'btn btn-hg btn-block btn-primary'

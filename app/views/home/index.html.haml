@@ -1,0 +1,4 @@
+- unless signed_in?
+  = render 'shared/login_form'
+- else
+  = link_to('Logout', destroy_user_session_path, :method => :delete)

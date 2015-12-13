@@ -1,0 +1,32 @@
+.btn-hg {
+  padding: 18px 19.2px;
+  font-size: 21.6px;
+  line-height: 1.33333;
+  border-radius: 6px;
+  max-height: 64px;
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn {
+  transition: 0.25s;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 0 solid transparent;
+  border-bottom-width: 2px;
+  white-space: nowrap;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #80cc00;
+  border-color: #66a300;
+  &:active, &:focus, &:hover {
+    color: #fff;
+    background-color: #609900;
+    border-color: #406600;
+  }
+}

@@ -1,0 +1,35 @@
+!!!
+%html
+  %head
+    %title Knomsy
+    = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'
+    = stylesheet_link_tag 'application', media: 'all'
+    = csrf_meta_tags
+    
+  %body{class: body_class}
+    #root
+      .container-fluid
+        %header.row
+          .layout__header
+            .container
+              .col-xs-12.col-sm-5.col-md-4
+                = link_to '', root_path, class: 'brand-logo'
+
+              .col-xs-12.col-sm-7.col-md-8
+                %ul.nav.navbar-nav.navbar-right
+                  %li
+                    %a.btn.btn-default{:href => "/register"} Sign up
+                  %li
+                    %a.btn.btn-default{:href => "/login"} Login
+                    
+          = render 'layouts/header'
+        %article.row.layout__body.content-fluid
+          - flash_messages
+
+          .login-page.container.text-center
+            .col-inline.col-xs-12.col-sm-7.col-md-6.col-lg-5
+              = yield 
+       
+        = render 'layouts/footer'
+                  
+    = javascript_include_tag 'application'

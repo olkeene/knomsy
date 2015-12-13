@@ -1,0 +1,23 @@
+%h1 Sign Up
+%p.text-md
+  %span Already have an account?
+  = link_to "Login", new_session_path(:user)
+.social-auth.panel.panel-default
+  .panel-body
+    %h5.text-md Sign in with social networks
+    = render 'shared/social_buttons'
+
+.title-crossing
+  %span.title-crossing__title Or with e-mail:
+
+= bootstrap_form_for(resource, url: registration_path(resource_name), label_errors: false, inline_errors: true) do |f|
+  %fieldscontainer
+    .form-group
+      = f.text_field :first_name, placeholder: 'First name', hide_label: true, autofocus: true, class: 'form-control input-lg'
+    .form-group
+      = f.text_field :last_name,  placeholder: 'Last name', hide_label: true, class: 'form-control input-lg'
+    .form-group
+      = f.email_field :email,     placeholder: 'Email', hide_label: true, class: 'form-control input-lg'
+    .form-group
+      = f.password_field :password, placeholder: "Password", hide_label: true, autocomplete: "off", class: 'form-control input-lg'
+  = f.submit "Sign up", class: 'btn btn-hg btn-block btn-primary'
