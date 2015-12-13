@@ -2,7 +2,7 @@
 %html
   %head
     %title Knomsy
-    = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'
+    = stylesheet_link_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
     = stylesheet_link_tag 'application', media: 'all'
     = csrf_meta_tags
     
@@ -10,7 +10,7 @@
     #root
       .container-fluid
         %header.row
-          .layout__header
+          .layout_header
             .container
               .col-xs-12.col-sm-5.col-md-4
                 = link_to '', root_path, class: 'brand-logo'
@@ -23,7 +23,7 @@
                     %a.btn.btn-default{:href => "/login"} Login
                     
           = render 'layouts/header'
-        %article.row.layout__body.content-fluid
+        %article.row.layout_body.content-fluid
           - flash_messages
 
           .login-page.container.text-center
@@ -32,4 +32,5 @@
        
         = render 'layouts/footer'
                   
+    = javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
     = javascript_include_tag 'application'

@@ -1,15 +1,4 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
  *= require rails_bootstrap_forms
  *= require_tree .
  *= require_self
@@ -20,13 +9,13 @@
 }
 
 #root > .container-fluid > {
- .layout__body, .layout__footer, .layout__header {
+ .layout_body, .layout_footer, .layout_header {
    overflow: auto;
  }
 }
 
 body > .container-fluid > {
- .layout__body, .layout__footer, .layout__header {
+ .layout_body, .layout_footer, .layout_header {
    overflow: auto;
  }
 }
@@ -35,7 +24,7 @@ body > .container-fluid > {
  overflow: hidden;
 }
 
-.title-crossing__title {
+.title-crossing_title {
  display: inline-block;
  padding: 0 10px;
  position: relative;
@@ -63,7 +52,7 @@ body > .container-fluid > {
  }
 }
 
-.layout__footer {
+.layout_footer {
  margin-left: -15px;
  margin-right: -15px;
  padding: 20px;
@@ -79,7 +68,7 @@ body > .container-fluid > {
  }
 }
 
-.layout__header {
+.layout_header {
  color: #fff;
  background: #415165;
  padding: 15px;
@@ -115,7 +104,7 @@ body > .container-fluid > {
 }
 
 @media (min-width: 768px) {
- .layout__header {
+ .layout_header {
    .company-phone {
      text-align: left;
    }
@@ -135,7 +124,7 @@ body > .container-fluid > {
 }
 
 @media (min-width: 992px) {
- .layout__header {
+ .layout_header {
    padding-left: 30px;
    padding-right: 30px;
    .user-login {
@@ -153,13 +142,13 @@ body > .container-fluid > {
 }
 
 @media (min-width: 1200px) {
- .layout__header {
+ .layout_header {
    padding-left: 40px;
    padding-right: 40px;
  }
 }
 
-.layout__header-toolbar {
+.layout_header-toolbar {
  color: #b4bac6;
  background: #1d2632;
  min-height: 60px;

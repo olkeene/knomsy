@@ -25,8 +25,9 @@ gem 'devise'
 # gem 'resque-cleaner'
 
 gem 'therubyracer'
-gem 'less-rails'
-# gem 'twitter-bootstrap-rails'
+# gem 'less-rails'
+# gem 'sass-rails'
+# gem 'bootstrap-sass'
 gem 'bootstrap_form'
 # gem 'activeadmin', github: 'activeadmin'
 
