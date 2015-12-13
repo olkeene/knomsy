@@ -24,11 +24,12 @@ gem 'devise'
 # gem 'resque-web'
 # gem 'resque-cleaner'
 
-gem 'therubyracer'
+# gem 'therubyracer'
 # gem 'less-rails'
 # gem 'sass-rails'
 # gem 'bootstrap-sass'
 gem 'bootstrap_form'
+gem 'font-awesome-rails'
 # gem 'activeadmin', github: 'activeadmin'
 
 # Use SCSS for stylesheets
