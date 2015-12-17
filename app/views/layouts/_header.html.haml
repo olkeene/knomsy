@@ -1,3 +1,20 @@
+.layout_header
+  .container
+    .col-xs-12.col-sm-5.col-md-4
+      = link_to '', root_path, class: 'brand-logo'
+
+    .col-xs-12.col-sm-7.col-md-8
+      %ul.nav.navbar-nav.navbar-right
+        - if signed_in?
+          %li= fa_icon 'plus',   class: 'btn btn-default'
+          %li= fa_icon 'bell-o', class: 'btn btn-default'
+          %li= fa_icon 'inbox',  class: 'btn btn-default'
+          %li= link_to image_tag('http://placehold.it/25x25'), profile_path, class: 'avatar-small'
+          %li= link_to fa_icon('sign-out'), destroy_user_session_path, method: :delete, class: 'btn btn-default'
+        - else
+          %li= link_to "Sign up", new_registration_path(:user), class: 'btn btn-default'
+          %li= link_to "Login", root_path, class: 'btn btn-default'
+
 .layout_header-toolbar
   .container
     %ul.nav.navbar-nav

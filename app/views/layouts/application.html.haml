@@ -7,30 +7,17 @@
     = csrf_meta_tags
     
   %body{class: body_class}
-    #root
-      .container-fluid
-        %header.row
-          .layout_header
-            .container
-              .col-xs-12.col-sm-5.col-md-4
-                = link_to '', root_path, class: 'brand-logo'
+    .container-fluid
+      %header.row
+        = render 'layouts/header'
+      .row.layout_body.content-fluid
+        - flash_messages
 
-              .col-xs-12.col-sm-7.col-md-8
-                %ul.nav.navbar-nav.navbar-right
-                  %li
-                    %a.btn.btn-default{:href => "/register"} Sign up
-                  %li
-                    %a.btn.btn-default{:href => "/login"} Login
-                    
-          = render 'layouts/header'
-        %article.row.layout_body.content-fluid
-          - flash_messages
-
-          .login-page.container.text-center
-            .col-inline.col-xs-12.col-sm-7.col-md-6.col-lg-5
-              = yield 
-       
-        = render 'layouts/footer'
+        .container{class: container_class}
+          %span{class: container_sub_class}
+            = yield 
+     
+      = render 'layouts/footer'
                   
     = javascript_include_tag 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
     = javascript_include_tag 'application'

@@ -8,6 +8,20 @@ module ApplicationHelper
 
     classes.join(' ')
   end
+  
+  def non_signed_in_pages?
+    %w(home confirmations passwords registrations sessions).include?(controller_name)
+  end
+  
+  def container_class
+    # nonsigned in 
+    return 'text-center login-page' if non_signed_in_pages?
+  end
+  
+  def container_sub_class
+    # nonsigned in 
+    return 'col-inline col-xs-12 col-sm-7 col-md-6 col-lg-5' if non_signed_in_pages?
+  end
 
   def controller_action
     @controller_action ||= "#{controller_name}_#{action_name}"
