@@ -4,11 +4,14 @@ ruby "2.2.1"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'
 gem 'thin'
+gem 'rollbar'
+
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
 gem 'haml-rails'
 gem 'active_model_serializers'
 gem 'email_validator'
+gem 'friendly_id'
 
 gem 'devise'
 # gem 'simple_token_authentication' # devise auth by token
@@ -26,7 +29,6 @@ gem 'devise'
 
 # gem 'therubyracer'
 # gem 'less-rails'
-# gem 'sass-rails'
 # gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'font-awesome-rails'
