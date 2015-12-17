@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'registrations/create'
-
-  devise_for :users, controllers: {registrations: 'registrations', sessions: 'sessions', passwords: 'passwords', confirmations: 'confirmations'}
+  devise_for :users, controllers: {registrations: 'user/registrations', sessions: 'user/sessions', passwords: 'user/passwords', confirmations: 'user/confirmations'}
   
   root to: 'home#index'
 end
