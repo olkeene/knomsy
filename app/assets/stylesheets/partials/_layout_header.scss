@@ -1,0 +1,106 @@
+.layout_header {
+  color: #fff;
+  background: #415165;
+  padding: 15px;
+  min-height: 72px;
+  overflow: auto;
+  .brand-logo {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 700;
+    &:hover {
+      text-decoration: none;
+    }
+ }
+ .avatar-small {
+   border-radius: 12px;
+ }
+ .navbar-nav > li {
+   padding: 5px;
+   a {
+     padding: 0;
+   }
+ }
+ .btn-default {
+   color: #cacfd8;
+   border: 2px solid #cacfd8;
+   border-radius: 4px;
+   background: 0 0;
+   padding: 3px 10px;
+   transition: all 0.25s ease-out;
+   &:hover {
+     color: #fff;
+     border-color: #fff;
+   }
+   &:active:focus {
+     background: rgba(202, 207, 216, 0.52);
+     color: #fff;
+   }
+ }
+}
+
+@media (min-width: 768px) {
+ .layout_header {
+   .company-phone {
+     text-align: left;
+   }
+   .user-login {
+     float: right;
+     padding: 8px 0;
+     white-space: nowrap;
+     .form-inline {
+       float: right;
+     }
+     .form-control {
+       padding: 3px 6px;
+       font-size: 12px;
+     }
+   }
+ }
+}
+
+@media (min-width: 992px) {
+ .layout_header {
+   padding-left: 30px;
+   padding-right: 30px;
+   .user-login {
+     padding: 8px 15px;
+     white-space: nowrap;
+     .form-inline {
+       float: right;
+     }
+     .form-control {
+       padding: 6px 12px;
+       font-size: 14px;
+     }
+   }
+ }
+}
+
+@media (min-width: 1200px) {
+  .layout_header {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+.layout_header-toolbar {
+  color: #b4bac6;
+  background: #1d2632;
+  min-height: 60px;
+  .navbar-nav {
+    margin: 0;
+    > li {
+      padding: 5px;
+      a {
+       font-size: 18px;
+       margin: -5px;
+       padding: 20px;
+       color: #b4bac6;
+       &:active, &:focus, &:hover {
+         background: #293646;
+       }
+     }
+   }
+ }
+}
