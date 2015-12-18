@@ -11,6 +11,15 @@
     &:hover {
       text-decoration: none;
     }
+  .brand-logo_symbol, .brand-logo_text {
+    vertical-align:middle;
+    height:35px;
+    display:inline-block;
+    fill:#FFF;
+  }
+  .brand-logo_text {
+    margin-left:-30px;
+  }
  }
  .avatar-small {
    border-radius: 12px;
