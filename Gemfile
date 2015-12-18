@@ -10,6 +10,7 @@ gem 'rollbar'
 gem 'pg', '~> 0.15'
 gem 'haml-rails'
 gem 'active_model_serializers'
+gem 'draper' # presenter
 gem 'email_validator'
 gem 'friendly_id'
 
