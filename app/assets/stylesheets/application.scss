@@ -6,6 +6,8 @@
  *= require_self
  */
 
+@import 'mixins';
+
 .container-fluid, body > .container-fluid {
  box-sizing: border-box;
 }
@@ -37,7 +39,7 @@ body > .container-fluid > {
    top: 50%;
    height: 1px;
    width: 1000%;
-   background-color: #dce0e6;
+   background-color: $light_grey;
  }
  &:before {
    content: "";
@@ -46,7 +48,7 @@ body > .container-fluid > {
    top: 50%;
    height: 1px;
    width: 1000%;
-   background-color: #dce0e6;
+   background-color: $light_grey;
    right: 100%;
  }
  &:after {
