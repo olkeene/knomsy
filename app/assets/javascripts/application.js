@@ -12,5 +12,18 @@
 //
 //= require jquery
 //= require jquery_ujs
-// require turbolinks
+//= require js-routes
+
+//= require react
+//= require react_ujs
+
 //= require_tree .
+
+$(document).ready(function(){
+  var body = $('body');
+  var body_class = body.attr('class');
+
+  if( body.hasClass('profiles') ){
+    new window.Profiles.Controller();
+  }
+});

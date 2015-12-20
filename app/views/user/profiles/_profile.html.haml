@@ -1,0 +1,242 @@
+.profile-card__content.container
+  .hidden-xs.hidden-sm.col-md-2.content__navbar.content__navbar_fixed
+    .navbar__item
+      %i.item__icon.fa.fa-circle
+      %p.item__title Profile info
+    .navbar__item.item_active
+      %i.item__icon.fa.fa-circle
+      %p.item__title Investing
+    .navbar__item
+      %i.item__icon.fa.fa-circle
+      %p.item__title Experience
+    .navbar__item
+      %i.item__icon.fa.fa-circle
+      %p.item__title Media
+    .navbar__item
+      %i.item__icon.fa.fa-circle
+      %p.item__title References
+    .navbar__item
+      %i.item__icon.fa.fa-circle
+      %p.item__title.item__title_last Widgets
+  .col-xs-12.col-sm-12.col-md-10
+    .content__section
+      %h3.section__title Profile info
+      %button.title__btn_edit.edit-body__btn-group_in-title.btn.btn-link{:type => "button"}
+        %i.button__icon.fa.fa-pencil
+        %span Edit
+      .section__body.section__body_view
+        .view-body
+          .view-body__form.row
+            .col-md-6
+              .form__group-objects
+                %h4.form__title About me
+                %p.form__text blahh..
+              .form__group-objects
+                %h4.form__title What I do
+                %p.form__text dwvdvsdvsdv
+            .col-md-6
+              .form__group-objects
+                %h4.form__title Roles
+                %ul.form__list_inline
+                  %li.list__item_roles
+              .form__group-objects
+                %h4.form__title Skills
+                .form__label
+                  %span.label__item.label.label-default
+              .form__group-objects
+                %h4.form__title Services
+                .form__label
+                  %span.label__item.label.label-default
+    .content__section
+      %h3.section__title Investing
+      %button.title__btn_edit.edit-body__btn-group_in-title.btn.btn-link{:type => "button"}
+        %i.button__icon.fa.fa-pencil
+        %span Edit
+      .section__body.section__body_view
+        .view-body
+          .investing
+            .row
+              .col-md-4
+                .investing__circle
+                  %p.investing__number $10-50K
+                %p.form__title.form__title_center Invests / Deal
+              .col-md-4
+                .investing__circle
+                  .investing__circle_progress
+                    %p.investing__number 6
+                %p.form__title.form__title_center Average Deals / Year
+              .col-md-4
+                .investing__circle
+                  %p.investing__number 3
+                %p.form__title.form__title_center Confirmed Deals
+            .form__objects
+              .row
+                .col-md-4
+                  %p.form__title.form__title_center Markets
+                  %ul.form__list_inline.form__list_inline-center
+                    %li.list__item_roles Droids
+                    %li.list__item_roles mobile applications
+                .col-md-4
+                  %p.form__title.form__title_center Currency
+                  %ul.form__list_inline.form__list_inline-center
+                    %li.list__item_roles USA Dollars
+                .col-md-4
+                  %p.form__title.form__title_center Countries
+                  %ul.form__list_inline.form__list_inline-center
+                    %li.list__item_roles USA
+                    %li.list__item_roles Canada
+                    %li.list__item_roles UK
+                    %li.list__item_roles Russia
+    .content__section
+      %h3.section__title Work experience
+      %button.title__btn_edit.edit-body__btn-group_in-title.btn.btn-link{:type => "button"}
+        %i.button__icon.fa.fa-pencil
+        %span Edit
+      .section__body.section__body_view-work
+        .view-body.view-body_close
+          .view-body__form
+            .row
+              .col-md-11
+                %h4.form__title Founder
+                %span.title__subtext (Knomsy, Facebook, Instagram)
+              .col-md-1
+                %i.form__icon_open-close.fa.fa-angle-down
+        .view-body.view-body_open
+          .view-body__form
+            .row
+              .col-md-11
+                %h4.form__title Investor
+                %span.title__subtext (Knomsy, Facebook, Instagram)
+              .col-md-1
+                %i.form__icon_open-close.fa.fa-angle-up
+            .objects__company.media
+              .media-left
+                %a
+                  %img.company__image.media-object/
+              .media-body
+                %a
+                  %h4.company__name.media-heading Dribble
+                %p.company__description Company short description
+                %p.company__position Art Director
+                %span.company__period 12 Oct 2014 - 29 Dec 2014
+            .objects__company.media
+              .media-left
+                %a
+                  %img.company__image.media-object/
+              .media-body
+                %a
+                  %h4.company__name.media-heading Dribble
+                %p.company__description Company short description
+                %p.company__position Art Director
+                %span.company__period 12 Oct 2014 - 29 Dec 2014
+            .objects__company.media
+              .media-left
+                %a
+                  %img.company__image.media-object/
+              .media-body
+                %a
+                  %h4.company__name.media-heading Dribble
+                %p.company__description Company short description
+                %p.company__position Art Director
+                %span.company__period 12 Oct 2014 - 29 Dec 2014
+            .objects__company.media
+              .media-left
+                %a
+                  %img.company__image.media-object/
+              .media-body
+                %a
+                  %h4.company__name.media-heading Dribble
+                %p.company__description Company short description
+                %p.company__position Art Director
+                %span.company__period 12 Oct 2014 - 29 Dec 2014
+        .view-body.view-body_close
+          .view-body__form
+            .row
+              .col-md-11
+                %h4.form__title Employee
+                %span.title__subtext (Knomsy, Facebook, Instagram)
+              .col-md-1
+                %i.form__icon_open-close.fa.fa-angle-down
+        .view-body.view-body_close
+          .view-body__form
+            .row
+              .col-md-11
+                %h4.form__title Consultant
+                %span.title__subtext (Knomsy, Facebook, Instagram)
+              .col-md-1
+                %i.form__icon_open-close.fa.fa-angle-down
+        .view-body.view-body_open
+          .view-body__form
+            .row
+              .col-md-11
+                %h4.form__title Education
+                %span.title__subtext (4)
+              .col-md-1
+                %i.form__icon_open-close.fa.fa-angle-up
+            .row
+              .col-md-3
+                .objects__university.media
+                  .media-body
+                    %a
+                      %h4.form__title.form__title_nopadding.media-heading MGU
+                    %span.title__subtext (Moscow)
+                    %p.university__degree Bachelors degree, Media
+                    %span.university__period 2012 - 2014
+              .col-md-3
+                .objects__university.media
+                  .media-body
+                    %a
+                      %h4.form__title.form__title_nopadding.media-heading MGU
+                    %span.title__subtext (Moscow)
+                    %p.university__degree Bachelors degree, Media
+                    %span.university__period 2012 - 2014
+              .col-md-3
+                .objects__university.media
+                  .media-body
+                    %a
+                      %h4.form__title.form__title_nopadding.media-heading MGU
+                    %span.title__subtext (Moscow)
+                    %p.university__degree Bachelors degree, Media
+                    %span.university__period 2012 - 2014
+              .col-md-3
+                .objects__university.media
+                  .media-body
+                    %a
+                      %h4.form__title.form__title_nopadding.media-heading MGU
+                    %span.title__subtext (Moscow)
+                    %p.university__degree Bachelors degree, Media
+                    %span.university__period 2012 - 2014
+    .content__section
+      %h3.section__title Media
+      %button.title__btn_edit.edit-body__btn-group_in-title.btn.btn-link{:type => "button"}
+        %i.button__icon.fa.fa-pencil
+        %span Edit
+      .section__body.section__body_view
+        .view-body
+          .body__layout.body__layout_view
+          .view-body__gallery
+            %h3.gallery__item-name Video name
+            %a
+              %i.gallery__controller.gallery__controller_view.fa.fa-chevron-left
+            .gallery__item.gallery__item_view.gallery__item_active
+            .gallery__item.gallery__item_view
+            .gallery__item.gallery__item_view
+            %a
+              %i.gallery__controller.gallery__controller_view.fa.fa-chevron-right
+    .content__section
+      %h3.section__title References
+      .section__body.section__body_view
+        .view-body
+          .view-body__media.media
+            .media-left
+              %a
+                %img.media__img.media-object/
+            .media-body
+              %h4.media__title.media-heading Knomsy
+              %p.media__text Startup eco system
+              %p.media__name Denis Kozminikh
+              %span.media__text says:
+          .view-body_references
+            .view-body__quotes_open
+            %p Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            .view-body__quotes_close

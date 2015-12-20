@@ -46,6 +46,10 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.3)
+    babel-source (5.8.34)
+    babel-transpiler (0.7.0)
+      babel-source (>= 4.0, < 6)
+      execjs (~> 2.0)
     bcrypt (3.1.10)
     better_errors (2.1.1)
       coderay (>= 1.0.0)
@@ -64,6 +68,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.0)
+    connection_pool (2.2.0)
     daemons (1.2.3)
     database_cleaner (1.5.1)
     debug_inspector (0.0.2)
@@ -98,6 +103,11 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gon (6.0.1)
+      actionpack (>= 3.0)
+      json
+      multi_json
+      request_store (>= 1.0)
     haml (4.0.7)
       tilt
     haml-rails (0.9.0)
@@ -116,6 +126,9 @@ GEM
       rails-dom-testing (~> 1.0)
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
+    js-routes (1.1.2)
+      railties (>= 3.2)
+      sprockets-rails
     json (1.8.3)
     loofah (2.0.3)
       nokogiri (>= 1.5.9)
@@ -164,6 +177,13 @@ GEM
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
+    react-rails (1.5.0)
+      babel-transpiler (>= 0.7.0)
+      coffee-script-source (~> 1.8)
+      connection_pool
+      execjs
+      rails (>= 3.2)
+      tilt
     request_store (1.2.1)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
@@ -247,12 +267,15 @@ DEPENDENCIES
   faker
   font-awesome-rails
   friendly_id
+  gon
   haml-rails
   jquery-rails
+  js-routes
   pg (~> 0.15)
   pry
   quiet_assets
   rails (= 4.2.5)
+  react-rails
   rollbar
   rspec-rails
   sass-rails (~> 5.0)

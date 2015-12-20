@@ -15,8 +15,20 @@ class User < ActiveRecord::Base
     :gplay_link, :itunes_link, :dribbble_link, :fb_link, :gh_link, :gplus_link, 
     :linkedin_link, :twitter_link, :youtube_link, :website, 
     length: {maximum: 255}, allow_blank: true
+    
+  def rating
+    2
+  end
   
-  def name
-    "#{first_name} #{last_name}"
+  def trend
+    9
+  end
+  
+  def followings_count
+    142
+  end
+  
+  def followers_count
+    21
   end
 end
