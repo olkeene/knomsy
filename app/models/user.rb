@@ -31,4 +31,16 @@ class User < ActiveRecord::Base
   def followers_count
     21
   end
+  
+  def role_list
+    %w(admin mentor)
+  end
+  
+  def skill_list
+    %w(ruby rails)
+  end
+  
+  def service_list
+    %w(enterprise startup)
+  end
 end
