@@ -1,15 +1,15 @@
-@UserProfileWidget = React.createClass
+#= require_tree ./profile
+
+{div} = React.DOM
+
+@UserProfileWidget = React.createFactory React.createClass
   getInitialState: ->
-    {edit_mode: false}
-    
-  editModeOn: ->
-    @setState edit_mode: true
-    
-  editModeOff: ->
-    @setState edit_mode: false
+    edit_mode: false
+    user: @props.user
     
   render: ->
-    if @state.edit_mode
-      window.EditUserHeaderProfile(onClose: @editModeOff)
-    else
-      window.UserHeaderProfile(onEditPressed: @editModeOn)
+    (div className: 'profile-card__content container',
+      (ProfileBreadCrumbs())
+      (div className: 'col-xs-12 col-sm-12 col-md-10',
+        (ProfileInfo(user: @state.user))
+      ))

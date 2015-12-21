@@ -1,3 +1,2 @@
 %section.profile-card.row
-  = react_component 'UserProfileWidget'
-  = render 'profile'
+  = react_component 'UserProfile', user: UserSerializer.new(current_user)

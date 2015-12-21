@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   end
   
   def render_error(txt, options = {})
-    options.reverse_merge!({json: {error: txt}, status: :ok})
+    options.reverse_merge!({json: {errors: txt}, status: :ok})
     render(options)
   end
 end

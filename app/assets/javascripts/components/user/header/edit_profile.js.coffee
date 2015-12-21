@@ -3,20 +3,39 @@
 @EditUserHeaderProfile = React.createFactory React.createClass
   mixins: [React.addons.LinkedStateMixin]
   
+  propTypes: 
+    user:     React.PropTypes.object.isRequired,
+    onUpdate: React.PropTypes.func.isRequired
+    onClose:  React.PropTypes.func.isRequired
+  
   getInitialState: ->
-    gon.user
+    @props.user
     
   save: ->
-    console.log @state
-    gon.user = @state
+    $.ajax
+      method: 'put'
+      url: AppRoutes.profile_path()
+      data: {user: @state}
+      success: (res) =>
+        if res.errors
+          @setState errors: res.errors
+        else
+          @setState errors: null
+          @props.onUpdate(res)
     
   cancel: ->
     @props.onClose()
   
   render: ->
+    errors = if @state.errors
+      (div className: 'alert alert-danger', @state.errors.join('<br/>'))
+      
     (div className: "profile-card__header_edit",
       (div className: "profile-card__column_border-bottom",
         (div className: "container-fluid",
+          
+          (errors)
+          
           (div className: "col-xs-12 col-md-7 profile-card__column_border-right",
             (div className: "row",
               (div className: "col-xs-12 col-md-6",
