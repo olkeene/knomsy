@@ -14,6 +14,7 @@ gem 'draper' # presenter
 gem 'email_validator'
 gem 'friendly_id'
 
+gem 'underscore-rails'
 gem 'react-rails'
 gem 'js-routes'
 gem 'gon' # js vars

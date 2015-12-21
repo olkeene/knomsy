@@ -13,11 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require js-routes
+//= require underscore
 
 //= require react
 //= require react_ujs
 
 //= require_tree .
+//= require_self
 
 $(document).ready(function(){
   var body = $('body');
