@@ -65,8 +65,29 @@
           
   onCancelPressed: ->
     @setState edit_mode: false
+    
+  onSavePressed: ->
+    console.log 'todo..'
 
   renderForm: ->
+    roles = unless _.isEmpty(@state.user.role_list)
+      _.map @state.user.role_list, (role, index)->
+        (span className: "label__item label label-default", key: "role_#{index}", 
+          (span null, role)
+          (i className: "label__icon fa fa-times"))
+      
+    skills = unless _.isEmpty(@state.user.skill_list)
+      _.map @state.user.skill_list, (skill, index)->
+        (span className: "label__item label label-default", key: "skill_#{index}", 
+          (span null, skill)
+          (i className: "label__icon fa fa-times"))
+      
+    services = unless _.isEmpty(@state.user.service_list)
+      _.map @state.user.service_list, (service, index)->
+        (span className: "label__item label label-default", key: "service_#{index}",
+          (span null, service)
+          (i className: "label__icon fa fa-times"))
+
     (span null,
       (div className: 'edit-body__btn-group edit-body__btn-group_in-title', onClick: @onCancelPressed,
         (button className: 'btn-group__item_left btn_link btn btn-link', type: 'button', 'Cancel'))
@@ -75,32 +96,18 @@
         (div className: "edit-body",
           (div className: "edit-body__form",
             (h4 className: "form__title", 'About me')
-            (textarea className: "form__textarea form-control"))
+            (textarea className: "form__textarea form-control", value: @state.user.about))
 
           (div className: "edit-body__form",
             (h4 className: "form__title", 'What I do')
-            (textarea rows: {3}, placeholder: "Something more", className: "form__textarea form-control"))
+            (textarea className: "form__textarea form-control", placeholder: "Something more", value: @state.user.what_do))
 
           (div className: "edit-body__form",
             (div className: "row",
               (div className: "col-md-7",
                 (h4 className: "form__title", 'Roles')
                 (div className: "form__label",
-                  (span className: "label__item label label-default",
-                    (span null, 'UX')
-                    (i className: "label__icon fa fa-times"))
-
-                  (span className: "label__item label label-default",
-                    (span null, 'UI')
-                    (i className: "label__icon fa fa-times"))
-
-                  (span className: "label__item label label-default",
-                    (span null, 'Mobile Design')
-                    (i className: "label__icon fa fa-times"))
-
-                  (span className: "label__item label label-default",
-                    (span null, 'Illustrations')
-                    (i className: "label__icon fa fa-times"))))
+                  (roles)))
 
               (div className: "col-md-5",
                 (div className: "form__input input-group",
@@ -114,21 +121,7 @@
               (div className: "col-md-7",
                 (h4 className: "form__title", 'Skills')
                 (div className: "form__label",
-                  (span className: "label__item label label-default",
-                    (span null, 'UX')
-                    (i className: "label__icon fa fa-times"))
-
-                  (span className: "label__item label label-default",
-                    (span null, 'UI')
-                    (i className: "label__icon fa fa-times"))
-
-                  (span className: "label__item label label-default",
-                    (span null, 'Mobile Design')
-                    (i className: "label__icon fa fa-times"))
-
-                  (span className: "label__item label label-default",
-                    (span null, 'Illustrations')
-                    (i className: "label__icon fa fa-times"))))
+                  (skills)))
 
               (div className: "col-md-5",
                 (div className: "form__input input-group",
@@ -142,21 +135,7 @@
               (div className: "col-md-7",
                 (h4 className: "form__title", 'Services')
                 (div className: "form__label",
-                  (span className: "label__item label label-default",
-                    (span null, 'UX')
-                    (i className: "label__icon fa fa-times"))
-
-                  (span className: "label__item label label-default",
-                    (span null, 'UI')
-                    (i className: "label__icon fa fa-times"))
-
-                  (span className: "label__item label label-default",
-                    (span null, 'Mobile Design')
-                    (i className: "label__icon fa fa-times"))
-
-                  (span className: "label__item label label-default",
-                    (span null, 'Illustrations')
-                    (i className: "label__icon fa fa-times"))))
+                  (services)))
 
               (div className: "col-md-5",
                 (div className: "form__input input-group",
@@ -166,5 +145,5 @@
                       (i className: "input__btn-icon fa fa-angle-down")))))))
 
           (div className: "edit-body__btn-group edit-body__btn-group_right",
-            (button type: "button", className: "btn-group__item_left btn_link btn btn-link", onClick: @onCancelPressed, 'Cancel')
-            (button type: "button", className: "btn-group__item_right btn_save btn btn-success", 'Save')))))
+            (button type: "button", className: "btn-group__item_left btn_link btn btn-link",     onClick: @onCancelPressed, 'Cancel')
+            (button type: "button", className: "btn-group__item_right btn_save btn btn-success", onClick: @onSavePressed,    'Save')))))
