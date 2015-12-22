@@ -75,7 +75,7 @@
                   (textarea valueLink: @linkState('about'), rows: {4}, placeholder: "Your positions, projects and companies, e.g: Founder at Facebook", className: "input__textarea form-control" )))))
 
           (div className: "col-xs-12 col-md-5",
-            (h3 className: "input__main-title", 'Social Networks &amp; Website')
+            (h3 className: "input__main-title", 'Social Networks & Website')
             (div className: "row",
               (div className: "col-md-6",
                 (div className: "input",
