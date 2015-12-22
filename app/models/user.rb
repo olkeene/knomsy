@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
          :recoverable, :validatable, :confirmable
          
   validates :first_name, :last_name, presence: true, length: {minimum: 2, maximum: 50}
-  validates :username, length: {minimum: 2, maximum: 50}
+  validates :username, length: {minimum: 2, maximum: 50}, allow_blank: true
   
   # optional fields
   validates :country, :city,
