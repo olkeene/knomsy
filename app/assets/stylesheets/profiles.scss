@@ -40,6 +40,10 @@
   .user-info__location {
     color: $white;
     font-size: 13px;
+    
+    > i {
+      padding-right: 5px;
+    }
   }
   .header__edit {
     padding-top: 15px;
