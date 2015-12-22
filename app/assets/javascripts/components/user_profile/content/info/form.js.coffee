@@ -17,6 +17,9 @@
       @setState errors: resp.errors
     else
       @props.onCancel(@state)
+      
+  onCancel: ->
+    @props.onCancel()
 
   render: ->
     roles = unless _.isEmpty(@props.role_list)
@@ -42,7 +45,7 @@
 
     (span null,
       (div className: 'edit-body__btn-group edit-body__btn-group_in-title',
-        (button className: 'btn-group__item_left btn_link btn btn-link', type: 'button', onClick: @props.onCancel, 'Cancel'))
+        (button className: 'btn-group__item_left btn_link btn btn-link', type: 'button', onClick: @onCancel, 'Cancel'))
         
       (div className: "section__body section__body_edit",
         (div className: "edit-body",
@@ -99,5 +102,5 @@
                       (i className: "input__btn-icon fa fa-angle-down")))))))
 
           (div className: "edit-body__btn-group edit-body__btn-group_right",
-            (button type: "button", className: "btn-group__item_left btn_link btn btn-link",     onClick: @props.onCancel, 'Cancel')
+            (button type: "button", className: "btn-group__item_left btn_link btn btn-link",     onClick: @onCancel, 'Cancel')
             (button type: "button", className: "btn-group__item_right btn_save btn btn-success", onClick: @saveProfile, 'Save')))))
