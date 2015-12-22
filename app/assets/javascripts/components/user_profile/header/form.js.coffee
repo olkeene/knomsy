@@ -1,27 +1,22 @@
 {h3, input, button, div, span, label, img, p, textarea} = React.DOM
 
-@EditUserHeaderProfile = React.createFactory React.createClass
+@UserProfile_Header_Form = React.createFactory React.createClass
   mixins: [React.addons.LinkedStateMixin]
   
   propTypes: 
-    user:     React.PropTypes.object.isRequired,
-    onUpdate: React.PropTypes.func.isRequired
-    onClose:  React.PropTypes.func.isRequired
+    user:        React.PropTypes.object.isRequired,
+    saveProfile: React.PropTypes.func.isRequired,
+    onClose:     React.PropTypes.func.isRequired
   
   getInitialState: ->
     @props.user
     
-  save: ->
-    $.ajax
-      method: 'put'
-      url: AppRoutes.profile_path()
-      data: {user: @state}
-      success: (resp) =>
-        if resp.errors
-          @setState errors: resp.errors
-        else
-          @setState errors: null
-          @props.onUpdate(resp)
+  saveProfile: ->
+    resp = @props.saveProfile user: @state
+    if resp.errors
+      @setState errors: resp.errors
+    else
+      @props.onClose(@state)
     
   cancel: ->
     @props.onClose()
@@ -102,5 +97,5 @@
                   (input type: "text", valueLink: @linkState('website'),       placeholder: "Website link", className: "input__link input__link_website form-control")))))))
 
       (div className: "edit-body__btn-group edit-body__btn-group_center",
-        (button type: "button", className: "btn_save btn btn-success", onClick: @save,   'Save')
+        (button type: "button", className: "btn_save btn btn-success", onClick: @saveProfile, 'Save')
         (button type: "button", className: "btn_link btn btn-link",    onClick: @cancel, 'Cancel')))

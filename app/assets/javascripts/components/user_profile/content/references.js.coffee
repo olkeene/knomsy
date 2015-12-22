@@ -1,6 +1,6 @@
 {div, h3, h4, img, a, p, span} = React.DOM
 
-@References = React.createFactory React.createClass
+@UserProfile_Content_References = React.createFactory React.createClass
   render: ->
     references = _.map [1, 2], (ref, i)->
       (div className: "view-body", key: "ref_#{i}",

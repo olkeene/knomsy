@@ -18,7 +18,7 @@
 //= require react
 //= require react_ujs
 
-//= require_tree .
+//= require_directory .
 //= require_self
 
 $(document).ready(function(){

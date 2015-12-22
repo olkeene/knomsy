@@ -1,6 +1,6 @@
 {div, i, p} = React.DOM
 
-@ProfileBreadCrumbs = React.createFactory React.createClass
+@UserProfile_Content_BreadCrumbs = React.createFactory React.createClass
   render: ->
     (div className: 'hidden-xs hidden-sm col-md-2 content__navbar content__navbar_fixed',
       (div className: 'navbar__item', 

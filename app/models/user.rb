@@ -11,10 +11,16 @@ class User < ActiveRecord::Base
   validates :username, length: {minimum: 2, maximum: 50}
   
   # optional fields
-  validates :about, :country, :city,
+  validates :country, :city,
     :gplay_link, :itunes_link, :dribbble_link, :fb_link, :gh_link, :gplus_link, 
     :linkedin_link, :twitter_link, :youtube_link, :website, 
     length: {maximum: 255}, allow_blank: true
+    
+  validates :about, :short_resume, :what_do, length: {maximum: 500}, allow_blank: true
+  
+  def cover_url=(v)
+    'TODO'
+  end
     
   def rating
     2
@@ -36,11 +42,23 @@ class User < ActiveRecord::Base
     %w(admin mentor)
   end
   
+  def role_list=(v)
+    'todo'
+  end
+  
   def skill_list
     %w(ruby rails)
   end
   
+  def skill_list=(v)
+    'todo'
+  end
+  
   def service_list
     %w(enterprise startup)
+  end
+  
+  def service_list=(v)
+    'todo'
   end
 end

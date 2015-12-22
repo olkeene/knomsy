@@ -13,6 +13,7 @@ gem 'active_model_serializers'
 gem 'draper' # presenter
 gem 'email_validator'
 gem 'friendly_id'
+# gem 'acts-as-taggable-on'
 
 gem 'underscore-rails'
 gem 'react-rails'
