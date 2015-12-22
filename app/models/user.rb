@@ -18,6 +18,10 @@ class User < ActiveRecord::Base
     
   validates :about, :short_resume, :what_do, length: {maximum: 500}, allow_blank: true
   
+  def name
+    "#{first_name} #{last_name}"
+  end
+  
   def cover_url=(v)
     'TODO'
   end
