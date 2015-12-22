@@ -12,4 +12,5 @@
       (ProfileBreadCrumbs())
       (div className: 'col-xs-12 col-sm-12 col-md-10',
         (ProfileInfo(user: @state.user))
+        (References(user: @state.user))
       ))
