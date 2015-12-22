@@ -7,6 +7,11 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable, :confirmable
          
+  acts_as_ordered_taggable_on :skills, :roles, :services
+  
+  has_one :investing, dependent: :destroy
+  accepts_nested_attributes_for :investing
+         
   validates :first_name, :last_name, presence: true, length: {minimum: 2, maximum: 50}
   validates :username, length: {minimum: 2, maximum: 50}, allow_blank: true
   
@@ -18,6 +23,24 @@ class User < ActiveRecord::Base
     
   validates :about, :short_resume, :what_do, length: {maximum: 500}, allow_blank: true
   
+  # extend helper to update only assocition unless id specified
+  def investing_attributes=(v)
+    unless v.is_a?(Hash)
+      super
+      return
+    end
+    
+    super v.merge(id: investing.try(:id))
+  end
+  
+  def preload_and_prebuild_associations
+    ActiveRecord::Associations::Preloader.new.preload \
+      self, :investing
+      
+    investing || build_investing
+  end
+  
+  # permalink and in email
   def name
     "#{first_name} #{last_name}"
   end
@@ -40,29 +63,5 @@ class User < ActiveRecord::Base
   
   def followers_count
     21
-  end
-  
-  def role_list
-    %w(admin mentor)
-  end
-  
-  def role_list=(v)
-    'todo'
-  end
-  
-  def skill_list
-    %w(ruby rails)
-  end
-  
-  def skill_list=(v)
-    'todo'
-  end
-  
-  def service_list
-    %w(enterprise startup)
-  end
-  
-  def service_list=(v)
-    'todo'
   end
 end

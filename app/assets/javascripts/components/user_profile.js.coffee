@@ -4,12 +4,15 @@
 
 @UserProfile = React.createClass
   saveProfile: (hash)->
+    response = null
     $.ajax
       method: 'put'
+      async: false
       url: AppRoutes.profile_path()
       data: hash
       success: (resp) ->
-        return resp
+        response = resp
+    response
 
   render: ->
     (div null,

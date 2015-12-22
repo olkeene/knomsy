@@ -1,5 +1,6 @@
 class User::ProfilesController < ApplicationController
   before_action :authenticate_user!
+  before_action :preload_and_prebuild_associations
   
   def show
   end
@@ -14,14 +15,19 @@ class User::ProfilesController < ApplicationController
   
   private
   
+  def preload_and_prebuild_associations
+    current_user.preload_and_prebuild_associations
+  end
+  
   def permitted_params
     params.permit(user: [
-      :first_name,    :last_name,    :username,         :avatar,          :cover,   :country, :city, 
+      :first_name,    :last_name,    :username,      :avatar,  :cover,   :country, :city, 
       :cover_url,
-      :gplay_link,    :itunes_link,  :dribbble_link,    :fb_link,         :gh_link, :gplus_link, 
-      :linkedin_link, :twitter_link, :youtube_link,     :website,
+      :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
+      :linkedin_link, :twitter_link, :youtube_link,  :website,
       :about,         :short_resume, :what_do,
-      :role_list,     :skill_list,   :service_list
+      :role_list,     :skill_list,   :service_list,
+      investing_attributes: [:amount, :deals_year, :confirmed_deals]
     ])
   end
 end

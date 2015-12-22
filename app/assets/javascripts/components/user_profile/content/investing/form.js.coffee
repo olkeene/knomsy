@@ -1,6 +1,6 @@
 {div, span, h3, h4, button, i, ul, li, p, textarea, input} = React.DOM
 
-@UserProfile_Content_Info_Form = React.createFactory React.createClass
+@UserProfile_Content_Investing_Form = React.createFactory React.createClass
   mixins: [React.addons.LinkedStateMixin]
   
   propTypes: 
@@ -9,10 +9,10 @@
     onCancel:    React.PropTypes.func.isRequired
 
   getInitialState: ->
-    @props.user
+    @props.user.investing
     
   saveProfile: ->
-    resp = @props.saveProfile user: @state
+    resp = @props.saveProfile {user: {investing_attributes: @state}}
     if resp.errors
       @setState errors: resp.errors
     else
@@ -22,22 +22,22 @@
     @props.onCancel()
 
   render: ->
-    roles = unless _.isEmpty(@props.role_list)
-      _.map @props.role_list, (role, index)->
-        (span className: "label__item label label-default", key: "role_#{index}", 
-          (span null, role)
+    markets = unless _.isEmpty(@props.market_list)
+      _.map @props.market_list, (market, index)->
+        (span className: "label__item label label-default", key: "market_#{index}", 
+          (span null, market)
           (i className: "label__icon fa fa-times"))
       
-    skills = unless _.isEmpty(@props.skill_list)
-      _.map @props.skill_list, (skill, index)->
-        (span className: "label__item label label-default", key: "skill_#{index}", 
-          (span null, skill)
+    countries = unless _.isEmpty(@props.country_list)
+      _.map @props.country_list, (country, index)->
+        (span className: "label__item label label-default", key: "country_#{index}", 
+          (span null, country)
           (i className: "label__icon fa fa-times"))
       
-    services = unless _.isEmpty(@props.service_list)
-      _.map @props.service_list, (service, index)->
-        (span className: "label__item label label-default", key: "service_#{index}",
-          (span null, service)
+    currencies = unless _.isEmpty(@props.currency_list)
+      _.map @props.currency_list, (currency, index)->
+        (span className: "label__item label label-default", key: "currency_#{index}",
+          (span null, currency)
           (i className: "label__icon fa fa-times"))
           
     errors = if @state.errors
@@ -52,19 +52,24 @@
           (errors)
           
           (div className: "edit-body__form",
-            (h4 className: "form__title", 'About me')
-            (textarea className: "form__textarea form-control", valueLink: @linkState('about')))
-
-          (div className: "edit-body__form",
-            (h4 className: "form__title", 'What I do')
-            (textarea className: "form__textarea form-control", placeholder: "Something more", valueLink: @linkState('what_do')))
+            (div className: "row",
+              (div className: 'col-md-4',
+                (h4 className: "form__title", 'Invests / Deal')
+                (input className: "form-control", valueLink: @linkState('amount')))
+              (div className: 'col-md-4',
+                (h4 className: "form__title", 'Avarage Deals / Year')
+                (input className: "form-control", valueLink: @linkState('deals_year')))
+              (div className: 'col-md-4',
+                (h4 className: "form__title", 'Confirmed Deals')
+                (input className: "form-control", valueLink: @linkState('confirmed_deals')))
+          ))
 
           (div className: "edit-body__form",
             (div className: "row",
               (div className: "col-md-7",
-                (h4 className: "form__title", 'Roles')
+                (h4 className: "form__title", 'Markets')
                 (div className: "form__label",
-                  (roles)))
+                  (markets)))
 
               (div className: "col-md-5",
                 (div className: "form__input input-group",
@@ -76,9 +81,9 @@
           (div className: "edit-body__form",
             (div className: "row",
               (div className: "col-md-7",
-                (h4 className: "form__title", 'Skills')
+                (h4 className: "form__title", 'Countries')
                 (div className: "form__label",
-                  (skills)))
+                  (countries)))
 
               (div className: "col-md-5",
                 (div className: "form__input input-group",
@@ -90,9 +95,9 @@
           (div className: "edit-body__form",
             (div className: "row",
               (div className: "col-md-7",
-                (h4 className: "form__title", 'Services')
+                (h4 className: "form__title", 'Currencies')
                 (div className: "form__label",
-                  (services)))
+                  (currencies)))
 
               (div className: "col-md-5",
                 (div className: "form__input input-group",

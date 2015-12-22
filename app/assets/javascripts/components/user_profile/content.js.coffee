@@ -9,6 +9,7 @@
     (div className: 'profile-card__content container',
       (UserProfile_Content_BreadCrumbs())
       (div className: 'col-xs-12 col-sm-12 col-md-10',
-        (UserProfile_Content_Info(user: @state.user, saveProfile: @props.saveProfile))
+        (UserProfile_Content_Info(user: @state.user,      saveProfile: @props.saveProfile))
+        (UserProfile_Content_Investing(user: @state.user, saveProfile: @props.saveProfile))
         (UserProfile_Content_References(user: @state.user))
       ))
