@@ -1,0 +1,3 @@
+to remove
+.label__item
+.label__icon
