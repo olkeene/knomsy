@@ -18,6 +18,7 @@
 //= require react
 //= require react_ujs
 
+//= require bootstrap-tokenfield
 //= require bootstrap-switch
 
 //= require_directory .
