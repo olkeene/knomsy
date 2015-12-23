@@ -75,6 +75,8 @@ GEM
     connection_pool (2.2.0)
     daemons (1.2.3)
     database_cleaner (1.5.1)
+    date_validator (0.8.1)
+      activemodel
     debug_inspector (0.0.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -267,6 +269,7 @@ DEPENDENCIES
   bootstrap_tokenfield_rails
   coffee-rails (~> 4.1.0)
   database_cleaner
+  date_validator
   devise
   draper
   email_validator

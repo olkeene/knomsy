@@ -8,6 +8,7 @@ gem 'rollbar'
 
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
+gem 'date_validator' # AR dete validator
 gem 'haml-rails'
 gem 'active_model_serializers'
 gem 'draper' # presenter
