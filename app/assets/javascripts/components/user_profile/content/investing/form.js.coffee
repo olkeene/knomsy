@@ -1,7 +1,7 @@
 {div, span, h3, h4, button, i, ul, li, p, textarea, input} = React.DOM
 
 @UserProfile_Content_Investing_Form = React.createFactory React.createClass
-  mixins: [React.addons.LinkedStateMixin]
+  mixins: [React.addons.LinkedStateMixin, ReactCheckboxMixin]
   
   propTypes: 
     user:        React.PropTypes.object.isRequired,
@@ -20,6 +20,10 @@
       
   onCancel: ->
     @props.onCancel()
+    
+  componentDidMount: (prevProps, prevState)->
+    $(@refs.toggleInput).on 'switchChange.bootstrapSwitch', (event, state) =>
+        @setState visible: state
 
   render: ->
     markets = unless _.isEmpty(@props.market_list)
@@ -106,6 +110,11 @@
                     (button type: "button", className: "input__btn btn btn-default",
                       (i className: "input__btn-icon fa fa-angle-down")))))))
 
-          (div className: "edit-body__btn-group edit-body__btn-group_right",
-            (button type: "button", className: "btn-group__item_left btn_link btn btn-link",     onClick: @onCancel, 'Cancel')
-            (button type: "button", className: "btn-group__item_right btn_save btn btn-success", onClick: @saveProfile, 'Save')))))
+          (div className: 'row',
+            (div className: 'col-md-7 text-left edit-body__btn-group',
+              (input type: 'checkbox', ref: 'toggleInput', defaultChecked: @state.visible, onChange: @onChangeVisibility))
+
+            (div className: 'col-md-5',
+              (div className: "edit-body__btn-group edit-body__btn-group_right",
+                (button type: "button", className: "btn-group__item_left btn_link btn btn-link",     onClick: @onCancel, 'Cancel')
+                (button type: "button", className: "btn-group__item_right btn_save btn btn-success", onClick: @saveProfile, 'Save')))))))

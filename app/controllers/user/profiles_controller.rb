@@ -27,7 +27,10 @@ class User::ProfilesController < ApplicationController
       :linkedin_link, :twitter_link, :youtube_link,  :website,
       :about,         :short_resume, :what_do,
       :role_list,     :skill_list,   :service_list,
-      investing_attributes: [:amount, :deals_year, :confirmed_deals]
+      investing_attributes: [
+        :amount,      :deals_year,   :confirmed_deals, :visible,
+        :market_list, :country_list, :currency_list
+      ]
     ])
   end
 end

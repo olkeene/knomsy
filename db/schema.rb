@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151222201148) do
+ActiveRecord::Schema.define(version: 20151223092715) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20151222201148) do
     t.string  "amount"
     t.integer "deals_year"
     t.integer "confirmed_deals"
+    t.boolean "visible",         default: true
   end
 
   add_index "investings", ["user_id"], name: "index_investings_on_user_id", using: :btree

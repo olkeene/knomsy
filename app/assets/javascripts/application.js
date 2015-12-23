@@ -18,6 +18,8 @@
 //= require react
 //= require react_ujs
 
+//= require bootstrap-switch
+
 //= require_directory .
 //= require_self
 

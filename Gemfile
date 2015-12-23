@@ -39,6 +39,7 @@ gem 'devise'
 # gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'font-awesome-rails'
+gem 'bootstrap-switch-rails'
 # gem 'activeadmin', github: 'activeadmin'
 
 # Use SCSS for stylesheets
