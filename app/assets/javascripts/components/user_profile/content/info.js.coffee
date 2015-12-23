@@ -1,24 +1,9 @@
 #= require_directory ./info
 
-{div, span, h3, h4, button, i, ul, li, p, textarea, input} = React.DOM
+{div, h3} = React.DOM
 
 @UserProfile_Content_Info = React.createFactory React.createClass
-  propTypes: 
-    user:        React.PropTypes.object.isRequired,
-    saveProfile: React.PropTypes.func.isRequired
-
-  getInitialState: ->
-    edit_mode: false,
-    user: @props.user
-    
-  onEdit: ->
-    @setState edit_mode: true
-    
-  onCancel: (user)->
-    options = edit_mode: false
-    options.user = user if user
-    
-    @setState options
+  mixins: [UserProfile_Content_BaseComponent]
     
   render: ->
     innerContent = if @state.edit_mode
