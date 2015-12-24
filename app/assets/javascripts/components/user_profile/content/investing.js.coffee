@@ -1,4 +1,5 @@
 #= require_directory ./investing
+#= require_directory ./mixins
 
 {div, h3} = React.DOM
 

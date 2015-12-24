@@ -7,5 +7,6 @@ class UserSerializer < ActiveModel::Serializer
     :about,         :short_resume, :what_do,
     :role_list,     :skill_list,   :service_list
     
-    has_one :investing
+    has_one  :investing
+    has_many :experiences
 end

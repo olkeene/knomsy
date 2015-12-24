@@ -9,8 +9,9 @@ class User < ActiveRecord::Base
          
   acts_as_ordered_taggable_on :skills, :roles, :services
   
-  has_one :investing, dependent: :destroy
-  accepts_nested_attributes_for :investing
+  has_one  :investing,   dependent: :delete
+  has_many :experiences, dependent: :delete_all
+  accepts_nested_attributes_for :investing, :experiences
          
   validates :first_name, :last_name, presence: true, length: {minimum: 2, maximum: 50}
   validates :username, length: {minimum: 2, maximum: 50}, allow_blank: true
@@ -35,7 +36,7 @@ class User < ActiveRecord::Base
   
   def preload_and_prebuild_associations
     ActiveRecord::Associations::Preloader.new.preload \
-      self, :investing
+      self, [:investing, :experiences]
       
     investing || build_investing
   end

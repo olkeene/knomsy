@@ -30,7 +30,8 @@ class User::ProfilesController < ApplicationController
       investing_attributes: [
         :amount,      :deals_year,   :confirmed_deals, :visible,
         :market_list, :country_list, :currency_list
-      ]
+      ],
+      experiences_attributes: []
     ])
   end
 end

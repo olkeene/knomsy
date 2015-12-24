@@ -1,4 +1,5 @@
 #= require_directory ./info
+#= require_directory ./mixins
 
 {div, h3} = React.DOM
 
