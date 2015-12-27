@@ -3,6 +3,8 @@
  *= require bootstrap3-switch
  *= require bootstrap-tokenfield
  
+ *= require jquery-ui/datepicker
+ 
  *= require font-awesome
  *= require_tree ./partials
  *= require_tree .
@@ -90,5 +92,6 @@ body {
   position: relative;
   left: 25%;
   width: 50%;
+  min-width: 500px;
   margin-top: 10px;
 }

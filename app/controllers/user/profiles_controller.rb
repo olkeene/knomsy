@@ -3,6 +3,8 @@ class User::ProfilesController < ApplicationController
   before_action :preload_and_prebuild_associations
   
   def show
+    # TODO only if page editable
+    gon.experience_roles = Experience.roles.map{|role, v| {value: role, name: role.humanize} }
   end
 
   def update
@@ -31,7 +33,7 @@ class User::ProfilesController < ApplicationController
         :amount,      :deals_year,   :confirmed_deals, :visible,
         :market_list, :country_list, :currency_list
       ],
-      experiences_attributes: []
+      experiences_attributes: [:id, :role, :company_name, :title, :description, :started_at, :ended_at, :current]
     ])
   end
 end
