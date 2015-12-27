@@ -1,7 +1,7 @@
 {div, span, h3, h4, button, i, ul, li, p, textarea, input} = React.DOM
 
 @UserProfile_Content_Investing_Form = React.createFactory React.createClass
-  mixins: [ReactTokenizeInputMixin]
+  mixins: [React.addons.LinkedStateMixin, ReactTokenizeInputMixin]
   
   propTypes: 
     user:        React.PropTypes.object.isRequired,
