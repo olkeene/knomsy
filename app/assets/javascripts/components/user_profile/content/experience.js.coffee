@@ -8,7 +8,7 @@
     
   render: ->
     innerContent = if @state.edit_mode
-      UserProfile_Content_Experience_Form(user: @state.user, saveProfile: @props.saveProfile, onCancel: @onCancel)
+      UserProfile_Content_Experience_Edit(user: @state.user, saveProfile: @props.saveProfile, onCancel: @onCancel)
     else
       UserProfile_Content_Experience_View(user: @state.user, onEdit: @onEdit)
       

@@ -28,7 +28,7 @@
 
   render: ->
     errors = if @state.errors
-      (div className: 'alert alert-danger', @state.errors.join('<br/>'))
+      (div className: 'alert alert-danger', dangerouslySetInnerHTML: {__html: @state.errors.join('<br />')})
 
     (span null,
       (div className: 'edit-body__btn-group edit-body__btn-group_in-title',

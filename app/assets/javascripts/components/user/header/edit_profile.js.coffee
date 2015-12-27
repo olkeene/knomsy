@@ -28,7 +28,7 @@
   
   render: ->
     errors = if @state.errors
-      (div className: 'alert alert-danger', @state.errors.join('<br/>'))
+      (div className: 'alert alert-danger', dangerouslySetInnerHTML: {__html: @state.errors.join('<br />')})
       
     (div className: "profile-card__header_edit",
       (div className: "profile-card__column_border-bottom",
