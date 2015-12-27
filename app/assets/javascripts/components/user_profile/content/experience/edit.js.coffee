@@ -83,7 +83,7 @@
   innerContent: ->
     grouped    = _.groupBy @state.user.experiences, (exp)-> exp.humanized_role
     educations = grouped['Education'] || []
-    delete grouped['education']
+    delete grouped['Education']
     
     (div className: "edit-body__form",
       @renderExperiences(grouped)

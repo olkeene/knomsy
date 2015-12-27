@@ -30,6 +30,9 @@
   onCancel: ->
     @props.onCancel()
     
+  onDelete: ->
+    @setState '_destroy': '1', @saveProfile
+    
   render: ->
     errors = if @state.errors
       (div className: 'alert alert-danger', dangerouslySetInnerHTML: {__html: @state.errors.join('<br />')})
@@ -38,6 +41,9 @@
       (option value: hash.value, key: "type_select_#{hash.value}", hash.name)
     # with blank
     typeOptions.unshift(option value: '', key: "type_select_", '')
+    
+    deleteBtn = if @state.id
+      (button type: "button", className: "btn-group__item btn_grey btn btn-primary", onClick: @onDelete, 'Delete')
 
     (span null,
       (div className: 'edit-body__btn-group edit-body__btn-group_in-title',
@@ -96,7 +102,7 @@
             (div className: "edit-body__btn-group edit-body__btn-group_left",
               (button type: "button", className: "btn-group__item btn_save btn btn-success", onClick: @saveProfile, 'Save')
               (button type: "button", className: "btn-group__item btn_grey btn btn-primary", onClick: @onCancel, 'Cancel')
-              (button type: "button", className: "btn-group__item btn_grey btn btn-primary", 'Delete')
+              deleteBtn
             )
           )
         )

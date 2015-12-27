@@ -33,7 +33,7 @@ class User::ProfilesController < ApplicationController
         :amount,      :deals_year,   :confirmed_deals, :visible,
         :market_list, :country_list, :currency_list
       ],
-      experiences_attributes: [:id, :role, :company_name, :title, :description, :started_at, :ended_at, :current]
+      experiences_attributes: [:_destroy, :id, :role, :company_name, :title, :description, :started_at, :ended_at, :current]
     ])
   end
 end
