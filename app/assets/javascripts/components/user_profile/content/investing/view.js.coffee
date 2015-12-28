@@ -6,6 +6,26 @@
     onEdit: React.PropTypes.func.isRequired
 
   render: ->
+    investing = @props.user.investing
+    
+    # amount is string
+    if !investing || (
+      _.isBlank(investing.amount)      && !investing.deals_year             && !investing.confirmed_deals &&
+      _.isEmpty(investing.market_list) && _.isEmpty(investing.country_list) && _.isEmpty(investing.currency_list)
+    )
+      @renderEmpty()
+    else
+      @renderListings()
+      
+  renderEmpty: ->
+    (div className: 'section__body section__body_empty',
+      (div className: 'emptybody',
+        (i className: 'empty-body__icon fa fa-usd')
+        (h4 className: 'empty-body__text', 'Your investing info is empty now')
+        (p className: 'empty-body__comment', 'You can use "Edit" button to fill it')
+        (button className: 'btn btn-primary btn_edit', type: 'button', onClick: @props.onEdit, 'Edit')))
+    
+  renderListings: ->  
     markets = unless _.isEmpty(@props.user.investing.market_list)
       _.map @props.user.investing.market_list, (market, i)->
         (li className: "list__item_roles", key: "role_#{i}", market)

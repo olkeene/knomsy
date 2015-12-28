@@ -9,7 +9,7 @@
     onCancel:    React.PropTypes.func.isRequired
 
   getInitialState: ->
-    @props.user.investing
+    @props.user.investing || {}
     
   saveProfile: ->
     resp = @props.saveProfile {user: {investing_attributes: @state}}
