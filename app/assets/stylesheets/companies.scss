@@ -1,0 +1,11 @@
+@import 'mixins';
+
+.companies {
+  
+}
+
+.companies_new, .companies_create {
+  form {
+    @include white-background;
+  }
+}

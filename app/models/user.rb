@@ -11,6 +11,7 @@ class User < ActiveRecord::Base
   
   has_one  :investing,   dependent: :delete
   has_many :experiences, dependent: :delete_all
+  has_many :companies,   dependent: :destroy
   accepts_nested_attributes_for :investing, :experiences, allow_destroy: true
          
   validates :first_name, :last_name, presence: true, length: {minimum: 2, maximum: 50}
