@@ -20,6 +20,18 @@
     
   cancel: ->
     @props.onClose()
+    
+  _get_avatar: ->
+    if _.isBlank(@state.avatar_url)
+      (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
+    else
+      (img className: "input__photo input__photo_square", src: @state.avatar_url)
+    
+  _get_cover: ->
+    if _.isBlank(@state.cover_url)
+      (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
+    else
+      (img className: "input__photo input__photo_square", src: @state.cover_url)
   
   render: ->
     errors = if @state.errors
@@ -36,7 +48,7 @@
               (div className: "col-xs-12 col-md-6",
                 (div className: "form-group",
                   (label className: "input__title", 'Photo')
-                  (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
+                  @_get_cover()
                   (button type: "button", className: "btn_grey btn btn-primary", 'Upload')
                   (button type: "button", className: "btn_link btn btn-link",    'Remove'))
 
@@ -56,7 +68,7 @@
               (div className: "col-xs-12 col-md-6",
                 (div className: "form-group",
                   (label className: "input__title", 'Cover')
-                  (img className: "input__photo input__photo_square")
+                  @_get_cover()
                   (button type: "button", className: "btn_grey btn btn-primary", 'Upload')
                   (button type: "button", className: "btn_link btn btn-link",    'Remove'))
 
