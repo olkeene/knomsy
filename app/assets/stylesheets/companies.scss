@@ -1,7 +1,23 @@
 @import 'mixins';
 
-.companies {
-  
+.companies_show {
+  .profile-card__header {
+    .info__body {
+      padding-left: 0;
+      
+      .info__founded {
+        padding-left: 10px;
+        font-size: 12px;
+      }
+      
+      .info__location, .info__description, .info__category, .info__founded {
+        color: $darker_grey;
+      }
+    }
+    .media-body {
+      width: auto;
+    }
+  }
 }
 
 .companies_new, .companies_create {

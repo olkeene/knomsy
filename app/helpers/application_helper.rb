@@ -3,10 +3,11 @@ module ApplicationHelper
     return @body_class if defined?(@body_class)
 
     classes = [controller_name]
-    classes << 'admin' if controller_path =~ /^admin/
+    classes << 'profiles' if controller_name == 'companies' && action_name == 'show'
+    classes << 'admin'    if controller_path =~ /^admin/
     classes << controller_action
 
-    classes.join(' ')
+    classes.uniq.join(' ')
   end
   
   def non_signed_in_pages?

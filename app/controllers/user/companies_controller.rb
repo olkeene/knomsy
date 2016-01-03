@@ -1,9 +1,14 @@
 class User::CompaniesController < ApplicationController
-  before_action :authenticate_user!
-  before_action :find_company!, except: [:new, :create]
-  before_action :build_company, only:   [:new, :create]
+  before_action :authenticate_user!,   except: :show
+  
+  before_action :find_scoped_company!, only: [:update]
+  before_action :find_company!,        only: [:show]
+  
+  before_action :build_company,        only: [:new, :create]
   
   def show
+    @serialized_company = CompanySerializer.new(@company)
+    gon.company = @serialized_company
   end
 
   def new
@@ -19,26 +24,30 @@ class User::CompaniesController < ApplicationController
   
   def update
     if @company.update(permitted_params[:company])
-      render_notice CompanySerializer.new(company)
+      render_notice CompanySerializer.new(@company)
     else
       render_error @company.errors.to_a
     end
   end
   
-  # def destroy
-  #   @company.destroy
-  #   
-  #   head :ok
-  # end
-  
   private
   
   def find_company!
+    @company = Company.friendly.find(params[:id])
+  end
+  
+  def find_scoped_company!
     @company = current_user.companies.friendly.find(params[:id])
   end
   
   def permitted_params
-    params.permit(company: [:name, :description, :country, :city, :market, :category, :short_name, :terms_of_service])
+    params.permit(company: [
+      :name, :description, :country, :city, :market, :category, :short_name, :terms_of_service,
+      :logo, :cover,
+      :founded_on,
+      :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
+      :linkedin_link, :twitter_link, :youtube_link,  :website,
+    ])
   end
   
   def build_company
