@@ -3,7 +3,9 @@ class CompanySerializer < ActiveModel::Serializer
     :id,            :name,         :short_name,       :description, :founded_on,
     :country,       :city,         :market,           :category,
     :rating,        :trend,        :followings_count, :followers_count, :logo_url, :cover_url,
-    :linkedin_link, :twitter_link, :fb_link,          :website
+    
+    :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
+    :linkedin_link, :twitter_link, :youtube_link,  :website
     
   def id
     object.to_param
