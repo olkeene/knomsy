@@ -1,3 +1,6 @@
 to remove
 .label__item
 .label__icon
+
+remove user decorator?
+blank state for userProfile cover and avatar like. Make like in companies
