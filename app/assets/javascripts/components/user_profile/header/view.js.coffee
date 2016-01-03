@@ -9,7 +9,7 @@
     name = "#{@props.user.first_name} #{@props.user.last_name}"
 
     location = if !_.isBlank(@props.user.city) || !_.isBlank(@props.user.country)
-      (p className: "user-info__location",
+      (p className: "info__location",
         (i className: "fa fa-map-marker")
         (span null, [@props.user.country, @props.user.city].join(', ')))
         
@@ -44,11 +44,11 @@
           (div className: "media",
             (div className: "media-left",
               (a null,
-                (i className: "header__userpic media-object fa fa-user")))
+                (i className: "header__pic media-object fa fa-user")))
 
-            (div className: "user-info__body media-body",
-              (h4 className: "user-info__name media-heading", name)
-              (p className: "user-info__profession")
+            (div className: "info__body media-body",
+              (h4 className: "info__name media-heading", name)
+              (p className: "info__profession")
               
               (location)
 

@@ -18,25 +18,25 @@
     padding-top: 40px;
     padding-bottom: 40px;
   }
-  .header__userpic {
+  .header__pic {
     border-radius: 100%;
     width: 140px;
     color: rgba(255, 255, 255, 0.75);
     font-size: 62px;
   }
-  .user-info__body {
+  .info__body {
     padding-left: 30px;
   }
-  .user-info__name {
+  .info__name {
     color: $white;
     font-size: 20px;
   }
-  .user-info__profession {
+  .info__profession {
     color: $white;
     font-size: 14px;
     max-width: 400px;
   }
-  .user-info__location {
+  .info__location {
     color: $white;
     font-size: 13px;
     
@@ -711,7 +711,7 @@
       padding: 0 5px;
       margin-bottom: 2px;
     }
-    .header__userpic {
+    .header__pic {
       width: 80px;
     }
     .contacts__followers, .contacts__rating {
