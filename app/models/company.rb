@@ -4,7 +4,11 @@ class Company < ActiveRecord::Base
   
   validates :name, :short_name, presence: true, length: {minimum: 2, maximum: 50}
   validates :description, length: {maximum: 500}
-  validates :country, :city, :market, :category, presence: true
+  
+  validates :country, :city, :market, :category, length: {maximum: 255}, presence: true
+  
+  validates :gplay_link, :itunes_link, :dribbble_link, :fb_link, :gh_link, :gplus_link, 
+    :linkedin_link, :twitter_link, :youtube_link, :website, length: {maximum: 255}, allow_blank: true
 
   validates_acceptance_of :terms_of_service, on: :create
   
