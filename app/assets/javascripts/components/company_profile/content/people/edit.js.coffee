@@ -12,11 +12,14 @@
   onEdit: (member, e)->
     @setState form: true, member: member
     
-  onFormCancel: ->
-    @setState form: false
+  onFormCancel: (company)->
+    options = form: false
+    options.company = company if company
+    
+    @setState options
     
   onNew: ->
-    @setState form: true
+    @setState form: true, member: null
     
   onCancel: ->
     @props.onCancel(@state.company)
