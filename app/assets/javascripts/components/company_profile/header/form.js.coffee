@@ -6,12 +6,18 @@
 @CompanyProfile_Header_Form = React.createFactory React.createClass
   mixins: [React.addons.LinkedStateMixin, CompanyProfile_BaseFormMixin, ReactDatepickerMixin]
   
+  getInitialState: ->
+    @props.company
+
   saveProfile: ->
     resp = @props.saveProfile company: @state
     if resp.errors
       @setState errors: resp.errors
     else
-      @props.onClose(resp)
+      @props.onCancel(resp)
+      
+  onCancel: ->
+    @props.onCancel()
       
   componentDidMount: (prevProps, prevState) ->
     @datepicker 'founded_on'
@@ -111,4 +117,4 @@
 
       (div className: "edit-body__btn-group edit-body__btn-group_center",
         (button type: "button", className: "btn_save btn btn-success", onClick: @saveProfile, 'Save')
-        (button type: "button", className: "btn_link btn btn-link",    onClick: @cancel, 'Cancel')))
+        (button type: "button", className: "btn_link btn btn-link",    onClick: @onCancel, 'Cancel')))

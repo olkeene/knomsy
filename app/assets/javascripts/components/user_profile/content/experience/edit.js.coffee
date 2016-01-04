@@ -15,11 +15,7 @@
   onEditCancel: ->
     @props.onCancel()
   
-  onEdit: (e)->
-    experience_id = $(e.target).data('experience_id')
-    experience    = @props.user.experiences.find (exp) ->
-      exp.id == experience_id
-
+  onEdit: (experience, e)->
     @setState form: true, experience: experience
     
   onFormCancel: (user)->
@@ -50,7 +46,7 @@
                   (p className: "company__position", el.title)
                   (span className: "company__period", "#{el.started_at} - #{el.ended_at}"))))
             (div className: "col-md-2",
-              (button type: "button", className: "btn_edit btn btn-primary", onClick: @onEdit, 'data-experience_id': el.id, 'Edit'))))
+              (button type: "button", className: "btn_edit btn btn-primary", onClick: @onEdit.bind(this, el), 'Edit'))))
               
       (div key: group_name,
         (h4 className: "form__title", group_name)

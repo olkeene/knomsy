@@ -3,9 +3,3 @@
     company:     React.PropTypes.object.isRequired,
     saveProfile: React.PropTypes.func.isRequired,
     onCancel:    React.PropTypes.func.isRequired
-    
-  getInitialState: ->
-    @props.company
-    
-  onCancel: ->
-    @props.onCancel()

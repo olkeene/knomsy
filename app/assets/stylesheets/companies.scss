@@ -39,6 +39,11 @@
         
         .company__name {
           padding-top: 10px;
+          
+          .company__name__edit {
+            padding-left: 10px;
+            cursor: pointer;
+          }
         }
         
         .company__position {

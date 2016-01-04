@@ -6,6 +6,9 @@
 @CompanyProfile_Content_Info_Form = React.createFactory React.createClass
   mixins: [React.addons.LinkedStateMixin, ReactTokenizeInputMixin, CompanyProfile_BaseFormMixin]
   
+  getInitialState: ->
+    @props.company
+
   saveProfile: ->
     resp = @props.saveProfile company: @state
     if resp.errors
@@ -15,6 +18,9 @@
       
   componentDidMount: (prevProps, prevState)->
     @tokenize_input('tag_list')
+    
+  onCancel: ->
+    @props.onCancel()
 
   render: ->
     errors = if @state.errors

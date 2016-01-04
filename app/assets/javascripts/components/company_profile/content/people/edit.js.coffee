@@ -9,31 +9,45 @@
     form: false
     company: @props.company
       
-  # onEdit: (e)->
-  #   experience_id = $(e.target).data('experience_id')
-  #   experience    = @props.user.experiences.find (exp) ->
-  #     exp.id == experience_id
-  # 
-  #   @setState form: true, experience: experience
+  onEdit: (member, e)->
+    @setState form: true, member: member
     
-  onFormCancel: (company)->
-    options = form: false
-    options.company = company if company
-    
-    @setState options
+  onFormCancel: ->
+    @setState form: false
     
   onNew: ->
     @setState form: true
-  
-  _peopleListing: (gropedPeople)->
+    
+  onCancel: ->
+    @props.onCancel(@state.company)
     
   _renderPeople: ->
     return if _.isEmpty(@state.company.members)
     
     grouped = _.groupBy @state.company.members, (exp)-> exp.humanized_role
-    
-    (div className: "edit-body__form",
-      @_peopleListing(grouped))
+    out = []
+
+    out.push _.map grouped, (arr, group_name)=>
+      members = _.map arr, (el)=>
+        (div className: "company__member", key: "member_#{el.id}",
+          (img className: 'company__member_photo', src: el.avatar_url)
+          (h4 className: "company__name media-heading", 
+            el.name
+            (span className: 'company__name__edit', onClick: @onEdit.bind(this, el), "(Edit)")
+          )
+          (p className: "company__position", el.title)
+        )
+              
+      (div key: group_name,
+        (h4 className: "form__title", group_name)
+        (div className: "form__objects",
+          members))
+
+    (div className: 'section__body section__body_view',
+      (div className: "view-body",
+        (div className: "view-body__form row",
+          (div className: "col-md-12", out)))
+    )
 
   _newBtn_or_form: ->
     if @state.form

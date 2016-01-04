@@ -6,7 +6,7 @@
   onEdit: ->
     @setState edit_mode: true
     
-  onClose: (company)->
+  onCancel: (company)->
     options = edit_mode: false
     options.company = company if company
     
@@ -14,6 +14,6 @@
     
   render: ->
     if @state.edit_mode
-      CompanyProfile_Header_Form(company: @state.company, saveProfile: @props.saveProfile, onClose: @onClose)
+      CompanyProfile_Header_Form(company: @state.company, saveProfile: @props.saveProfile, onCancel: @onCancel)
     else
       CompanyProfile_Header_View(company: @state.company, onEdit: @onEdit)
