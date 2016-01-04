@@ -15,7 +15,6 @@
     response
 
   render: ->
-    # (UserProfile_Content(conpany: @props.conpany, saveProfile: @saveProfile))
     (div null,
-      (CompanyProfile_Header(company: @props.company, saveProfile: @saveProfile))
-    )
+      (CompanyProfile_Header(company:  @props.company, saveProfile: @saveProfile))
+      (CompanyProfile_Content(company: @props.company, saveProfile: @saveProfile)))

@@ -9,6 +9,7 @@ class User::CompaniesController < ApplicationController
   def show
     @serialized_company = CompanySerializer.new(@company)
     gon.company = @serialized_company
+    gon.people_roles = CompanyUser.roles.map{|role, v| {value: role, name: role.humanize} }
   end
 
   def new
@@ -42,11 +43,13 @@ class User::CompaniesController < ApplicationController
   
   def permitted_params
     params.permit(company: [
-      :name, :description, :country, :city, :market, :category, :short_name, :terms_of_service,
-      :logo, :cover,
+      :name, :short_desc, :country, :city, :market, :category, :short_name, :terms_of_service,
       :founded_on,
+      :logo, :cover,
+      :description,   :tag_list,
       :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
       :linkedin_link, :twitter_link, :youtube_link,  :website,
+      members_attributes: [:id, :_destroy, :name, :role, :title]
     ])
   end
   

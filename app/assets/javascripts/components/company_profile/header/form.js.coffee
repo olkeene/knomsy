@@ -4,7 +4,7 @@
 {h3, input, button, div, span, label, img, p, textarea} = React.DOM
 
 @CompanyProfile_Header_Form = React.createFactory React.createClass
-  mixins: [React.addons.LinkedStateMixin, CompanyProfile_FormBaseMixin, ReactDatepickerMixin]
+  mixins: [React.addons.LinkedStateMixin, CompanyProfile_BaseFormMixin, ReactDatepickerMixin]
   
   saveProfile: ->
     resp = @props.saveProfile company: @state
@@ -53,7 +53,7 @@
                 (div className: "form-group",
                   (label className: "input__title", 'High concept pitch')
                   (p style: {display: 'none'}, className: "textarea__subtext pull-right", '25 characters left')
-                  (textarea valueLink: @linkState('description'), rows: 4, placeholder: "Sexy toys go modern and mainstream", className: "form-control"))
+                  (textarea valueLink: @linkState('short_desc'), rows: 4, placeholder: "Sexy toys go modern and mainstream", className: "form-control"))
                 (div className: "form-group",
                   (label className: "input__title", 'Founded date')
                   (input type: "text", valueLink: @linkState('founded_on'), ref: 'founded_on', className: "form-control")))

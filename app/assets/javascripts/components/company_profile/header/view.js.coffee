@@ -16,8 +16,8 @@
       (span className: 'info__founded', "Founded: #{@props.company.founded_on}")
     
   _get_description: ->
-    if !_.isBlank(@props.company.description)
-      (p className: "info__description", @props.company.description)
+    if !_.isBlank(@props.company.short_desc)
+      (p className: "info__description", @props.company.short_desc)
       
   _get_category: ->
     if !_.isBlank(@props.company.category)
