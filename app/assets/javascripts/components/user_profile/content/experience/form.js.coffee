@@ -1,7 +1,9 @@
+#= require_directory ./../../../mixins
+
 {div, span, h4, button, i, p, textarea, input, label, a, img, select, option} = React.DOM
 
 @UserProfile_Content_Experience_Form = React.createFactory React.createClass
-  mixins: [React.addons.LinkedStateMixin, ReactTokenizeInputMixin, ReactDatepickerMixin]
+  mixins: [React.addons.LinkedStateMixin, ReactTokenizeInputMixin, ReactDatepickerMixin, ReactSwitchInputMixin]
   
   propTypes: 
     experience:  React.PropTypes.object,
@@ -14,11 +16,7 @@
   componentDidMount: (prevProps, prevState) ->
     @datepicker 'started_at'
     @datepicker 'ended_at'
-    
-    # checkbox slider
-    $(@refs.current).bootstrapSwitch()
-      .on 'switchChange.bootstrapSwitch', (event, state) =>
-        @setState current: state
+    @switch_input 'current'
     
   saveProfile: ->
     resp = @props.saveProfile {user: {experiences_attributes: [@state]}}

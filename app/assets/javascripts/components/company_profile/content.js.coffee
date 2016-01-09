@@ -7,14 +7,15 @@
   mixins: [CompanyProfile_Base]
     
   render: ->
+    options = {company: @state.company, saveProfile: @props.saveProfile}
     # (CompanyProfile_Content_Traction(company: @state.company, saveProfile: @props.saveProfile))
     # (CompanyProfile_Content_Activity(company: @state.company, saveProfile: @props.saveProfile))
-    # (CompanyProfile_Content_Funding(company:  @state.company, saveProfile: @props.saveProfile))
     # (CompanyProfile_Content_Media(company:    @state.company, saveProfile: @props.saveProfile))
 
     (div className: 'profile-card__content container',
       CompanyProfile_Content_BreadCrumbs()
       (div className: 'col-xs-12 col-sm-12 col-md-10',
-        CompanyProfile_Content_Product(company:  @state.company, saveProfile: @props.saveProfile)
-        CompanyProfile_Content_People(company:   @state.company, saveProfile: @props.saveProfile)
+        CompanyProfile_Content_Product(options)
+        CompanyProfile_Content_People(options)
+        CompanyProfile_Content_Funding(options)
       ))

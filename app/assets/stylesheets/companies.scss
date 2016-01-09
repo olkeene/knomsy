@@ -50,6 +50,87 @@
           color: $dark_grey;
         }
       }
+      
+      &.funding_view {
+        padding-top: 0;
+        padding-bottom: 0;
+        
+        .funding__timeline {
+          padding-top: 6%;
+          
+          .timeline__point {
+            background-color: $light_grey;
+            border-radius: 26px;
+            float: right;
+            height: 10px;
+            position: relative;
+            right: -17%;
+            top: 40%;
+            text-align: right;
+            width: 10px;
+            z-index: 100;
+          }
+        }
+        
+        .funding__details {
+          border-left: 3px solid $light_grey;
+          
+          .details {
+            padding-top: 10%;
+            padding-left: 10%;
+          }
+          
+          .funding__round {
+            background-color: $light_grey;
+            color: $white;
+            border-radius: 40px;
+            float: left;
+            height: 70px;
+            margin-right: 2%;
+            padding-top: 9%;
+            white-space: nowrap;
+            text-align: center;
+            width: 70px;
+          }
+          
+          .funding__amount {
+            color: $light_green;
+          }
+          
+          .funding__investors_title {
+            color: $dark_grey;
+          }
+        }
+        
+        .funding__investor {
+          padding-top: 3%;
+          
+          .funding__press_icon {
+            background-color: $light_grey;
+            border-radius: 40px;
+            color: $white;
+            float: left;
+            font-size: 30px;
+            height: 70px;
+            padding-top: 45%;
+            text-align: center;
+            width: 70px;
+          }
+          
+          .investor__links {
+            padding-left: 5%;
+            a {
+              text-transform: uppercase;
+              color: $dark_grey;
+            }
+            
+            .links__not_confirmed {
+              padding-top: 40px;
+              vertical-align: middle;
+            }
+          }
+        }
+      }
     }
   }
 }

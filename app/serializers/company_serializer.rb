@@ -9,6 +9,7 @@ class CompanySerializer < ActiveModel::Serializer
     :tag_list
     
   has_many :members
+  has_many :fundings
     
   def id
     object.to_param

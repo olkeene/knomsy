@@ -9,7 +9,8 @@ class User::CompaniesController < ApplicationController
   def show
     @serialized_company = CompanySerializer.new(@company)
     gon.company = @serialized_company
-    gon.people_roles = CompanyUser.roles.map{|role, v| {value: role, name: role.humanize} }
+    gon.people_roles   = CompanyUser.roles.map{|role, v| {value: role, name: role.humanize} }
+    gon.funding_rounds = CompanyFunding.rounds.map{|role, v| {value: role, name: role.humanize} }
   end
 
   def new
@@ -49,7 +50,8 @@ class User::CompaniesController < ApplicationController
       :description,   :tag_list,
       :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
       :linkedin_link, :twitter_link, :youtube_link,  :website,
-      members_attributes: [:id, :_destroy, :name, :role, :title]
+      members_attributes:  [:id, :_destroy, :name, :role, :title],
+      fundings_attributes: [:id, :_destroy, :round, :funded_on, :amount, :investor_list, :link, :visible]
     ])
   end
   

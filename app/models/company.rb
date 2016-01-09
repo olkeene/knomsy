@@ -2,8 +2,9 @@ class Company < ActiveRecord::Base
   extend FriendlyId
   friendly_id :short_name, use: :slugged
   
-  has_many :members, class_name: :CompanyUser, dependent: :delete_all
-  accepts_nested_attributes_for :members, allow_destroy: true
+  has_many :members,  class_name: :CompanyUser,    dependent: :delete_all
+  has_many :fundings, class_name: :CompanyFunding, dependent: :delete_all
+  accepts_nested_attributes_for :members, :fundings, allow_destroy: true
   
   validates :name, :short_name, presence: true, length: {minimum: 2, maximum: 50}
   validates :description, length: {maximum: 500}

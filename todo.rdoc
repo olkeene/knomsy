@@ -4,3 +4,8 @@ to remove
 
 remove user decorator?
 blank state for userProfile cover and avatar like. Make like in companies
+
+CompanyFunding#fetch_link_desc move to background
+
+REFACTOR:
+company#people components
