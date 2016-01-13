@@ -20,18 +20,10 @@ class Company < ActiveRecord::Base
   
   acts_as_ordered_taggable_on :tags
   
+  mount_uploader :logo,  LogoUploader
+  mount_uploader :cover, CoverUploader
+  
   #TODO deal with category, country, city and market fields, Make it as associations or scoped tags
-  
-  def cover_url
-    # return unless cover
-    
-    # cover.url
-    'http://v1.knomsy.com/assets/profile-header__background-gRrlhVu.jpg'
-  end
-  
-  def logo_url
-    'http://placehold.it/50x50'
-  end
   
   def founded_on=(v)
     return if v.blank?

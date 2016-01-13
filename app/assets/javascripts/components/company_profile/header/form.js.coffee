@@ -1,16 +1,22 @@
 #= require_directory ./../mixins
 #= require_directory ./../../mixins
 
-{h3, input, button, div, span, label, img, p, textarea} = React.DOM
+{h3, input, button, div, span, h4, label, img, p, i, textarea} = React.DOM
 
 @CompanyProfile_Header_Form = React.createFactory React.createClass
-  mixins: [React.addons.LinkedStateMixin, CompanyProfile_BaseFormMixin, ReactDatepickerMixin]
+  mixins: [React.addons.LinkedStateMixin, CompanyProfile_BaseFormMixin, ReactDatepickerMixin, ReactFileinputMixin]
   
   getInitialState: ->
     @props.company
 
   saveProfile: ->
-    resp = @props.saveProfile company: @state
+    params = company: @state
+    delete params.company.coverPreviewEncoded
+    delete params.company.logoPreviewEncoded
+
+    # processData: false, # Don't process the files
+    # contentType: false, # Set content type to false as jQuery will tell the server its a query string request
+    resp = @props.saveProfile Object.toFormData(params), {processData: false, contentType: false}
     if resp.errors
       @setState errors: resp.errors
     else
@@ -21,19 +27,9 @@
       
   componentDidMount: (prevProps, prevState) ->
     @datepicker 'founded_on'
-    
-  _get_logo: ->
-    if _.isBlank(@state.logo_url)
-      (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
-    else
-      (img className: "input__photo input__photo_square", src: @state.logo_url)
-    
-  _get_cover: ->
-    if _.isBlank(@state.cover_url)
-      (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
-    else
-      (img className: "input__photo input__photo_square", src: @state.cover_url)
-    
+    @fileinput  'logo'
+    @fileinput  'cover'
+
   render: ->
     errors = if @state.errors
       (div className: 'alert alert-danger', dangerouslySetInnerHTML: {__html: @state.errors.join('<br />')})
@@ -48,10 +44,8 @@
             (div className: "row",
               (div className: "col-xs-12 col-md-6",
                 (div className: "form-group",
-                  (label className: "input__title", 'Logo')
-                  @_get_logo()
-                  (button type: "button", className: "btn_grey btn btn-primary", 'Upload')
-                  (button type: "button", className: "btn_link btn btn-link",    'Remove'))
+                  (h4 className: "text-left", 'Logo')
+                  @_get_logo() )
 
                 (div className: "form-group",
                   (label className: "input__title", 'Company Name'),
@@ -66,10 +60,8 @@
 
               (div className: "col-xs-12 col-md-6",
                 (div className: "form-group",
-                  (label className: "input__title", 'Cover')
-                  @_get_cover()
-                  (button type: "button", className: "btn_grey btn btn-primary", 'Upload')
-                  (button type: "button", className: "btn_link btn btn-link",    'Remove'))
+                  (h4 className: "text-left", 'Cover')
+                  @_get_cover() )
 
                 (div className: "form-group",
                   (label className: "input__title", 'Market')
@@ -118,3 +110,29 @@
       (div className: "edit-body__btn-group edit-body__btn-group_center",
         (button type: "button", className: "btn_save btn btn-success", onClick: @saveProfile, 'Save')
         (button type: "button", className: "btn_link btn btn-link",    onClick: @onCancel, 'Cancel')))
+        
+  _get_logo: ->
+    src = @state.logoPreviewEncoded || @state.logo_url
+
+    if _.isBlank(src)
+      (span className: 'upload_actions',
+        (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
+        (input type: "file", ref: 'logo', className: 'file-loading'))
+    else
+      (span className: 'upload_actions',
+        (img className: "input__photo input__photo_square", src: src)
+        (input type: "file", ref: 'logo', className: 'file-loading')
+        (button className: "btn_link btn btn-link", type: "button", onClick: @fileclear.bind(this, 'logo'), 'Remove'))
+        
+  _get_cover: ->
+    src = @state.coverPreviewEncoded || @state.cover_url
+    
+    if _.isBlank(src)
+      (span className: 'upload_actions',
+        (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
+        (input type: "file", ref: 'cover', className: 'file-loading'))
+    else
+      (span className: 'upload_actions',
+        (img className: "input__photo input__photo_square", src: src)
+        (input type: "file", ref: 'cover', className: 'file-loading')
+        (button className: "btn_link btn btn-link", type: "button", onClick: @fileclear.bind(this, 'cover'), 'Remove'))

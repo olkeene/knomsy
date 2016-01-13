@@ -1,9 +1,15 @@
-{div, span, a, h4, p, i, button, br, ul, li} = React.DOM
+{div, span, a, h4, p, i, img, button, br, ul, li} = React.DOM
 
 @CompanyProfile_Header_View = React.createFactory React.createClass
   propTypes: 
     company: React.PropTypes.object.isRequired,
     onEdit:  React.PropTypes.func.isRequired
+    
+  _get_logo: ->
+    if _.isBlank(@props.company.logo_url)
+      (i className: "header__pic media-object fa fa-user")
+    else
+      (img className: "input__photo_square", src: @props.company.logo_url)
     
   _get_location: ->
     if !_.isBlank(@props.company.city) || !_.isBlank(@props.company.country)
@@ -58,7 +64,7 @@
           (div className: "media",
             (div className: "media-left",
               (a null,
-                (i className: "header__pic media-object fa fa-user")))
+                @_get_logo() ))
 
             (div className: "info__body media-body text-left",
               (h4 className: "info__name media-heading", 

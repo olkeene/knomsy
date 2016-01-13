@@ -3,15 +3,20 @@
 {div} = React.DOM
 
 @CompanyProfile = React.createClass
-  saveProfile: (hash)->
+  saveProfile: (data, options = {})->
     response = null
-    $.ajax
+    
+    jOptions = 
+      url: AppRoutes.company_path(gon.company.id)
       method: 'put'
       async: false
-      url: AppRoutes.company_path(gon.company.id)
-      data: hash
+      data: data
       success: (resp) ->
         response = resp
+        
+    _.extend jOptions, options
+      
+    $.ajax jOptions
     response
 
   render: ->

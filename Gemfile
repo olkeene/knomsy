@@ -45,6 +45,12 @@ gem 'bootstrap_tokenfield_rails'
 gem 'bootstrap_form'
 gem 'font-awesome-rails'
 gem 'bootstrap-switch-rails'
+# gem 'dropzonejs-rails'
+source 'https://rails-assets.org' do
+  gem 'rails-assets-bootstrap-fileinput' # file field
+  gem 'rails-assets-object-to-formdata'
+  gem 'rails-assets-object-traverse'
+end
 # gem 'activeadmin', github: 'activeadmin'
 
 # Use SCSS for stylesheets

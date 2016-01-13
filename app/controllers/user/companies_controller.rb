@@ -46,7 +46,7 @@ class User::CompaniesController < ApplicationController
     params.permit(company: [
       :name, :short_desc, :country, :city, :market, :category, :short_name, :terms_of_service,
       :founded_on,
-      :logo, :cover,
+      :logo,          :cover,        :remove_logo,   :remove_cover,
       :description,   :tag_list,
       :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
       :linkedin_link, :twitter_link, :youtube_link,  :website,

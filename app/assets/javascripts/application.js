@@ -23,9 +23,16 @@
 
 //= require bootstrap-tokenfield
 //= require bootstrap-switch
+//= require bootstrap-fileinput
+
+//= require object-traverse
+//= require object-to-formdata
 
 //= require_directory .
 //= require_self
+
+// Disable auto discover for all elements:
+// Dropzone.autoDiscover = false;
 
 $(document).ready(function(){
   var body = $('body');
