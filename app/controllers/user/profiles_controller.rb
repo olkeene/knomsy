@@ -8,7 +8,7 @@ class User::ProfilesController < ApplicationController
   end
 
   def update
-    if current_user.update(permitted_params[:user])
+    if current_user.update(permitted_params[:user] || {})
       render_notice UserSerializer.new(current_user)
     else
       render_error current_user.errors.to_a

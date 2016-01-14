@@ -10,7 +10,6 @@
     options = {company: @state.company, saveProfile: @props.saveProfile}
     # (CompanyProfile_Content_Traction(company: @state.company, saveProfile: @props.saveProfile))
     # (CompanyProfile_Content_Activity(company: @state.company, saveProfile: @props.saveProfile))
-    # (CompanyProfile_Content_Media(company:    @state.company, saveProfile: @props.saveProfile))
 
     (div className: 'profile-card__content container',
       CompanyProfile_Content_BreadCrumbs()
@@ -18,4 +17,5 @@
         CompanyProfile_Content_Product(options)
         CompanyProfile_Content_People(options)
         CompanyProfile_Content_Funding(options)
+        CompanyProfile_Content_Media(options)
       ))

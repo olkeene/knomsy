@@ -25,7 +25,7 @@ class User::CompaniesController < ApplicationController
   end
   
   def update
-    if @company.update(permitted_params[:company])
+    if @company.update(permitted_params[:company] || {})
       render_notice CompanySerializer.new(@company)
     else
       render_error @company.errors.to_a
