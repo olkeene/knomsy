@@ -8,35 +8,8 @@
   render: ->
     name = "#{@props.user.first_name} #{@props.user.last_name}"
 
-    location = if !_.isBlank(@props.user.city) || !_.isBlank(@props.user.country)
-      (p className: "info__location",
-        (i className: "fa fa-map-marker")
-        (span null, [@props.user.country, @props.user.city].join(', ')))
-        
     header_styles = unless _.isBlank(@props.user.cover_url)
       {backgroundImage: "url(#{@props.user.cover_url})"}
-    
-    # links
-    website = unless _.isBlank(@props.user.website)
-      (li className: 'contacts__links_item',
-        (a target: '_blank', href: @props.user.website,
-          (i className: 'item__website-icon fa fa-globe')
-          (span null, @props.user.website)))
-
-    twitter = unless _.isBlank(@props.user.twitter_link)
-      (li className: 'contacts__links_item',
-        (a target: '_blank', href: @props.user.twitter_link,
-          (i className: 'fa fa-twitter')))
-          
-    facebook = unless _.isBlank(@props.user.fb_link)
-      (li className: 'contacts__links_item',
-        (a target: '_blank', href: @props.user.fb_link,
-          (i className: 'fa fa-facebook')))
-          
-    linked_in = unless _.isBlank(@props.user.linkedin_link)
-      (li className: 'contacts__links_item',
-        (a target: '_blank', href: @props.user.linkedin_link,
-          (i className: 'fa fa-linkedin')))
     
     (div className: "profile-card__header", style: header_styles,
       (div className: "container",
@@ -49,12 +22,12 @@
               (h4 className: "info__name media-heading", name)
               (p className: "info__profession")
               
-              location
+              @_get_location()
 
               (div className: "header__edit",
                 (button type: "button", className: "btn_edit btn btn-primary", onClick: @props.onEdit,
                   (i className: "fa fa-pencil")
-                  (span null, 'Edit'))))))
+                  (span null, 'Edit') )))))
 
         (div className: "col-xs-12 col-md-4 header__contacts",
           (div className: "row",
@@ -76,10 +49,10 @@
 
             (div className: "clearfix")
             (ul className: "contacts__links",
-              website
-              twitter
-              facebook
-              linked_in)))
+              @_get_website()
+              @_get_twitter()
+              @_get_facebook()
+              @_get_linked_in() )))
 
         (div className: "clearfix")))
         
@@ -88,3 +61,35 @@
       (i className: "header__pic media-object fa fa-user")
     else
       (img className: "input__photo_square", src: @props.user.avatar_url)
+      
+  _get_location: ->
+    if !_.isBlank(@props.user.city) || !_.isBlank(@props.user.country)
+      (p className: "info__location",
+        (i className: "fa fa-map-marker")
+        (span null, [@props.user.country, @props.user.city].join(', ')))
+        
+  # links
+  _get_website: ->
+    unless _.isBlank(@props.user.website)
+      (li className: 'contacts__links_item',
+        (a target: '_blank', href: @props.user.website,
+          (i className: 'item__website-icon fa fa-globe')
+          (span null, @props.user.website)))
+
+  _get_twitter: ->
+    unless _.isBlank(@props.user.twitter_link)
+      (li className: 'contacts__links_item',
+        (a target: '_blank', href: @props.user.twitter_link,
+          (i className: 'fa fa-twitter')))
+
+  _get_facebook: ->
+    unless _.isBlank(@props.user.fb_link)
+      (li className: 'contacts__links_item',
+        (a target: '_blank', href: @props.user.fb_link,
+          (i className: 'fa fa-facebook')))
+          
+  _get_linked_in: ->
+    unless _.isBlank(@props.user.linkedin_link)
+      (li className: 'contacts__links_item',
+        (a target: '_blank', href: @props.user.linkedin_link,
+          (i className: 'fa fa-linkedin')))
