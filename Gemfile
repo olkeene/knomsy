@@ -19,6 +19,10 @@ gem 'acts-as-taggable-on'
 
 gem 'metainspector' # url meta fetch
 
+# attachments
+gem 'carrierwave'
+gem 'cloudinary'
+
 gem 'underscore-rails'
 gem 'react-rails'
 gem 'js-routes'
