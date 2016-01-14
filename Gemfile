@@ -11,13 +11,14 @@ gem 'pg', '~> 0.15'
 gem 'date_validator' # AR dete validator
 gem 'haml-rails'
 gem 'active_model_serializers'
-gem 'draper' # presenter
+gem 'draper' # decorator
 gem 'email_validator'
 gem 'validate_url'
 gem 'friendly_id'
 gem 'acts-as-taggable-on'
 
 gem 'metainspector' # url meta fetch
+# gem 'video_info'
 
 # attachments
 gem 'carrierwave'
@@ -105,6 +106,6 @@ group :test do
   gem 'database_cleaner'
 end
 
-# group :staging do
-#   gem 'rails_12factor'
-# end
+group :staging do
+  gem 'rails_12factor'
+end
