@@ -1,8 +1,11 @@
 #= require_directory ./company_profile
+#= require_directory ./mixins
 
 {div} = React.DOM
 
 @CompanyProfile = React.createClass
+  mixins: [AjaxCallbacks]
+
   saveProfile: (data, options = {})->
     response = null
     
@@ -11,7 +14,10 @@
       method: 'put'
       async: false
       data: data
-      success: (resp) ->
+      beforeSend: =>
+        @ajax_before_save_callback()
+      success: (resp) =>
+        @ajax_after_save_callback()
         response = resp
         
     _.extend jOptions, options
