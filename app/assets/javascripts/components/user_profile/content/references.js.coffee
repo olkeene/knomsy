@@ -7,7 +7,7 @@
         (div className: "view-body__media media",
           (div className: "media-left",
             (a null, 
-              (img className: "media__img media-object", src: 'http://placehold.it/50x50')))
+              (img className: "media__img media-object", src: 'https://placehold.it/50x50')))
 
           (div className: "media-body",
             (h4 className: "media__title media-heading", 'Knomsy')
