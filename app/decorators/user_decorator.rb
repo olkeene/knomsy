@@ -1,10 +1,11 @@
 class UserDecorator < Draper::Decorator
   delegate_all
   
-  def cover_url
-    # return unless cover
-    
-    # cover.url
-    'http://v1.knomsy.com/assets/profile-header__background-gRrlhVu.jpg'
+  def avatar_thumb_url
+    @avatar_thumb_url ||= object.avatar_url && object.avatar_url(:thumb)
+  end
+  
+  def avatar_url
+    @avatar_url ||= object.avatar_url && object.avatar_url(:standard)
   end
 end

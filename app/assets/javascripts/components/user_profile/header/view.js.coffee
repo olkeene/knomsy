@@ -1,4 +1,4 @@
-{div, span, a, h4, p, i, button, br, ul, li} = React.DOM
+{div, span, a, h4, p, i, button, br, ul, li, img} = React.DOM
 
 @UserProfile_Header_View = React.createFactory React.createClass
   propTypes: 
@@ -43,14 +43,13 @@
         (div className: "col-md-8",
           (div className: "media",
             (div className: "media-left",
-              (a null,
-                (i className: "header__pic media-object fa fa-user")))
+              (a null, @_get_avatar() ))
 
             (div className: "info__body media-body",
               (h4 className: "info__name media-heading", name)
               (p className: "info__profession")
               
-              (location)
+              location
 
               (div className: "header__edit",
                 (button type: "button", className: "btn_edit btn btn-primary", onClick: @props.onEdit,
@@ -77,9 +76,15 @@
 
             (div className: "clearfix")
             (ul className: "contacts__links",
-              (website)
-              (twitter)
-              (facebook)
-              (linked_in))))
+              website
+              twitter
+              facebook
+              linked_in)))
 
         (div className: "clearfix")))
+        
+  _get_avatar: ->
+    if _.isBlank(@props.user.avatar_url)
+      (i className: "header__pic media-object fa fa-user")
+    else
+      (img className: "input__photo_square", src: @props.user.avatar_url)

@@ -21,7 +21,6 @@
           newState = {}
           newState[prop_name] = file
           newState["#{prop_name}PreviewEncoded"] = e.target.result
-          newState["remove_#{prop_name}"] = null
           @setState newState
 
         reader.readAsDataURL(file)

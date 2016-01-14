@@ -25,6 +25,9 @@ class User < ActiveRecord::Base
     
   validates :about, :short_resume, :what_do, length: {maximum: 500}, allow_blank: true
   
+  mount_uploader :avatar, AvatarUploader
+  mount_uploader :cover,  CoverUploader
+  
   # extend helper to update only assocition unless id specified
   def investing_attributes=(v)
     unless v.is_a?(Hash)

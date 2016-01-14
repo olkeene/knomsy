@@ -1,7 +1,7 @@
-{h3, input, button, div, span, label, img, p, textarea} = React.DOM
+{h3, input, button, div, span, h4, label, img, p, textarea} = React.DOM
 
 @UserProfile_Header_Form = React.createFactory React.createClass
-  mixins: [React.addons.LinkedStateMixin]
+  mixins: [React.addons.LinkedStateMixin, ReactFileinputMixin]
   
   propTypes: 
     user:        React.PropTypes.object.isRequired,
@@ -11,8 +11,18 @@
   getInitialState: ->
     @props.user
     
+  componentDidMount: (prevProps, prevState) ->
+    @fileinput 'avatar'
+    @fileinput 'cover'
+    
   saveProfile: ->
-    resp = @props.saveProfile user: @state
+    params = user: @state
+    delete params.user.coverPreviewEncoded
+    delete params.user.avatarPreviewEncoded
+    
+    # processData: false, # Don't process the files
+    # contentType: false, # Set content type to false as jQuery will tell the server its a query string request
+    resp = @props.saveProfile Object.toFormData(params), {processData: false, contentType: false}
     if resp.errors
       @setState errors: resp.errors
     else
@@ -22,16 +32,30 @@
     @props.onClose()
     
   _get_avatar: ->
-    if _.isBlank(@state.avatar_url)
-      (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
-    else
-      (img className: "input__photo input__photo_square", src: @state.avatar_url)
+    src = @state.avatarPreviewEncoded || @state.avatar_url
     
-  _get_cover: ->
-    if _.isBlank(@state.cover_url)
-      (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
+    if _.isBlank(src)
+      (span className: 'upload_actions',
+        (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
+        (input type: "file", ref: 'avatar', className: 'file-loading'))
     else
-      (img className: "input__photo input__photo_square", src: @state.cover_url)
+      (span className: 'upload_actions',
+        (img className: "input__photo input__photo_square", src: src)
+        (input type: "file", ref: 'avatar', className: 'file-loading')
+        (button className: "btn_link btn btn-link", type: "button", onClick: @fileclear.bind(this, 'avatar'), 'Remove'))
+        
+  _get_cover: ->
+    src = @state.coverPreviewEncoded || @state.cover_url
+    
+    if _.isBlank(src)
+      (span className: 'upload_actions',
+        (span style: {fontSize: 30}, className: "input__photo input__photo_circle fa fa-user")
+        (input type: "file", ref: 'cover', className: 'file-loading'))
+    else
+      (span className: 'upload_actions',
+        (img className: "input__photo input__photo_square", src: src)
+        (input type: "file", ref: 'cover', className: 'file-loading')
+        (button className: "btn_link btn btn-link", type: "button", onClick: @fileclear.bind(this, 'cover'), 'Remove'))
   
   render: ->
     errors = if @state.errors
@@ -47,10 +71,8 @@
             (div className: "row",
               (div className: "col-xs-12 col-md-6",
                 (div className: "form-group",
-                  (label className: "input__title", 'Photo')
-                  @_get_cover()
-                  (button type: "button", className: "btn_grey btn btn-primary", 'Upload')
-                  (button type: "button", className: "btn_link btn btn-link",    'Remove'))
+                  (h4 className: "text-left", 'Photo')
+                  @_get_avatar() )
 
                 (div className: "form-group",
                   (label className: "input__title", 'First Name'),
@@ -67,10 +89,8 @@
 
               (div className: "col-xs-12 col-md-6",
                 (div className: "form-group",
-                  (label className: "input__title", 'Cover')
-                  @_get_cover()
-                  (button type: "button", className: "btn_grey btn btn-primary", 'Upload')
-                  (button type: "button", className: "btn_link btn btn-link",    'Remove'))
+                  (h4 className: "text-left", 'Cover')
+                  @_get_cover() )
 
                 (div className: "form-group",
                   (label className: "input__title", 'User Name')

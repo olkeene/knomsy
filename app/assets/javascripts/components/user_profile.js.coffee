@@ -3,15 +3,20 @@
 {div} = React.DOM
 
 @UserProfile = React.createClass
-  saveProfile: (hash)->
+  saveProfile: (data, options = {})->
     response = null
-    $.ajax
+    
+    jOptions = 
+      url: AppRoutes.profile_path()
       method: 'put'
       async: false
-      url: AppRoutes.profile_path()
-      data: hash
+      data: data
       success: (resp) ->
         response = resp
+        
+    _.extend jOptions, options
+      
+    $.ajax jOptions
     response
 
   render: ->

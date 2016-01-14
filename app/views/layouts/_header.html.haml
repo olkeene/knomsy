@@ -17,8 +17,8 @@
           %li= fa_icon 'inbox',  class: 'btn btn-default'
           %li
             = link_to profile_path do
-              - if current_user.avatar_url
-                = cl_image_tag(current_user.avatar_url)
+              - if current_user.avatar_thumb_url
+                = image_tag current_user.avatar_thumb_url
               - else
                 = fa_icon 'user', class: 'avatar-small btn btn-default'
           %li= link_to fa_icon('sign-out'), destroy_user_session_path, method: :delete, class: 'btn btn-default logout'
