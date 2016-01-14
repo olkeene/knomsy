@@ -44,7 +44,7 @@
               (div className: "objects__company media",
                 (div className: "media-left",
                   (a null, 
-                    (img src: "http://placehold.it/50x50", className: "company__image media-object")))
+                    (img src: "https://placehold.it/50x50", className: "company__image media-object")))
                 (div className: "media-body",
                   (a null, 
                     (h4 className: "company__name media-heading", el.company_name))

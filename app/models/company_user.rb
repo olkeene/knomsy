@@ -8,6 +8,6 @@ class CompanyUser < ActiveRecord::Base
   validates :title, length: {minimum: 2, maximum: 50}
   
   def avatar_url
-    'http://placehold.it/70x70'
+    'https://placehold.it/70x70'
   end
 end

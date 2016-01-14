@@ -17,9 +17,11 @@ staging:
   api_secret: YhTYzb7vAe1GP060Aky1hLz_31c
   enhance_image_tag: true
   static_image_support: false
+  secure: true
 test:
   cloud_name: olkeene
   api_key: '752566627868244'
   api_secret: YhTYzb7vAe1GP060Aky1hLz_31c
   enhance_image_tag: true
   static_image_support: false
+  secure: true
