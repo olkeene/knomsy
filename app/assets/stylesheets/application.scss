@@ -12,7 +12,8 @@
  
  *= require_self
  */
-
+ 
+@import "bootstrap";
 @import 'mixins';
 
 .container-fluid, body > .container-fluid {
@@ -62,6 +63,7 @@ body > .container-fluid > {
    background-color: $light_grey;
    right: 100%;
  }
+ 
  &:after {
    left: 100%;
  }
@@ -73,9 +75,11 @@ body > .container-fluid > {
  padding: 20px;
  background-color: #364557;
  color: #6D7A8D;
+ 
  .nav > li > a {
    color: #cacfd8;
    text-decoration: underline;
+   
    &:active, &:focus, &:hover {
      color: #377bab;
      background: 0 0;
@@ -84,13 +88,13 @@ body > .container-fluid > {
 }
 
 body {
- color: $darker_grey;
- background: $light_grey;
+  color: $darker_grey;
+  background: $light_grey;
 }
 
 .col-inline {
- float: none;
- display: inline-block;
+  float: none;
+  display: inline-block;
 }
 
 .alert {

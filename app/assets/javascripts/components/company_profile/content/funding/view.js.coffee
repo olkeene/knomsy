@@ -72,7 +72,7 @@
         else
           (span null,
             (div className: 'company__name', el.link_desc)
-            (a href: el.link, _target: 'blank', @_parse_hostname(el.link)))
+            (a href: el.link, _target: 'blank', className: 'text-uppercase', @_parse_hostname(el.link)))
         
       editBtn = if @state.edit_mode
         (button type: "button", className: "btn_edit btn btn-primary", onClick: @_onEditFunding.bind(this, el), 'Edit')

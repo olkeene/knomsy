@@ -21,6 +21,9 @@
 //= require react
 //= require react_ujs
 
+//= require bootstrap
+//= require bootstrap-sprockets
+
 //= require bootstrap-tokenfield
 //= require bootstrap-switch
 //= require bootstrap-fileinput
