@@ -23,7 +23,7 @@ module ApplicationHelper
   # NOTE tmp solution to use old styles. TODO refactor
   def container_sub_class
     # nonsigned in 
-    return 'col-inline col-xs-12 col-sm-7 col-md-6 col-lg-5' if non_signed_in_pages?
+    'col-inline col-xs-12 col-sm-7 col-md-6 col-lg-5' if non_signed_in_pages?
   end
 
   def controller_action
