@@ -9,8 +9,8 @@ class User::CompaniesController < ApplicationController
   def show
     @serialized_company = CompanySerializer.new(@company)
     gon.company = @serialized_company
-    gon.people_roles   = CompanyUser.roles.map{|role, v| {value: role, name: role.humanize} }
-    gon.funding_rounds = CompanyFunding.rounds.map{|role, v| {value: role, name: role.humanize} }
+    gon.people_roles   = CompanyUser.humanized_roles
+    gon.funding_rounds = CompanyFunding.humanized_rounds
   end
 
   def new

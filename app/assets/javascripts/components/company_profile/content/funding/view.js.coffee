@@ -88,7 +88,7 @@
             (div className: 'details',
               
               (div className: 'row',
-                (div className: "col-xs-4 col-sm-4 col-md-4 col-lg-4 funding__round", el.round)
+                (div className: "col-xs-4 col-sm-4 col-md-4 col-lg-4 funding__round", el.humanized_round)
                 (div className: "col-xs-7 col-sm-7 col-md-7 col-lg-7", 
                   (h4 className: 'media-heading funding__amount', "$#{el.amount}")
                   (p className: "media-heading funding__investors_title", 'Investors:')

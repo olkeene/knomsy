@@ -1,5 +1,10 @@
 class CompanyFunding < ActiveRecord::Base
-  enum round: [:seed, :a_series]
+  enum round: [
+    :fff, 
+    :pre_seed, :seed, 
+    :a_series, :b_series, :c_series, :d_series, :e_series, :f_series,
+    :ipo
+  ]
   
   belongs_to :company
   
@@ -12,6 +17,24 @@ class CompanyFunding < ActiveRecord::Base
   validates :link_desc, length: {minimum: 2, maximum: 255}, allow_blank: true
   
   before_save :fetch_link_desc
+  
+  class << self
+    def humanized_rounds
+      rounds.map do |round, v| 
+        {value: round, name: humanize_round(round)}
+      end
+    end
+    
+    def humanize_round(round)
+      case round
+      when 'fff'      then 'FFF'
+      when 'pre_seed' then 'PreSeed'
+      when 'ipo'      then 'IPO'
+      else
+        round.humanize
+      end
+    end
+  end
 
   def investor_list=(v)
     return if v.blank? || !v.is_a?(String)
