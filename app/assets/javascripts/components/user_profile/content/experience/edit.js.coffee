@@ -19,7 +19,7 @@
     @setState form: true, experience: experience
     
   onFormCancel: (user)->
-    options = form: false
+    options = form: false, experience: null
     options.user = user if user
     
     @setState options
@@ -105,8 +105,7 @@
       (div className: "section__body section__body_edit",
         (div className: "edit-body",
           (div className: "edit-body__btn-group edit-body__btn-group_left",
-            (topContent))
+            topContent)
             
-          (@innerContent())
-
-          (buttons))))
+          @innerContent()
+          buttons)))
