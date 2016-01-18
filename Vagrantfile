@@ -49,15 +49,15 @@ Vagrant.configure(2) do |config|
       cpus = `sysctl -n hw.ncpu`.to_i
       # sysctl returns Bytes and we need to convert to MB
       # mem = `sysctl -n hw.memsize`.to_i / 1024 / 1024 / 2
-      mem = 2048
+      mem = 1024
     elsif host =~ /linux/
       cpus = `nproc`.to_i
       # meminfo shows KB and we need to convert to MB
       # mem = `grep 'MemTotal' /proc/meminfo | sed -e 's/MemTotal://' -e 's/ kB//'`.to_i / 1024 / 4
-      mem = 2048
+      mem = 1024
     else # sorry Windows folks, I can't help you
       cpus = 4
-      mem = 2048
+      mem = 1024
     end
 
     v.customize ["modifyvm", :id, "--memory", mem]
