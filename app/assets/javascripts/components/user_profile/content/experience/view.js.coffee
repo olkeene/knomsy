@@ -28,9 +28,9 @@
         (i className: 'button__icon fa fa-pencil')
         (span null, 'Edit'))
 
-      (div className: "section__body section__body_edit",
-        (div className: 'edit-body',
-          (div className: 'edit-body__form',
+      (div className: "section__body",
+        (div className: 'section__body section__body_view',
+          (div className: 'view-body',
             @renderExperiences(grouped)
             @renderEducations(educations)) )))
       
