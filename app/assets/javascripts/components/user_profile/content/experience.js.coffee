@@ -11,7 +11,7 @@
       UserProfile_Content_Experience_Edit(user: @state.user, saveProfile: @props.saveProfile, onCancel: @onCancel)
     else
       UserProfile_Content_Experience_View(user: @state.user, onEdit: @onEdit)
-      
+
     (div className: 'content__section',
       (h3 className: 'section__title', 'Work experience')
-      (innerContent))
+      innerContent)

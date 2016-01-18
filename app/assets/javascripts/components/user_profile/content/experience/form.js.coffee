@@ -93,16 +93,13 @@
                   (div className: "checkbox",
                     (label className: "input__checkbox",
                       (input type: 'checkbox', ref: 'current', defaultChecked: @state.current)
-                      (span null, 'Current position'))))
+                      (span null, 'Current position')))
+                )
               )
             )
 
             (div className: "edit-body__btn-group edit-body__btn-group_left",
               (button type: "button", className: "btn-group__item btn_save btn btn-success", onClick: @saveProfile, 'Save')
               (button type: "button", className: "btn-group__item btn_grey btn btn-primary", onClick: @onCancel, 'Cancel')
-              deleteBtn
-            )
-          )
-        )
-      )
-    )
+              deleteBtn)
+          ))))

@@ -3,7 +3,7 @@
 @UserProfile_Content_Experience_View = React.createFactory React.createClass
   propTypes: 
     user: React.PropTypes.object.isRequired
-
+    
   render: ->
     if _.isEmpty(@props.user.experiences)
       @renderEmpty()
@@ -23,15 +23,16 @@
     educations = grouped['Education'] || []
     delete grouped['Education']
     
-    (div className: "section__body section__body_edit",
-      (div className: 'edit-body',
+    (span null,
+      (button className: 'title__btn_edit edit-body__btn-group_in-title btn btn-link', type: "button", onClick: @props.onEdit,
+        (i className: 'button__icon fa fa-pencil')
+        (span null, 'Edit'))
 
-        (div className: 'edit-body__btn-group edit-body__btn-group_left',
-          (button type: "button", className: "btn_edit btn btn-primary", onClick: @props.onEdit, 'Edit'))
-          
-        (div className: 'edit-body__form',
-          @renderExperiences(grouped)
-          @renderEducations(educations))))
+      (div className: "section__body section__body_edit",
+        (div className: 'edit-body',
+          (div className: 'edit-body__form',
+            @renderExperiences(grouped)
+            @renderEducations(educations)) )))
       
   renderExperiences: (grouped)->
     out = []
