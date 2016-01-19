@@ -72,22 +72,33 @@
     padding-right: 5px;
   }
   .header__contacts {
-    background-color: rgba(0, 0, 0, 0.3);
-    width: 300px;
     height: 80px;
-    color: $white;
-    border-radius: 6px;
     text-align: center;
     padding: 15px;
     margin-top: 25px;
     position: relative;
     font-size: 15px;
+    color: $white;
+  }
+  .contacts__indices {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 6px;
+    float: right;
+    padding: 5px 0 10px;
+    width: 300px;
   }
   .contacts__links {
-    list-style: none;
-    margin-top: 30px;
-    text-align: right;
-    font-size: 12px;
+    float: right;
+    
+    ul {
+      list-style: none;
+      margin-top: 25px;
+      text-align: right;
+      font-size: 12px;
+      a {
+        color: $white;
+      }
+    }
   }
   .contacts__links_item {
     background-color: rgba(0, 0, 0, 0.3);

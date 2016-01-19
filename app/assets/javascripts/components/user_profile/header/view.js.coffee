@@ -13,7 +13,7 @@
     
     (div className: "profile-card__header", style: header_styles,
       (div className: "container",
-        (div className: "col-md-8",
+        (div className: "col-md-6",
           (div className: "media",
             (div className: "media-left",
               (a null, @_get_avatar() ))
@@ -29,8 +29,8 @@
                   (i className: "fa fa-pencil")
                   (span null, 'Edit') )))))
 
-        (div className: "col-xs-12 col-md-4 header__contacts",
-          (div className: "row",
+        (div className: "col-xs-12 col-md-6 header__contacts",
+          (div className: "row contacts__indices",
             (div className: "col-xs-4 col-sm-4 col-md-4 contacts__rating",
               (span className: "rating__value", @props.user.rating)
               (div className: "rating__trend",
@@ -45,14 +45,20 @@
             (div className: "col-xs-4 col-sm-4 col-md-4 contacts__following",
               (span className: "following__value", @props.user.followings_count)
               (br null)
-              (span className: "following__title", 'Following'))
-
-            (div className: "clearfix")
-            (ul className: "contacts__links",
-              @_get_website()
-              @_get_twitter()
-              @_get_facebook()
-              @_get_linked_in() )))
+              (span className: "following__title", 'Following')) )
+          
+          (div className: "row contacts__links",
+            (ul null,
+              @_get_link('website')
+              @_get_link('twitter_link')
+              @_get_link('fb_link')
+              @_get_link('linkedin_link')
+              @_get_link('gplay_link')
+              @_get_link('itunes_link')
+              @_get_link('dribbble_link')
+              @_get_link('gh_link')
+              @_get_link('gplus_link')
+              @_get_link('youtube_link') )))
 
         (div className: "clearfix")))
         
@@ -68,28 +74,25 @@
         (i className: "fa fa-map-marker")
         (span null, [@props.user.country, @props.user.city].join(', ')))
         
-  # links
-  _get_website: ->
-    unless _.isBlank(@props.user.website)
-      (li className: 'contacts__links_item',
-        (a target: '_blank', href: @props.user.website,
-          (i className: 'item__website-icon fa fa-globe')
-          (span null, @props.user.website)))
+  _get_link: (prop)->
+    return if _.isBlank(@props.user[prop])
 
-  _get_twitter: ->
-    unless _.isBlank(@props.user.twitter_link)
-      (li className: 'contacts__links_item',
-        (a target: '_blank', href: @props.user.twitter_link,
-          (i className: 'fa fa-twitter')))
-
-  _get_facebook: ->
-    unless _.isBlank(@props.user.fb_link)
-      (li className: 'contacts__links_item',
-        (a target: '_blank', href: @props.user.fb_link,
-          (i className: 'fa fa-facebook')))
-          
-  _get_linked_in: ->
-    unless _.isBlank(@props.user.linkedin_link)
-      (li className: 'contacts__links_item',
-        (a target: '_blank', href: @props.user.linkedin_link,
-          (i className: 'fa fa-linkedin')))
+    icon = switch prop
+      when 'gplay_link'    then 'fa fa-google'
+      when 'itunes_link'   then 'fa fa-apple'
+      when 'dribbble_link' then 'fa fa-dribbble'
+      when 'fb_link'       then 'fa fa-facebook'
+      when 'gh_link'       then 'fa fa-git'
+      when 'gplus_link'    then 'fa fa-google-plus'
+      when 'linkedin_link' then 'fa fa-linkedin'
+      when 'twitter_link'  then 'fa fa-twitter'
+      when 'youtube_link'  then 'fa fa-youtube'
+      when 'website'       then 'item__website-icon fa fa-globe'
+    
+    extras = if prop == 'website'
+      (span null, @props.user[prop])
+      
+    (li className: 'contacts__links_item',
+      (a target: '_blank', href: @props.user[prop],
+        (i className: icon)
+        extras))
