@@ -39,6 +39,8 @@
 
     out.push _.map grouped, (arr, group_name)=>
       inners = _.map arr, (el)=>
+        ended_at = if el.current then 'Current' else el.ended_at
+        
         (div className: "form__objects", key: "experience_#{el.id}",
           (div className: "row",
             (div className: "col-md-10",
@@ -51,7 +53,7 @@
                     (h4 className: "company__name media-heading", el.company_name))
                   (p className: "company__description", el.description)
                   (p className: "company__position", el.title)
-                  (span className: "company__period", "#{el.started_at} - #{el.ended_at}"))))))
+                  (span className: "company__period", "#{el.started_at} - #{ended_at}"))))))
               
       (div key: group_name,
         (h4 className: "form__title", group_name)
