@@ -18,7 +18,7 @@
             (div className: "media-left",
               (a null, @_get_avatar() ))
 
-            (div className: "info__body media-body",
+            (div className: "info__body media-body text-left",
               (h4 className: "info__name media-heading", name)
               (p className: "info__profession")
               
