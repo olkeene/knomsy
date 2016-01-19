@@ -68,14 +68,14 @@
                 (div className: 'col-md-4',
                   (p className: 'form__title form__title_center', 'Markets')
                   (ul className: 'form__list_inline form__list_inline-center',
-                    (markets)))
+                    markets))
 
                 (div className: 'col-md-4',
                   (p className: 'form__title form__title_center', 'Currency')
                   (ul className: 'form__list_inline form__list_inline-center',
-                    (countries)))
+                    currencies))
 
                 (div className: 'col-md-4',
                   (p className: 'form__title form__title_center', 'Countries')
                   (ul className: 'form__list_inline form__list_inline-center',
-                    (currencies)))))))))
+                    countries))))))))
