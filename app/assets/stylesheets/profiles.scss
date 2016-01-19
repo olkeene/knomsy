@@ -416,12 +416,13 @@
     padding-bottom: 10px;
   }
   .label__item {
+    display: inline-block;
     background-color: #B2BACA;
-    padding: 5px 8px;
-    margin-right: 8px;
-    font-size: 12px;
     border-radius: 5px;
-    line-height: 35px;
+    font-size: 12px;
+    margin-bottom: 5px;
+    margin-right: 8px;
+    padding: 5px 8px 5px 5px;
   }
   .form__img-group, .form__video-links {
     padding-top: 20px;

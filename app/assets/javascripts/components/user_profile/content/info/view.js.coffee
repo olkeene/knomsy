@@ -12,11 +12,11 @@
       
     skills = unless _.isEmpty(@props.user.skill_list)
       _.map @props.user.skill_list, (skill, i)->
-        (span className: "label__item label label-default", key: "skill_#{i}", skill)
+        (span className: "label label-default label__item", key: "skill_#{i}", skill)
       
     services = unless _.isEmpty(@props.user.service_list)
       _.map @props.user.service_list, (service, i)->
-        (span className: "label__item label label-default", key: "service_#{i}", service)
+        (span className: "label label-default label__item", key: "service_#{i}", service)
       
     (span null,
       (button className: 'title__btn_edit edit-body__btn-group_in-title btn btn-link', type: "button", onClick: @props.onEdit,
