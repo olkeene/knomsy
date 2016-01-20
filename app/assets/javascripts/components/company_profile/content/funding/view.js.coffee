@@ -9,10 +9,12 @@
     company: @props.company
   
   render: ->
-    if _.isEmpty(@state.company.fundings)
-      @_renderEmpty()
+    if @state.edit_mode
+      @_renderListings()
     else if @state.funding
       CompanyProfile_Content_Funding_Form(funding: @state.funding, saveProfile: @props.saveProfile, onCancel: @_onFormCancel)
+    else if _.isEmpty(@state.company.fundings)
+      @_renderEmpty()
     else
       @_renderListings()
       
