@@ -29,7 +29,7 @@ class UserSerializer < ActiveModel::Serializer
       {
         content: h, 
         user_name:    'Denis Kozminikh',
-        user_image_url: 'http://knomsy.com/assets/landing/team/team-1-977563e716b16ac4ada5ae10679e8ffd.png'
+        user_image_url: 'http://knomsy.com/assets/landing/team/team-1-977563e716b16ac4ada5ae10679e8ffd.png',
         company_name: 'Knomsy',
         description:  'Startup eco system'
       } 
