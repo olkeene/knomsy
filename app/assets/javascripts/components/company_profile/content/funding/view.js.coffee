@@ -9,20 +9,21 @@
     company: @props.company
   
   render: ->
-    if @state.edit_mode
-      @_renderListings()
-    else if @state.funding
+    if @state.funding || @state.new
       CompanyProfile_Content_Funding_Form(funding: @state.funding, saveProfile: @props.saveProfile, onCancel: @_onFormCancel)
     else if _.isEmpty(@state.company.fundings)
       @_renderEmpty()
     else
       @_renderListings()
       
+  _onNewFunding: ->
+    @setState new: true
+      
   _onEditFunding: (object, event)->
     @setState funding: object
   
   _onFormCancel: (company)->
-    options = form: false, funding: null
+    options = form: false, funding: null, new: null
     options.company = company if company
 
     @setState(options)
@@ -49,6 +50,12 @@
         (i className: 'button__icon fa fa-pencil')
         (span null, 'Edit'))
         
+    newBtn = if @state.edit_mode
+      (div className: "col-xs-12 col-sm-12 col-md-12 col-lg-12",
+        (button type: "button", className: "btn btn-primary", onClick: @_onNewFunding,
+          (i className: "button__icon fa fa-plus-circle")
+          (span null, 'Add New') ))
+        
     (span null,
       (span className: 'title__btn_edit edit-body__btn-group_in-title', 
         editCancelBtn)
@@ -56,8 +63,10 @@
       (div className: 'section__body section__body_view funding_view',
         (div className: "view-body",
           (div className: "view-body__form row",
-            @_fundings()
-          ))))
+            (div className: "edit-body__btn-group edit-body__btn-group_left",
+              newBtn
+              @_fundings()
+            )))))
           
   _parse_hostname: (url)->
     parser = document.createElement('a')
