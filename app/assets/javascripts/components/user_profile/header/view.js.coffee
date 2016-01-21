@@ -10,6 +10,13 @@
 
     header_styles = unless _.isBlank(@props.user.cover_url)
       {backgroundImage: "url(#{@props.user.cover_url})"}
+      
+    rating = if false
+      (div className: "col-xs-4 col-sm-4 col-md-4 contacts__rating",
+        (span className: "rating__value", @props.user.rating)
+        (div className: "rating__trend",
+          (i className: "trend__icon fa fa-arrow-circle-up")
+          (span className: "trend__value", "#{@props.user.trend}%")))
     
     (div className: "profile-card__header", style: header_styles,
       (div className: "container",
@@ -31,11 +38,7 @@
 
         (div className: "col-xs-12 col-md-6 header__contacts",
           (div className: "row contacts__indices",
-            (div className: "col-xs-4 col-sm-4 col-md-4 contacts__rating",
-              (span className: "rating__value", @props.user.rating)
-              (div className: "rating__trend",
-                (i className: "trend__icon fa fa-arrow-circle-up")
-                (span className: "trend__value", "#{@props.user.trend}%")))
+            rating
 
             (div className: "col-xs-4 col-sm-4 col-md-4 contacts__followers",
               (span className: "followers__value", @props.user.followers_count)
