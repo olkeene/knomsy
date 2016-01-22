@@ -36,6 +36,7 @@ class CompanyFunding < ActiveRecord::Base
     end
   end
 
+  # tmp accessors
   def investor_list=(v)
     return if v.blank? || !v.is_a?(String)
     
@@ -43,7 +44,7 @@ class CompanyFunding < ActiveRecord::Base
   end
   
   def investor_list
-    investors.join(',')
+    (investors || '').join(',')
   end
   
   def funded_on=(v)
