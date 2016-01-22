@@ -27,7 +27,7 @@
 
             (div className: "info__body media-body text-left",
               (h4 className: "info__name media-heading", name)
-              (p className: "info__profession")
+              (p className: "info__short-resume", @props.user.short_resume)
               
               @_get_location()
 
