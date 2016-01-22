@@ -43,10 +43,6 @@ class CompanyFunding < ActiveRecord::Base
     self.investors = v.split(',')
   end
   
-  def investor_list
-    (investors || []).join(',')
-  end
-  
   def funded_on=(v)
     return if v.blank?
     
