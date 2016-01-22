@@ -11,6 +11,8 @@
   render: ->
     if @state.funding || @state.new
       CompanyProfile_Content_Funding_Form(funding: @state.funding, saveProfile: @props.saveProfile, onCancel: @_onFormCancel)
+    else if @state.edit_mode
+      @_renderListings()
     else if _.isEmpty(@state.company.fundings)
       @_renderEmpty()
     else
