@@ -21,7 +21,6 @@ class UserSerializer < ActiveModel::Serializer
       'Thinking of how to find adepts/team members yet not sure how to create the team and motivate them? With Knomsy it all becomes clear, structured simply put achievable.',
       'You are constantly getting barraged with investment proposals and are finding it increasingly difficult wade through the hundreds of projects and find the diamond in the rough? To investors we offers an innovative yet simple time saving solution.',
       'In order to generate traction one has to fully understand their market and intended user base. Wouldn\'t it be great if there was an innovative product that would took care of this from the start?',
-      'Thinking of how to find adepts/team members yet not sure how to create the team and motivate them? With Knomsy it all becomes clear, structured simply put achievable.',
       'Knomsy has now moved forward to automated data analyses and processing as well as index calculation. The tech part of the project is being developed by using the most advanced programing technologies. In the nearest future we are planning to announce the beta release version for testing. We will also be connecting the second part of our data processing which is run through accessory influence.'
     ]
     
