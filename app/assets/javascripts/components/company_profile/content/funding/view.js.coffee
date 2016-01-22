@@ -77,8 +77,8 @@
     
   _fundings: ->
     _.map @state.company.fundings, (el)=>
-      investors = _.map el.investors, (inv)->
-        (div key: inv, inv)
+      investors = _.map el.investor_list.split(','), (inv, i)=>
+        (div key: "investor_#{@state.company.id}_#{i}", inv)
         
       proofLink = if _.isEmpty(el.link)
           (span className: 'links__not_confirmed', 'Not confirmed by press')
