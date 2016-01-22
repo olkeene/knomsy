@@ -12,7 +12,7 @@
     .col-xs-12.col-sm-7.col-md-8
       %ul.nav.navbar-nav.navbar-right
         - if signed_in?
-          %li= link_to fa_icon('plus'), new_company_path, class: 'btn btn-default new-company'
+          %li= link_to fa_icon('plus'), new_company_path, class: 'btn btn-default'
           %li= fa_icon 'bell-o', class: 'btn btn-default'
           %li= fa_icon 'inbox',  class: 'btn btn-default'
           %li
@@ -21,7 +21,7 @@
                 = image_tag current_user.avatar_thumb_url
               - else
                 = fa_icon 'user', class: 'avatar-small btn btn-default'
-          %li= link_to fa_icon('sign-out'), destroy_user_session_path, method: :delete, class: 'btn btn-default logout'
+          %li= link_to fa_icon('sign-out'), destroy_user_session_path, method: :delete, class: 'btn btn-default'
         - else
           %li= link_to "Sign up", new_registration_path(:user), class: 'btn btn-default'
           %li= link_to "Login", root_path, class: 'btn btn-default'
