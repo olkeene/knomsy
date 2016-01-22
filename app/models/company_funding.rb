@@ -44,7 +44,7 @@ class CompanyFunding < ActiveRecord::Base
   end
   
   def investor_list
-    (investors || '').join(',')
+    (investors || []).join(',')
   end
   
   def funded_on=(v)
