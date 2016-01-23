@@ -35,7 +35,7 @@
     errors = if @state.errors
       (div className: 'alert alert-danger', dangerouslySetInnerHTML: {__html: @state.errors.join('<br />')})
     
-    roundOptions = _.map gon.funding_rounds, (hash)->
+    roundOptions = _.map gon.fundingRounds, (hash)->
       (option value: hash.value, key: "round_#{hash.value}", hash.name)
     # with blank
     roundOptions.unshift(option value: '', key: "type_select_", '')

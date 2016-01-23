@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   extend FriendlyId
-  friendly_id :name, use: :slugged
+  friendly_id :slug_candidates, use: :slugged
   
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
@@ -68,5 +68,11 @@ class User < ActiveRecord::Base
   
   def followers_count
     21
+  end
+  
+  private
+  
+  def slug_candidates
+    [username, name]
   end
 end

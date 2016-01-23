@@ -17,11 +17,14 @@
     services = unless _.isEmpty(@props.user.service_list)
       _.map @props.user.service_list, (service, i)->
         (span className: "label label-default label__item", key: "service_#{i}", service)
-      
-    (span null,
+    
+    editBtn = if @props.canEditUser
       (button className: 'title__btn_edit edit-body__btn-group_in-title btn btn-link', type: "button", onClick: @props.onEdit,
         (i className: 'button__icon fa fa-pencil')
         (span null, 'Edit'))
+
+    (span null,
+      editBtn
 
       (div className: 'section__body section__body_view',
         (div className: "view-body",

@@ -34,4 +34,8 @@ class UserSerializer < ActiveModel::Serializer
       } 
     }
   end
+  
+  def id
+    object.to_param
+  end
 end

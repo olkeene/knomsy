@@ -1,2 +1,2 @@
 %section.profile-card.row
-  = react_component 'UserProfile', user: UserSerializer.new(current_user)
+  = react_component 'UserProfile', user: @serialized_user

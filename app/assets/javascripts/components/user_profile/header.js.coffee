@@ -16,4 +16,4 @@
     if @state.edit_mode
       UserProfile_Header_Form(user: @state.user, saveProfile: @props.saveProfile, onClose: @onClose)
     else
-      UserProfile_Header_View(user: @state.user, onEdit: @onEdit)
+      UserProfile_Header_View(user: @state.user, onEdit: @onEdit, canEditUser: @props.canEditUser)

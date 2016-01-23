@@ -7,7 +7,7 @@
   mixins: [CompanyProfile_Content_BaseComponent]
     
   render: ->
-    content = CompanyProfile_Content_Funding_View(company: @state.company, saveProfile: @props.saveProfile)
+    content = CompanyProfile_Content_Funding_View(company: @state.company, saveProfile: @props.saveProfile, canEditCompany: @props.canEditCompany)
       
     (div className: 'content__section',
       (h3 className: 'section__title', 'Funding')

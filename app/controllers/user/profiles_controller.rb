@@ -1,10 +1,15 @@
+require 'ability'
+
 class User::ProfilesController < ApplicationController
   before_action :authenticate_user!
-  before_action :preload_and_prebuild_associations
+  before_action :find_user!, only: [:show]
   
   def show
-    # TODO only if page editable
+    @serialized_user  = UserSerializer.new(@user)
+
+    gon.user             = @serialized_user
     gon.experience_roles = Experience.roles.map{|role, v| {value: role, name: role.humanize} }
+    gon.can_edit_user    = Ability.new(current_user).can?(:edit, @user)
   end
 
   def update
@@ -17,8 +22,10 @@ class User::ProfilesController < ApplicationController
   
   private
   
-  def preload_and_prebuild_associations
-    current_user.preload_and_prebuild_associations
+  def find_user!
+    @user = User.where(slug: params[:id]).first!.decorate
+    @user.preload_and_prebuild_associations
+    @user
   end
   
   def permitted_params

@@ -18,12 +18,16 @@
       @renderListings()
       
   renderEmpty: ->
+    editContent = if @props.canEditCompany
+      (span null,
+        (p className: 'empty-body__comment', 'You can use "Edit" button to fill it')
+        (button className: 'btn btn-primary btn_edit', type: 'button', onClick: @props.onEdit, 'Edit'))
+      
     (div className: 'section__body section__body_empty',
       (div className: 'emptybody',
         (i className: 'empty-body__icon fa fa-usd')
         (h4 className: 'empty-body__text', 'Your investing info is empty now')
-        (p className: 'empty-body__comment', 'You can use "Edit" button to fill it')
-        (button className: 'btn btn-primary btn_edit', type: 'button', onClick: @props.onEdit, 'Edit')))
+        editContent))
     
   renderListings: ->  
     markets = unless _.isEmpty(@props.user.investing.market_list)
@@ -37,11 +41,14 @@
     currencies = unless _.isEmpty(@props.user.investing.currency_list)
       _.map @props.user.investing.currency_list, (currency, i)->
         (span className: "list__item_roles", key: "currency_#{i}", currency)
-      
-    (span null,
+    
+    editBtn = if @props.canEditUser
       (button className: 'title__btn_edit edit-body__btn-group_in-title btn btn-link', type: "button", onClick: @props.onEdit,
         (i className: 'button__icon fa fa-pencil')
         (span null, 'Edit'))
+
+    (span null,
+      editBtn
 
       (div className: 'section__body section__body_view',
         (div className: "view-body",

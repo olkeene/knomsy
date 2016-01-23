@@ -1,3 +1,5 @@
+require 'ability'
+
 class User::CompaniesController < ApplicationController
   before_action :authenticate_user!,   except: :show
   
@@ -7,10 +9,12 @@ class User::CompaniesController < ApplicationController
   before_action :build_company,        only: [:new, :create]
   
   def show
-    @serialized_company = CompanySerializer.new(@company)
-    gon.company = @serialized_company
-    gon.people_roles   = CompanyUser.humanized_roles
-    gon.funding_rounds = CompanyFunding.humanized_rounds
+    @serialized_company  = CompanySerializer.new(@company)
+
+    gon.company          = @serialized_company
+    gon.people_roles     = CompanyUser.humanized_roles
+    gon.funding_rounds   = CompanyFunding.humanized_rounds
+    gon.can_edit_company = Ability.new(current_user).can?(:edit, @company)
   end
 
   def new

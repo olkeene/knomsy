@@ -10,7 +10,7 @@
     response = null
     
     jOptions = 
-      url: AppRoutes.profile_path()
+      url: AppRoutes.profile_path(gon.user.id)
       method: 'put'
       async: false
       data: data
@@ -18,6 +18,7 @@
         @ajax_before_save_callback()
       success: (resp) =>
         @ajax_after_save_callback()
+        gon.user = resp
         response = resp
         
     _.extend jOptions, options
@@ -26,6 +27,8 @@
     response
 
   render: ->
+    options = {user: @props.user, saveProfile: @saveProfile, canEditUser: gon.canEditUser}
+    
     (div null,
-      (UserProfile_Header(user:  @props.user, saveProfile: @saveProfile))
-      (UserProfile_Content(user: @props.user, saveProfile: @saveProfile)) )
+      UserProfile_Header(options)
+      UserProfile_Content(options) )

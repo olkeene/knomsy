@@ -18,6 +18,7 @@
         @ajax_before_save_callback()
       success: (resp) =>
         @ajax_after_save_callback()
+        gon.company = resp
         response = resp
         
     _.extend jOptions, options
@@ -26,6 +27,8 @@
     response
 
   render: ->
+    options = {company: @props.company, saveProfile: @saveProfile, canEditCompany: gon.canEditCompany}
+
     (div null,
-      (CompanyProfile_Header(company:  @props.company, saveProfile: @saveProfile))
-      (CompanyProfile_Content(company: @props.company, saveProfile: @saveProfile)))
+      CompanyProfile_Header(options)
+      CompanyProfile_Content(options))

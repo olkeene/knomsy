@@ -31,7 +31,7 @@
     errors = if @state.errors
       (div className: 'alert alert-danger', dangerouslySetInnerHTML: {__html: @state.errors.join('<br />')})
       
-    typeOptions = _.map gon.people_roles, (hash)->
+    typeOptions = _.map gon.peopleRoles, (hash)->
       (option value: hash.value, key: "type_select_#{hash.value}", hash.name)
     # with blank
     typeOptions.unshift(option value: '', key: "type_select_", '')

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   scope module: :user do
     resource  :dashboard, only:   [:show]
-    resource  :profile,   only:   [:show, :update]
+    resources :profiles,  only:   [:show, :update]
     resources :companies, except: [:edit, :destroy]
   end
   

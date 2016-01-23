@@ -19,5 +19,5 @@
       = render 'layouts/footer'
                   
     = render 'layouts/rollbar' if Rollbar.configuration.enabled
-    = Gon::Base.render_data(init: true)
+    = Gon::Base.render_data(init: true, camel_case: true, camel_depth: :recursive)
     = javascript_include_tag 'application'

@@ -37,36 +37,46 @@
     @setState edit_mode: false
 
   _renderEmpty: ->
+    editContent = if @props.canEditCompany
+      (span null,
+        (p className: 'empty-body__comment', 'You can use "Edit" button to fill it')
+        (button className: 'btn_edit btn btn-primary', type: 'button', onClick: @_onEdit, 'Edit'))
+      
     (div className: 'section__body section__body_empty',
       (div className: 'empty-body',
         (i className: 'empty-body__icon fa fa-usd')
         (h4 className: 'empty-body__text', 'Your fundings are empty now')
-        (p className: 'empty-body__comment', 'You can use "Edit" button to fill it')
-        (button className: 'btn_edit btn btn-primary', type: 'button', onClick: @_onEdit, 'Edit')))
-        
-  _renderListings: ->
-    editCancelBtn = if @state.edit_mode
+        editContent))
+
+  _editCancelBtn: ->
+    content = if @state.edit_mode
       (button className: 'btn_link btn btn-link', type: 'button', onClick: @_onCancel, 'Cancel')
     else
       (button className: 'btn btn-link', type: "button", onClick: @_onEdit,
         (i className: 'button__icon fa fa-pencil')
         (span null, 'Edit'))
         
-    newBtn = if @state.edit_mode
+    (span className: 'title__btn_edit edit-body__btn-group_in-title', content)
+    
+  _newBtn: ->
+    if @state.edit_mode && @props.canEditCompany
       (div className: "col-xs-12 col-sm-12 col-md-12 col-lg-12",
         (button type: "button", className: "btn btn-primary", onClick: @_onNewFunding,
           (i className: "button__icon fa fa-plus-circle")
           (span null, 'Add New') ))
         
+  _renderListings: ->
+    editCancelBtn = if @props.canEditCompany
+      @_editCancelBtn()
+        
     (span null,
-      (span className: 'title__btn_edit edit-body__btn-group_in-title', 
-        editCancelBtn)
+      editCancelBtn
 
       (div className: 'section__body section__body_view funding_view',
         (div className: "view-body",
           (div className: "view-body__form row",
             (div className: "edit-body__btn-group edit-body__btn-group_left",
-              newBtn
+              @_newBtn()
               @_fundings()
             )))))
           

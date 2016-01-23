@@ -55,6 +55,12 @@
   render: ->
     header_styles = unless _.isBlank(@props.company.cover_url)
       {backgroundImage: "url(#{@props.company.cover_url})"}
+      
+    editBtn = if @props.canEditCompany
+      (div className: "header__edit",
+        (button type: "button", className: "btn_edit btn btn-primary", onClick: @props.onEdit,
+          (i className: "fa fa-pencil")
+          (span null, 'Edit')))
     
     (div className: "profile-card__header", style: header_styles,
       (div className: "container",
@@ -67,15 +73,12 @@
             (div className: "info__body media-body text-left",
               (h4 className: "info__name media-heading", 
                 @props.company.name
-                @_get_founded() )
+                @_get_founded()
+              )
               @_get_description()
               @_get_category()
               @_get_location()
-
-              (div className: "header__edit",
-                (button type: "button", className: "btn_edit btn btn-primary", onClick: @props.onEdit,
-                  (i className: "fa fa-pencil")
-                  (span null, 'Edit'))))))
+              editBtn)))
 
         (div className: "col-xs-12 col-md-6 header__contacts",
           (div className: "row contacts__indices",

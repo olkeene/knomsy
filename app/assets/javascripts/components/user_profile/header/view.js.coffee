@@ -17,6 +17,12 @@
         (div className: "rating__trend",
           (i className: "trend__icon fa fa-arrow-circle-up")
           (span className: "trend__value", "#{@props.user.trend}%")))
+          
+    editBtn = if @props.canEditUser
+      (div className: "header__edit",
+        (button type: "button", className: "btn_edit btn btn-primary", onClick: @props.onEdit,
+          (i className: "fa fa-pencil")
+          (span null, 'Edit') ))
     
     (div className: "profile-card__header", style: header_styles,
       (div className: "container",
@@ -30,11 +36,8 @@
               (p className: "info__short-resume", @props.user.short_resume)
               
               @_get_location()
-
-              (div className: "header__edit",
-                (button type: "button", className: "btn_edit btn btn-primary", onClick: @props.onEdit,
-                  (i className: "fa fa-pencil")
-                  (span null, 'Edit') )))))
+              editBtn
+            )))
 
         (div className: "col-xs-12 col-md-6 header__contacts",
           (div className: "row contacts__indices",
