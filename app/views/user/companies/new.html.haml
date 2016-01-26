@@ -19,4 +19,4 @@
 
     = f.form_group control_col: 'col-sm-offset-2 col-sm-7' do
       = f.submit "Add Startup", class: 'btn btn-primary'
-      = link_to 'Cancel', profile_path
+      = link_to 'Cancel', profile_path(current_user)
