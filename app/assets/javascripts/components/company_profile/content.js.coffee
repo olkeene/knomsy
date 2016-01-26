@@ -7,7 +7,7 @@
   mixins: [CompanyProfile_Base]
     
   render: ->
-    options = {company: @state.company, saveProfile: @props.saveProfile, canEditUser: @props.canEditUser}
+    options = {company: @state.company, saveProfile: @props.saveProfile, canEditCompany: @props.canEditCompany}
     # (CompanyProfile_Content_Traction(company: @state.company, saveProfile: @props.saveProfile))
     # (CompanyProfile_Content_Activity(company: @state.company, saveProfile: @props.saveProfile))
 
