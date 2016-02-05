@@ -2,13 +2,13 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug_candidates, use: :slugged
   
+  Artifact::Accessors.init(self, :skill, :role, :service)
+  
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable, :confirmable
          
-  acts_as_ordered_taggable_on :skills, :roles, :services
-  
   has_one  :investing,   dependent: :delete
   has_many :experiences, dependent: :delete_all
   has_many :companies,   dependent: :destroy

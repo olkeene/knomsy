@@ -18,8 +18,8 @@
         editContent))
         
   _renderListings: ->
-    tags = unless _.isEmpty(@props.company.tag_list)
-      _.map @props.company.tag_list, (role, i)->
+    tags = unless _.isEmpty(@props.company.role_list)
+      _.map @props.company.role_list, (role, i)->
         (li className: "label__item label label-default", key: "tag_#{i}", role)
         
     editBtn = if @props.canEditCompany
@@ -47,7 +47,7 @@
     )
 
   render: ->
-    if _.isEmpty(@props.company.tag_list) && _.isEmpty(@props.company.description)
+    if _.isEmpty(@props.company.role_list) && _.isEmpty(@props.company.description)
       @_renderEmpty()
     else
       @_renderListings()

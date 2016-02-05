@@ -7,5 +7,11 @@ Rails.application.routes.draw do
     resources :companies, except: [:edit, :destroy]
   end
   
+  resource :data, only: [] do
+    get :roles
+    get :skills
+    get :services
+  end
+  
   root to: 'home#index'
 end

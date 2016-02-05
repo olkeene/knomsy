@@ -5,17 +5,18 @@ ruby "2.2.1"
 gem 'rails', '4.2.5'
 gem 'thin'
 gem 'rollbar'
-
-# Use postgresql as the database for Active Record
 gem 'pg', '~> 0.15'
-gem 'date_validator' # AR dete validator
 gem 'haml-rails'
 gem 'active_model_serializers'
-gem 'draper' # decorator
+
 gem 'email_validator'
 gem 'validate_url'
+gem 'date_validator' # AR dete validator
 gem 'friendly_id'
-gem 'acts-as-taggable-on'
+
+# Use postgresql as the database for Active Record
+gem 'draper' # decorator
+gem 'acts-as-taggable-on' # tags
 
 gem 'metainspector' # url meta fetch
 # gem 'video_info'
@@ -46,14 +47,15 @@ gem 'devise'
 # gem 'therubyracer'
 gem 'bootstrap-sass'
 gem 'bootstrap_tokenfield_rails'
+gem 'bootstrap-typeahead-rails'
 gem 'bootstrap_form'
 gem 'font-awesome-rails'
 gem 'bootstrap-switch-rails'
 # gem 'dropzonejs-rails'
 source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-fileinput' # file field
-  gem 'rails-assets-object-to-formdata'
-  gem 'rails-assets-object-traverse'
+  gem 'rails-assets-object-to-formdata'  # file to form data
+  gem 'rails-assets-object-traverse'     # requirement of formdata 
 end
 # gem 'activeadmin', github: 'activeadmin'
 
@@ -76,9 +78,6 @@ gem 'jquery-ui-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-# Use Capistrano for deployment
-# gem 'capistrano-rails', group: :development
-
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'sextant' # routes
@@ -91,7 +90,6 @@ group :development do
 end
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
   gem 'rspec-rails'
   gem 'spring-commands-rspec'

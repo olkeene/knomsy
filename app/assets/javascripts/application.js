@@ -25,6 +25,7 @@
 //= require bootstrap-sprockets
 
 //= require bootstrap-tokenfield
+//= require bootstrap-typeahead-rails
 //= require bootstrap-switch
 //= require bootstrap-fileinput
 

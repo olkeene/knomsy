@@ -11,10 +11,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160119015408) do
+ActiveRecord::Schema.define(version: 20160205113424) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "artifacts", force: :cascade do |t|
+    t.string  "name"
+    t.integer "type", limit: 2
+  end
+
+  add_index "artifacts", ["name", "type"], name: "index_artifacts_on_name_and_type", using: :btree
+  add_index "artifacts", ["type"], name: "index_artifacts_on_type", using: :btree
+
+  create_table "categories", force: :cascade do |t|
+    t.string  "name",                              null: false
+    t.integer "category_funding",        limit: 8
+    t.integer "companies_count"
+    t.integer "funding_companies_count"
+    t.float   "ppi"
+    t.float   "rmtcat"
+    t.float   "amstc"
+    t.integer "live_startups_site"
+    t.float   "asstcat"
+  end
+
+  add_index "categories", ["name"], name: "index_categories_on_name", using: :btree
 
   create_table "companies", force: :cascade do |t|
     t.integer "user_id",                   null: false
@@ -40,6 +62,7 @@ ActiveRecord::Schema.define(version: 20160119015408) do
     t.string  "youtube_link"
     t.string  "website"
     t.string  "short_desc"
+    t.integer "role_ids",                               array: true
   end
 
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
@@ -67,6 +90,20 @@ ActiveRecord::Schema.define(version: 20160119015408) do
   end
 
   add_index "company_users", ["company_id"], name: "index_company_users_on_company_id", using: :btree
+
+  create_table "countries", force: :cascade do |t|
+    t.string  "name",                            null: false
+    t.integer "startups_count"
+    t.integer "funded_startups_count"
+    t.float   "ppi"
+    t.float   "rmtcon"
+    t.integer "earned_money",          limit: 8
+    t.float   "amstcon"
+    t.integer "live_startups_site"
+    t.float   "asstcon"
+  end
+
+  add_index "countries", ["name"], name: "index_countries_on_name", using: :btree
 
   create_table "experiences", force: :cascade do |t|
     t.integer "user_id"
@@ -143,6 +180,9 @@ ActiveRecord::Schema.define(version: 20160119015408) do
     t.string   "website"
     t.text     "short_resume"
     t.text     "what_do"
+    t.integer  "skill_ids",                                                   array: true
+    t.integer  "role_ids",                                                    array: true
+    t.integer  "service_ids",                                                 array: true
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree

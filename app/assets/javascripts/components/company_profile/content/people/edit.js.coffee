@@ -52,7 +52,7 @@
           (div className: "col-md-12", out)))
     )
 
-  _newBtn_or_form: ->
+  _newBtnOrForm: ->
     if @state.form
       CompanyProfile_Content_People_Form(member: @state.member, saveProfile: @props.saveProfile, onCancel: @onFormCancel)
     else
@@ -68,6 +68,6 @@
       (div className: "section__body section__body_edit",
         (div className: "edit-body",
           (div className: "edit-body__btn-group edit-body__btn-group_left",
-            @_newBtn_or_form() )
+            @_newBtnOrForm() )
           @_renderPeople()
         )))

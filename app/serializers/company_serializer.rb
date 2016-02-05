@@ -6,7 +6,7 @@ class CompanySerializer < ActiveModel::Serializer
     
     :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
     :linkedin_link, :twitter_link, :youtube_link,  :website,
-    :tag_list
+    :role_list
     
   has_many :members
   has_many :fundings

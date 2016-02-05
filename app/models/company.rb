@@ -2,6 +2,8 @@ class Company < ActiveRecord::Base
   extend FriendlyId
   friendly_id :short_name, use: :slugged
   
+  Artifact::Accessors.init(self, :role)
+  
   has_many :members,  class_name: :CompanyUser,    dependent: :delete_all
   has_many :fundings, class_name: :CompanyFunding, dependent: :delete_all
   accepts_nested_attributes_for :members, :fundings, allow_destroy: true
@@ -17,8 +19,6 @@ class Company < ActiveRecord::Base
     length: {maximum: 255}, allow_blank: true
 
   validates_acceptance_of :terms_of_service, on: :create
-  
-  acts_as_ordered_taggable_on :tags
   
   mount_uploader :logo,  LogoUploader
   mount_uploader :cover, CoverUploader
