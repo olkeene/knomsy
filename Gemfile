@@ -8,15 +8,12 @@ gem 'rollbar'
 gem 'pg', '~> 0.15'
 gem 'haml-rails'
 gem 'active_model_serializers'
+gem 'draper' # decorator
 
 gem 'email_validator'
 gem 'validate_url'
 gem 'date_validator' # AR dete validator
 gem 'friendly_id'
-
-# Use postgresql as the database for Active Record
-gem 'draper' # decorator
-gem 'acts-as-taggable-on' # tags
 
 gem 'metainspector' # url meta fetch
 # gem 'video_info'
