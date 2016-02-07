@@ -1,7 +1,7 @@
 {h3, input, button, div, span, h4, label, img, p, textarea} = React.DOM
 
 @UserProfile_Header_Form = React.createFactory React.createClass
-  mixins: [React.addons.LinkedStateMixin, ReactFileinputMixin]
+  mixins: [React.addons.LinkedStateMixin, ReactFileinputMixin, AutocompleteMixin]
   
   propTypes: 
     user:        React.PropTypes.object.isRequired,
@@ -14,6 +14,7 @@
   componentDidMount: (prevProps, prevState) ->
     @fileinput 'avatar'
     @fileinput 'cover'
+    @react_autocomplete 'country_name',  'country_id',  url: Routes.countries_data_path(format: 'json', query: 'QUERY')
     
   saveProfile: ->
     params = user: @state
@@ -82,7 +83,7 @@
                   (input type: "text", valueLink: @linkState('last_name'), placeholder: "e.g. King", className: "form-control"))
                 (div className: "form-group",
                   (label className: "input__title", 'Country')
-                  (input type: "text", valueLink: @linkState('country'), placeholder: "e.g. USA", className: "form-control"))
+                  (input type: "text", ref: 'country_name', defaultValue: @state.country_name, placeholder: "e.g. USA", className: "form-control"))
                 (div className: "input",
                   (label className: "input__title", 'Town')
                   (input type: "text", valueLink: @linkState('city'), placeholder: "e.g. San-Francisco", className: "form-control")))

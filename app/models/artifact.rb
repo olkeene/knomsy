@@ -8,7 +8,9 @@ class Artifact < ActiveRecord::Base
           context.class_eval do
             define_method "#{accessor}_list=" do |v|      # def skill_list=(v)
               mapping = (v || '').split(',').map do |str|
-                artifact = Artifact.where(type: Artifact.types[accessor]).where(name: str.strip.downcase).first_or_initialize
+                artifact = Artifact.where(type: Artifact.types[accessor]).
+                  where(name: str.strip.mb_chars.downcase).
+                  first_or_initialize
                 artifact.save! if artifact.new_record?
                 artifact.id
               end

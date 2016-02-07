@@ -39,16 +39,17 @@ class User::CompaniesController < ApplicationController
   private
   
   def find_company!
-    @company = Company.friendly.find(params[:id])
+    @company = Company.with_associations.friendly.find(params[:id])
   end
   
   def find_scoped_company!
-    @company = current_user.companies.friendly.find(params[:id])
+    @company = current_user.companies.with_associations.friendly.find(params[:id])
   end
   
   def permitted_params
     params.permit(company: [
-      :name, :short_desc, :country, :city, :market, :category, :short_name, :terms_of_service,
+      :name, :short_desc, 
+      :country_id, :city, :market, :category_id, :short_name, :terms_of_service,
       :founded_on,
       :logo,          :cover,        :remove_logo,   :remove_cover,
       :description,   :role_list,
@@ -58,12 +59,6 @@ class User::CompaniesController < ApplicationController
       fundings_attributes: [:id, :_destroy, :round, :funded_on, :amount, :investor_list, :link, :visible]
     ])
   end
-  
-  
-  
-  
-  
-  
   
   def build_company
     @company = current_user.companies.build(permitted_params[:company])

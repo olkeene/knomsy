@@ -41,14 +41,14 @@
               (div className: "form__group-objects",
                 (h4 className: "form__title", 'Roles')
                 (ul className: "form__list_inline",
-                  (roles)))
+                  roles))
 
               (div className: "form__group-objects",
                 (h4 className: "form__title", 'Skills')
                 (div className: "form__label",
-                  (skills)))
+                  skills))
 
               (div className: "form__group-objects",
                 (h4 className: "form__title", 'Services')
                 (div className: "form__label",
-                  (services))))))))
+                  services)))))))

@@ -4,7 +4,8 @@
 {h3, input, button, div, span, h4, label, img, p, i, textarea} = React.DOM
 
 @CompanyProfile_Header_Form = React.createFactory React.createClass
-  mixins: [React.addons.LinkedStateMixin, CompanyProfile_BaseFormMixin, ReactDatepickerMixin, ReactFileinputMixin]
+  mixins: [React.addons.LinkedStateMixin, CompanyProfile_BaseFormMixin, 
+    ReactDatepickerMixin, ReactFileinputMixin, AutocompleteMixin]
   
   getInitialState: ->
     @props.company
@@ -26,9 +27,11 @@
     @props.onCancel()
       
   componentDidMount: (prevProps, prevState) ->
-    @datepicker 'founded_on'
-    @fileinput  'logo'
-    @fileinput  'cover'
+    @datepicker   'founded_on'
+    @fileinput    'logo'
+    @fileinput    'cover'
+    @react_autocomplete 'country_name',  'country_id',  url: Routes.countries_data_path(format: 'json', query: 'QUERY')
+    @react_autocomplete 'category_name', 'category_id', url: Routes.categories_data_path(format: 'json', query: 'QUERY')
 
   render: ->
     errors = if @state.errors
@@ -38,7 +41,7 @@
       (div className: "profile-card__column_border-bottom",
         (div className: "container-fluid",
           
-          (errors)
+          errors
           
           (div className: "col-xs-12 col-md-7 profile-card__column_border-right",
             (div className: "row",
@@ -69,11 +72,11 @@
 
                 (div className: "form-group",
                   (label className: "input__title", 'Category')
-                  (input type: "text", valueLink: @linkState('category'), className: "form-control"))
+                  (input type: "text", ref: 'category_name', defaultValue: @state.category_name, className: 'form-control'))
                   
                 (div className: "form-group",
                   (label className: "input__title", 'Country')
-                  (input type: "text", valueLink: @linkState('country'), placeholder: "e.g. USA", className: "form-control"))
+                  (input type: "text", ref: 'country_name', defaultValue: @state.country_name, className: 'form-control', placeholder: "e.g. USA"))
 
                 (div className: "input",
                   (label className: "input__title", 'Town')

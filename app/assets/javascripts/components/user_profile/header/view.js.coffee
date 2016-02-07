@@ -75,10 +75,10 @@
       (img className: "input__photo_square", src: @props.user.avatar_url)
       
   _get_location: ->
-    if !_.isBlank(@props.user.city) || !_.isBlank(@props.user.country)
+    if !_.isBlank(@props.user.city) || !_.isBlank(@props.user.country_name)
       (p className: "info__location",
         (i className: "fa fa-map-marker")
-        (span null, [@props.user.country, @props.user.city].join(', ')))
+        (span null, [@props.user.country_name, @props.user.city].join(', ')))
         
   _get_link: (prop)->
     return if _.isBlank(@props.user[prop])

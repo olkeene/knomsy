@@ -4,6 +4,9 @@ class Company < ActiveRecord::Base
   
   Artifact::Accessors.init(self, :role)
   
+  belongs_to :country
+  belongs_to :category
+  
   has_many :members,  class_name: :CompanyUser,    dependent: :delete_all
   has_many :fundings, class_name: :CompanyFunding, dependent: :delete_all
   accepts_nested_attributes_for :members, :fundings, allow_destroy: true
@@ -11,7 +14,8 @@ class Company < ActiveRecord::Base
   validates :name, :short_name, presence: true, length: {minimum: 2, maximum: 50}
   validates :description, length: {maximum: 500}
   
-  validates :country, :city, :market, :category, length: {maximum: 255}, presence: true
+  validates :country_id, :category_id, presence: true
+  validates :city, :market, length: {maximum: 255}, presence: true
   
   validates \
     :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
@@ -22,6 +26,8 @@ class Company < ActiveRecord::Base
   
   mount_uploader :logo,  LogoUploader
   mount_uploader :cover, CoverUploader
+  
+  scope :with_associations, ->{ includes(:country, :category) }
   
   #TODO deal with category, country, city and market fields, Make it as associations or scoped tags
   
@@ -49,6 +55,14 @@ class Company < ActiveRecord::Base
   
   def followers_count
     21
+  end
+  
+  def country_name
+    country_id && country.name
+  end
+  
+  def category_name
+    category_id && category.name
   end
   
   def to_param

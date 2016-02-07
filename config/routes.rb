@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     get :roles
     get :skills
     get :services
+    get :categories
+    get :countries
   end
   
   root to: 'home#index'

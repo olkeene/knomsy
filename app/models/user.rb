@@ -8,7 +8,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :validatable, :confirmable
-         
+  
+  belongs_to :country
+  
   has_one  :investing,   dependent: :delete
   has_many :experiences, dependent: :delete_all
   has_many :companies,   dependent: :destroy
@@ -18,7 +20,8 @@ class User < ActiveRecord::Base
   validates :username, length: {minimum: 2, maximum: 50}, allow_blank: true
   
   # optional fields
-  validates :country, :city,
+  # validates :country_id, allow_blank: true
+  validates :city,
     :gplay_link, :itunes_link, :dribbble_link, :fb_link, :gh_link, :gplus_link, 
     :linkedin_link, :twitter_link, :youtube_link, :website, 
     length: {maximum: 255}, allow_blank: true
@@ -68,6 +71,10 @@ class User < ActiveRecord::Base
   
   def followers_count
     21
+  end
+  
+  def country_name
+    country_id && country.name
   end
   
   private

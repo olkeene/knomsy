@@ -45,4 +45,9 @@ $(document).ready(function(){
   if( body.hasClass('profiles') ){
     new window.Profiles.Controller();
   }
+
+  if( body.hasClass('companies_new') ){
+    var ctrl = new window.Companies.Controller();
+    ctrl.bind_new();
+  }
 });

@@ -30,9 +30,9 @@ class User::ProfilesController < ApplicationController
   
   def permitted_params
     params.permit(user: [
-      :first_name,    :last_name,    :username,      :country, :city, 
+      :first_name,    :last_name,    :username,      :country_id, :city, 
       :avatar,        :cover,        :remove_avatar, :remove_cover,
-      :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
+      :gplay_link,    :itunes_link,  :dribbble_link, :fb_link,    :gh_link, :gplus_link, 
       :linkedin_link, :twitter_link, :youtube_link,  :website,
       :about,         :short_resume, :what_do,
       :role_list,     :skill_list,   :service_list,

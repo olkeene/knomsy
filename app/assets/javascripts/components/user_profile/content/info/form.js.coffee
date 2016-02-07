@@ -22,9 +22,9 @@
     @props.onCancel()
     
   componentDidMount: (prevProps, prevState)->
-    @tokenized_autocomplete('role_list',    url: Routes.roles_data_path({format: 'json'}))
-    @tokenized_autocomplete('skill_list',   url: Routes.skills_data_path({format: 'json'}))
-    @tokenized_autocomplete('service_list', url: Routes.services_data_path({format: 'json'}))
+    @tokenized_autocomplete('role_list',    url: Routes.roles_data_path(format: 'json'))
+    @tokenized_autocomplete('skill_list',   url: Routes.skills_data_path(format: 'json'))
+    @tokenized_autocomplete('service_list', url: Routes.services_data_path(format: 'json'))
 
   render: ->
     errors = if @state.errors

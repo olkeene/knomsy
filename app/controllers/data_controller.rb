@@ -2,6 +2,14 @@
 class DataController < ApplicationController
   respond_to :json
   
+  def categories
+    render json: Category.for_autocomplete.query(params[:query]).all
+  end
+  
+  def countries
+    render json: Country.for_autocomplete.query(params[:query]).all
+  end
+  
   def roles
     render json: Artifact.roles.limit(10)
   end

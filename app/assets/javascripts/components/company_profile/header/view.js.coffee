@@ -12,10 +12,10 @@
       (img className: "input__photo_square", src: @props.company.logo_url)
     
   _get_location: ->
-    if !_.isBlank(@props.company.city) || !_.isBlank(@props.company.country)
+    if !_.isBlank(@props.company.city) || !_.isBlank(@props.company.country_name)
       (p className: "info__location",
         (i className: "fa fa-map-marker")
-        (span null, [@props.company.country, @props.company.city].join(', ')))
+        (span null, [@props.company.country_name, @props.company.city].join(', ')))
 
   _get_founded: ->
     if !_.isBlank(@props.company.founded_on)
@@ -26,8 +26,8 @@
       (p className: "info__description", @props.company.short_desc)
       
   _get_category: ->
-    if !_.isBlank(@props.company.category)
-      (p className: "info__description", @props.company.category)
+    if !_.isBlank(@props.company.category_name)
+      (p className: "info__description", @props.company.category_name)
       
   _get_link: (prop)->
     return if _.isBlank(@props.company[prop])
@@ -73,8 +73,7 @@
             (div className: "info__body media-body text-left",
               (h4 className: "info__name media-heading", 
                 @props.company.name
-                @_get_founded()
-              )
+                @_get_founded() )
               @_get_description()
               @_get_category()
               @_get_location()

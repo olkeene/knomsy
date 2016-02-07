@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160205113424) do
+ActiveRecord::Schema.define(version: 20160207232757) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,10 +42,8 @@ ActiveRecord::Schema.define(version: 20160205113424) do
     t.integer "user_id",                   null: false
     t.string  "name",          limit: 50
     t.text    "description"
-    t.string  "country",                   null: false
     t.string  "city",                      null: false
     t.string  "market",                    null: false
-    t.string  "category",                  null: false
     t.string  "short_name",    limit: 50,  null: false
     t.string  "slug",          limit: 100, null: false
     t.string  "logo"
@@ -63,8 +61,12 @@ ActiveRecord::Schema.define(version: 20160205113424) do
     t.string  "website"
     t.string  "short_desc"
     t.integer "role_ids",                               array: true
+    t.integer "country_id"
+    t.integer "category_id"
   end
 
+  add_index "companies", ["category_id"], name: "index_companies_on_category_id", using: :btree
+  add_index "companies", ["country_id"], name: "index_companies_on_country_id", using: :btree
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree
 
@@ -166,7 +168,6 @@ ActiveRecord::Schema.define(version: 20160205113424) do
     t.text     "about"
     t.string   "avatar"
     t.string   "cover"
-    t.string   "country"
     t.string   "city"
     t.string   "gplay_link"
     t.string   "itunes_link"
@@ -183,9 +184,11 @@ ActiveRecord::Schema.define(version: 20160205113424) do
     t.integer  "skill_ids",                                                   array: true
     t.integer  "role_ids",                                                    array: true
     t.integer  "service_ids",                                                 array: true
+    t.integer  "country_id"
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["country_id"], name: "index_users_on_country_id", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   add_index "users", ["slug"], name: "index_users_on_slug", unique: true, using: :btree

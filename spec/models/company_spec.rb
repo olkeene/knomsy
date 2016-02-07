@@ -4,7 +4,10 @@ RSpec.describe Company, type: :model do
   it { should validate_length_of(:name).is_at_least(2).is_at_most(50) }
   it { should validate_length_of(:description).is_at_least(0).is_at_most(500) }
   
-  [:country, :city, :market, :category].each do |attr|
+  it { should validate_presence_of(:country_id) }
+  it { should validate_presence_of(:category_id) }
+  
+  [:city, :market].each do |attr|
     it { should validate_presence_of(attr) }
     it { should validate_length_of(attr).is_at_most(255) }
   end

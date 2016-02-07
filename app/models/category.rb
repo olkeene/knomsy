@@ -7,4 +7,9 @@ class Category < ActiveRecord::Base
     
   validates :ppi, :rmtcat, :amstc, :asstcat, 
     numericality: {greater_than_or_equal_to: 0}, allow_nil: true
+    
+  scope :for_autocomplete, -> { select('id, name as value') }
+  scope :query, ->(name) {
+    name.present? ? where('name ilike ?', "%#{name}%") : scope
+  }
 end

@@ -7,4 +7,9 @@ class Country < ActiveRecord::Base
     
   validates :ppi, :rmtcon, :amstcon, :asstcon, 
     numericality: {greater_than_or_equal_to: 0}, allow_nil: true
+    
+  scope :for_autocomplete, -> { select('id, name as value') }
+  scope :query, ->(name) {
+    name.present? ? where('name ilike ?', "%#{name}%") : scope
+  }
 end
