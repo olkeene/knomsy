@@ -14,13 +14,17 @@ class Company < ActiveRecord::Base
   validates :name, :short_name, presence: true, length: {minimum: 2, maximum: 50}
   validates :description, length: {maximum: 500}
   
-  validates :country_id, :category_id, presence: true
+  validates :country_id, presence: true
   validates :city, :market, length: {maximum: 255}, presence: true
   
   validates \
     :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
     :linkedin_link, :twitter_link, :youtube_link,  :website, 
     length: {maximum: 255}, allow_blank: true
+  
+  validate do
+    errors.add :category_list, 'should have at least 1 assigned category' if category_list.blank?
+  end
 
   validates_acceptance_of :terms_of_service, on: :create
   
@@ -61,8 +65,13 @@ class Company < ActiveRecord::Base
     country_id and country.name
   end
   
-  def category_name
-    category_id and category.name
+  def category_list=(v)
+    mapping = (v || '').split(',').map(&:strip)
+    self.category_ids = Category.where(name: mapping).pluck(:id)
+  end
+  
+  def category_list
+    Category.where(id: category_ids).pluck(:name)
   end
   
   def to_param

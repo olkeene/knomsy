@@ -5,7 +5,6 @@
 
   = bootstrap_form_for @company, url: companies_path, label_errors: false, inline_errors: true, layout: :horizontal, label_col: "col-sm-3 control-label", control_col: "col-sm-7" do |f|
     = f.hidden_field :country_id
-    = f.hidden_field :category_id
     
     = f.text_field :name, autofocus: true, class: 'form-control', label: 'Company Name'
 
@@ -13,7 +12,7 @@
     = f.text_field :country_name
     = f.text_field :city
     = f.text_field :market
-    = f.text_field :category_name
+    = f.text_field :category_list, label: 'Categories'
     = f.text_field :short_name, label: 'Short Link', placeholder: 'www.knomsy/companies/XXX'
 
     = f.form_group control_col: 'col-sm-offset-2 col-sm-7' do

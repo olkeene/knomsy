@@ -46,7 +46,7 @@ $(document).ready(function(){
     new window.Profiles.Controller();
   }
 
-  if( body.hasClass('companies_new') ){
+  if( body.hasClass('companies_new') || body.hasClass('companies_create') ){
     var ctrl = new window.Companies.Controller();
     ctrl.bind_new();
   }

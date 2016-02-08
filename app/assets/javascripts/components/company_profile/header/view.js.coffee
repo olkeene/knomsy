@@ -26,8 +26,8 @@
       (p className: "info__description", @props.company.short_desc)
       
   _get_category: ->
-    if !_.isBlank(@props.company.category_name)
-      (p className: "info__description", @props.company.category_name)
+    if !_.isEmpty(@props.company.category_list)
+      (p className: "info__description", @props.company.category_list.join(', '))
       
   _get_link: (prop)->
     return if _.isBlank(@props.company[prop])

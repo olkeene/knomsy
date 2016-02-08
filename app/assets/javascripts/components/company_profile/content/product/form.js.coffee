@@ -4,7 +4,7 @@
 {div, span, h3, h4, button, i, ul, li, p, textarea, input} = React.DOM
 
 @CompanyProfile_Content_Info_Form = React.createFactory React.createClass
-  mixins: [React.addons.LinkedStateMixin, ReactTokenizedAutocompleteMixin, CompanyProfile_BaseFormMixin]
+  mixins: [React.addons.LinkedStateMixin, TokenizedAutocompleteMixin, CompanyProfile_BaseFormMixin]
   
   getInitialState: ->
     @props.company
@@ -17,7 +17,7 @@
       @props.onCancel(resp)
       
   componentDidMount: (prevProps, prevState)->
-    @tokenized_autocomplete('role_list', url: Routes.roles_data_path({format: 'json'}))
+    @react_tokenized_autocomplete('role_list', url: Routes.roles_data_path({format: 'json'}))
     
   onCancel: ->
     @props.onCancel()

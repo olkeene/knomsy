@@ -5,7 +5,7 @@
 
 @CompanyProfile_Header_Form = React.createFactory React.createClass
   mixins: [React.addons.LinkedStateMixin, CompanyProfile_BaseFormMixin, 
-    ReactDatepickerMixin, ReactFileinputMixin, AutocompleteMixin]
+    ReactDatepickerMixin, ReactFileinputMixin, AutocompleteMixin, TokenizedAutocompleteMixin]
   
   getInitialState: ->
     @props.company
@@ -30,8 +30,8 @@
     @datepicker   'founded_on'
     @fileinput    'logo'
     @fileinput    'cover'
-    @react_autocomplete 'country_name',  'country_id',  url: Routes.countries_data_path(format: 'json', query: 'QUERY')
-    @react_autocomplete 'category_name', 'category_id', url: Routes.categories_data_path(format: 'json', query: 'QUERY')
+    @react_autocomplete 'country_name', 'country_id', url: Routes.countries_data_path(format: 'json', query: 'QUERY')
+    @react_tokenized_remote_autocomplete 'category_list', url: Routes.categories_data_path(format: 'json', query: 'QUERY')
 
   render: ->
     errors = if @state.errors
@@ -72,7 +72,8 @@
 
                 (div className: "form-group",
                   (label className: "input__title", 'Category')
-                  (input type: "text", ref: 'category_name', defaultValue: @state.category_name, className: 'form-control'))
+                  (div className: "form__input",
+                    (input type: "text", ref: 'category_list', defaultValue: @state.category_list, className: "form-control") ))
                   
                 (div className: "form-group",
                   (label className: "input__title", 'Country')

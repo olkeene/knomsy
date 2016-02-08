@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208110018) do
+ActiveRecord::Schema.define(version: 20160208193549) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,10 +62,9 @@ ActiveRecord::Schema.define(version: 20160208110018) do
     t.string  "short_desc"
     t.integer "role_ids",                               array: true
     t.integer "country_id"
-    t.integer "category_id"
+    t.integer "category_ids",                           array: true
   end
 
-  add_index "companies", ["category_id"], name: "index_companies_on_category_id", using: :btree
   add_index "companies", ["country_id"], name: "index_companies_on_country_id", using: :btree
   add_index "companies", ["slug"], name: "index_companies_on_slug", unique: true, using: :btree
   add_index "companies", ["user_id"], name: "index_companies_on_user_id", using: :btree

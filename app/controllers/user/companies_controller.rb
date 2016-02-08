@@ -49,7 +49,7 @@ class User::CompaniesController < ApplicationController
   def permitted_params
     params.permit(company: [
       :name, :short_desc, 
-      :country_id, :city, :market, :category_id, :short_name, :terms_of_service,
+      :country_id, :city, :market, :category_list, :short_name, :terms_of_service,
       :founded_on,
       :logo,          :cover,        :remove_logo,   :remove_cover,
       :description,   :role_list,
