@@ -58,11 +58,11 @@ class Company < ActiveRecord::Base
   end
   
   def country_name
-    country_id && country.name
+    country_id and country.name
   end
   
   def category_name
-    category_id && category.name
+    category_id and category.name
   end
   
   def to_param

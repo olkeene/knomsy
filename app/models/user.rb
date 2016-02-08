@@ -74,7 +74,7 @@ class User < ActiveRecord::Base
   end
   
   def country_name
-    country_id && country.name
+    country_id and country.name
   end
   
   private
