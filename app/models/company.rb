@@ -50,10 +50,6 @@ class Company < ActiveRecord::Base
     end
   end
   
-  def trend
-    9
-  end
-  
   def followings_count
     142
   end
@@ -88,6 +84,9 @@ class Company < ActiveRecord::Base
   def recalc_index
     return unless country_id_changed? || category_ids_changed?
     
-    self.rating = IndexCal.new(self).calc
+    new_rating = IndexCal.new(self).calc
+    
+    self.rating_trend = (new_rating - (rating || 0))
+    self.rating = new_rating
   end
 end

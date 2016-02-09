@@ -22,7 +22,7 @@ RSpec.describe Company, type: :model do
   describe 'category_ids' do
     it 'should have error' do
       subject.valid?
-      subject.errors[:category_list].should eq(['should have at least 1 assigned category'])
+      expect(subject.errors[:category_list]).to eq(['should have at least 1 assigned category'])
     end
     
     it 'should not have error' do
@@ -52,8 +52,23 @@ RSpec.describe Company, type: :model do
       
       expect_any_instance_of(IndexCal).to receive_messages(calc: 999)
       
-      expect(subject.save).to   eq(true)
+      subject.save!
+      
       expect(subject.rating).to eq(999)
+    end
+    
+    describe '#rating_change' do
+      it 'should change' do
+        subject.country      = create(:country)
+        subject.category_ids = [create(:category).id]
+        
+        expect_any_instance_of(IndexCal).to receive_messages(calc: 999)
+        
+        subject.save!
+        
+        expect(subject.rating).to eq(999)
+        expect(subject.rating_trend).to eq(999)
+      end
     end
   end
 end

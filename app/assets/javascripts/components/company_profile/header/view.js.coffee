@@ -52,6 +52,16 @@
         (i className: icon)
         extras))
     
+  _rating_with_trend: -> 
+    icon_class = if @props.company.rating_trend > 0
+      'fa-arrow-circle-up'
+    else
+      'fa-arrow-circle-down'
+    
+    (span null, 
+      (i className: "trend__icon fa #{icon_class}")
+      (span className: "trend__value", "#{@props.company.rating_trend}%") )
+      
   render: ->
     header_styles = unless _.isBlank(@props.company.cover_url)
       {backgroundImage: "url(#{@props.company.cover_url})"}
@@ -61,6 +71,7 @@
         (button type: "button", className: "btn_edit btn btn-primary", onClick: @props.onEdit,
           (i className: "fa fa-pencil")
           (span null, 'Edit')))
+    
     
     (div className: "profile-card__header", style: header_styles,
       (div className: "container",
@@ -83,9 +94,7 @@
           (div className: "row contacts__indices",
             (div className: "col-xs-4 col-sm-4 col-md-4 contacts__rating",
               (span className: "rating__value", @props.company.rating)
-              (div className: "rating__trend",
-                (i className: "trend__icon fa fa-arrow-circle-up")
-                (span className: "trend__value", "#{@props.company.trend}%")))
+              (div className: "rating__trend", @_rating_with_trend() ))
 
             (div className: "col-xs-4 col-sm-4 col-md-4 contacts__followers",
               (span className: "followers__value", @props.company.followers_count)

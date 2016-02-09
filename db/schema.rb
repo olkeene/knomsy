@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209221159) do
+ActiveRecord::Schema.define(version: 20160209225730) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,6 +64,7 @@ ActiveRecord::Schema.define(version: 20160209221159) do
     t.integer "country_id"
     t.integer "category_ids",                                                                 array: true
     t.decimal "rating",                    precision: 6, scale: 2, default: 0.0
+    t.decimal "rating_trend",              precision: 6, scale: 2, default: 0.0
   end
 
   add_index "companies", ["country_id"], name: "index_companies_on_country_id", using: :btree
