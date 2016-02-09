@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160208193549) do
+ActiveRecord::Schema.define(version: 20160209221159) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,13 +39,13 @@ ActiveRecord::Schema.define(version: 20160208193549) do
   add_index "categories", ["name"], name: "index_categories_on_name", using: :btree
 
   create_table "companies", force: :cascade do |t|
-    t.integer "user_id",                   null: false
+    t.integer "user_id",                                                         null: false
     t.string  "name",          limit: 50
     t.text    "description"
-    t.string  "city",                      null: false
-    t.string  "market",                    null: false
-    t.string  "short_name",    limit: 50,  null: false
-    t.string  "slug",          limit: 100, null: false
+    t.string  "city",                                                            null: false
+    t.string  "market",                                                          null: false
+    t.string  "short_name",    limit: 50,                                        null: false
+    t.string  "slug",          limit: 100,                                       null: false
     t.string  "logo"
     t.string  "cover"
     t.date    "founded_on"
@@ -60,9 +60,10 @@ ActiveRecord::Schema.define(version: 20160208193549) do
     t.string  "youtube_link"
     t.string  "website"
     t.string  "short_desc"
-    t.integer "role_ids",                               array: true
+    t.integer "role_ids",                                                                     array: true
     t.integer "country_id"
-    t.integer "category_ids",                           array: true
+    t.integer "category_ids",                                                                 array: true
+    t.decimal "rating",                    precision: 6, scale: 2, default: 0.0
   end
 
   add_index "companies", ["country_id"], name: "index_companies_on_country_id", using: :btree

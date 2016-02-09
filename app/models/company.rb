@@ -1,9 +1,12 @@
+require 'index_calc'
+
 class Company < ActiveRecord::Base
   extend FriendlyId
   friendly_id :short_name, use: :slugged
   
   Artifact::Accessors.init(self, :role)
   
+  belongs_to :user
   belongs_to :country
   belongs_to :category
   
@@ -33,6 +36,8 @@ class Company < ActiveRecord::Base
   
   scope :with_associations, ->{ includes(:country, :category) }
   
+  before_save :recalc_index
+  
   #TODO deal with category, country, city and market fields, Make it as associations or scoped tags
   
   def founded_on=(v)
@@ -43,10 +48,6 @@ class Company < ActiveRecord::Base
     rescue ArgumentError
       super(v)
     end
-  end
-  
-  def rating
-    2
   end
   
   def trend
@@ -70,11 +71,23 @@ class Company < ActiveRecord::Base
     self.category_ids = Category.where(name: mapping).pluck(:id)
   end
   
+  def categories
+    Category.where(id: category_ids)
+  end
+  
   def category_list
-    Category.where(id: category_ids).pluck(:name)
+    categories.pluck(:name)
   end
   
   def to_param
     slug
+  end
+  
+  private
+  
+  def recalc_index
+    return unless country_id_changed? || category_ids_changed?
+    
+    self.rating = IndexCal.new(self).calc
   end
 end

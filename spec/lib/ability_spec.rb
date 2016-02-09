@@ -9,13 +9,13 @@ RSpec.describe Ability do
     it 'should allow to edit' do
       company = Company.new(user_id: user.id)
       
-      subject.can?(:edit, company).should eq(true)
+      expect(subject.can?(:edit, company)).to eq(true)
     end
     
     it 'should not allow to edit' do
       company = Company.new(user_id: user.id + 1)
       
-      subject.can?(:edit, company).should eq(false)
+      expect(subject.can?(:edit, company)).to eq(false)
     end
   end
 
@@ -24,20 +24,20 @@ RSpec.describe Ability do
       it 'user' do
         _user = User.new(id: user.id)
         
-        subject.can?(:edit, _user).should eq(true)
+        expect(subject.can?(:edit, _user)).to eq(true)
       end
       
       it 'decorated user' do
         _user = User.new(id: user.id).decorate
         
-        subject.can?(:edit, _user).should eq(true)
+        expect(subject.can?(:edit, _user)).to eq(true)
       end
     end
     
     it 'should not allow to edit' do
       _user = User.new(id: user.id + 1)
       
-      subject.can?(:edit, _user).should eq(false)
+      expect(subject.can?(:edit, _user)).to eq(false)
     end
   end
 end

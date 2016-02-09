@@ -31,4 +31,29 @@ RSpec.describe Company, type: :model do
       subject.errors[:category_list].should be_empty
     end
   end
+  
+  describe 'recalc_index' do
+    subject { build(:company) }
+    
+    it 'should have def value' do
+      expect(subject.rating).to eq(0)
+    end
+    
+    it 'should not recalc' do
+      subject.country      = nil
+      subject.category_ids = nil
+      
+      expect_any_instance_of(IndexCal).to_not receive(:calc)
+    end
+    
+    it 'should recalc' do
+      subject.country      = create(:country)
+      subject.category_ids = [create(:category).id]
+      
+      expect_any_instance_of(IndexCal).to receive_messages(calc: 999)
+      
+      expect(subject.save).to   eq(true)
+      expect(subject.rating).to eq(999)
+    end
+  end
 end
