@@ -4,7 +4,9 @@
     
     $(@refs[prop_name]).tokenfield(
       @_init_options(engine)
-    ).on 'tokenfield:createdtoken', =>
+    ).on('tokenfield:createdtoken', =>
+      @_save(prop_name)
+    ).on 'tokenfield:removedtoken', =>
       @_save(prop_name)
   
   react_tokenized_remote_autocomplete: (prop_name, options)->
@@ -12,7 +14,9 @@
     
     $(@refs[prop_name]).tokenfield(
       @_init_options(engine)
-    ).on 'tokenfield:createdtoken', =>
+    ).on('tokenfield:createdtoken', =>
+      @_save(prop_name)
+    ).on 'tokenfield:removedtoken', =>
       @_save(prop_name)
   
   tokenized_remote_autocomplete: (bind_input_id, options)->
