@@ -4,6 +4,9 @@
   propTypes: 
     company: React.PropTypes.object.isRequired,
     onEdit:  React.PropTypes.func.isRequired
+  
+  getInitialState: ->
+    surveyUp: false
     
   _get_logo: ->
     if _.isBlank(@props.company.logo_url)
@@ -61,62 +64,89 @@
     (span null, 
       (i className: "trend__icon fa #{icon_class}")
       (span className: "trend__value", "#{@props.company.rating_trend}%") )
+  
+  _canTookSurvey: ->
+    gon.canTookSurvey
+  
+  _surveyBtn: ->
+    return unless @_canTookSurvey()
+    
+    if @state.surveyUp
+      (button type: "button", className: "btn_edit btn-finish btn btn-primary", 
+      onClick: => @setState(surveyUp: false),
+      'Finish')
+    else
+      (button type: "button", className: "btn_edit btn-rate btn btn-primary",   
+      onClick: => @setState(surveyUp: true),
+      'Rate Startup')
       
+  _editBtn: ->
+    if @props.canEditCompany
+      (button type: "button", className: "btn_edit btn btn-primary", onClick: @props.onEdit,
+        (i className: "fa fa-pencil")
+        (span null, 'Edit'))
+  
+  _surveyWidget: ->
+    return unless @state.surveyUp
+    
+    CompanyProfile_Survey(company: @props.company)
+  
   render: ->
     header_styles = unless _.isBlank(@props.company.cover_url)
       {backgroundImage: "url(#{@props.company.cover_url})"}
+    
+    (span null, 
+      @_surveyWidget()
       
-    editBtn = if @props.canEditCompany
-      (div className: "header__edit",
-        (button type: "button", className: "btn_edit btn btn-primary", onClick: @props.onEdit,
-          (i className: "fa fa-pencil")
-          (span null, 'Edit')))
-    
-    
-    (div className: "profile-card__header", style: header_styles,
-      (div className: "container",
-        (div className: "col-md-6",
-          (div className: "media",
-            (div className: "media-left",
-              (a null,
-                @_get_logo() ))
+      (div className: "profile-card__header", style: header_styles,
+        (div className: "container",
+          (div className: "col-md-6",
+            (div className: "media",
+              (div className: "media-left",
+                (a null,
+                  @_get_logo() ))
 
-            (div className: "info__body media-body text-left",
-              (h4 className: "info__name media-heading", 
-                @props.company.name
-                @_get_founded() )
-              @_get_description()
-              @_get_category()
-              @_get_location()
-              editBtn)))
+              (div className: "info__body media-body text-left",
+                (h4 className: "info__name media-heading", 
+                  @props.company.name
+                  @_get_founded() )
+                @_get_description()
+                @_get_category()
+                @_get_location()
+                
+                (div className: "header__edit",
+                  @_editBtn()
+                  @_surveyBtn() )
+          )))
 
-        (div className: "col-xs-12 col-md-6 header__contacts",
-          (div className: "row contacts__indices",
-            (div className: "col-xs-4 col-sm-4 col-md-4 contacts__rating",
-              (span className: "rating__value", @props.company.rating)
-              (div className: "rating__trend", @_rating_with_trend() ))
+          (div className: "col-xs-12 col-md-6 header__contacts",
+            (div className: "row contacts__indices",
+              (div className: "col-xs-4 col-sm-4 col-md-4 contacts__rating",
+                (span className: "rating__value", @props.company.rating)
+                (div className: "rating__trend", @_rating_with_trend() ))
 
-            (div className: "col-xs-4 col-sm-4 col-md-4 contacts__followers",
-              (span className: "followers__value", @props.company.followers_count)
-              (br null)
-              (span className: "followers__title", 'Followers'))
+              (div className: "col-xs-4 col-sm-4 col-md-4 contacts__followers",
+                (span className: "followers__value", @props.company.followers_count)
+                (br null)
+                (span className: "followers__title", 'Followers'))
 
-            (div className: "col-xs-4 col-sm-4 col-md-4 contacts__following",
-              (span className: "following__value", @props.company.followings_count)
-              (br null)
-              (span className: "following__title", 'Following') ))
+              (div className: "col-xs-4 col-sm-4 col-md-4 contacts__following",
+                (span className: "following__value", @props.company.followings_count)
+                (br null)
+                (span className: "following__title", 'Following') ))
 
-          (div className: "row contacts__links",
-            (ul null,
-              @_get_link('website')
-              @_get_link('twitter_link')
-              @_get_link('fb_link')
-              @_get_link('linkedin_link')
-              @_get_link('gplay_link')
-              @_get_link('itunes_link')
-              @_get_link('dribbble_link')
-              @_get_link('gh_link')
-              @_get_link('gplus_link')
-              @_get_link('youtube_link') )))
+            (div className: "row contacts__links",
+              (ul null,
+                @_get_link('website')
+                @_get_link('twitter_link')
+                @_get_link('fb_link')
+                @_get_link('linkedin_link')
+                @_get_link('gplay_link')
+                @_get_link('itunes_link')
+                @_get_link('dribbble_link')
+                @_get_link('gh_link')
+                @_get_link('gplus_link')
+                @_get_link('youtube_link') )))
 
-        (div className: "clearfix")))
+          (div className: "clearfix")
+      )))

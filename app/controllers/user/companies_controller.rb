@@ -12,9 +12,13 @@ class User::CompaniesController < ApplicationController
     @serialized_company  = CompanySerializer.new(@company)
 
     gon.company          = @serialized_company
-    gon.people_roles     = CompanyUser.humanized_roles
-    gon.funding_rounds   = CompanyFunding.humanized_rounds
     gon.can_edit_company = Ability.new(current_user).can?(:edit, @company)
+    if gon.can_edit_company
+      gon.people_roles     = CompanyUser.humanized_roles
+      gon.funding_rounds   = CompanyFunding.humanized_rounds
+    end
+    gon.can_took_survey  = Ability.new(current_user).can?(:took_survey, @company)
+    gon.answer_types     = SurveyAnswer::TYPES
   end
 
   def new

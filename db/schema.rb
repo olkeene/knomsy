@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160209225730) do
+ActiveRecord::Schema.define(version: 20160211235414) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -130,6 +130,19 @@ ActiveRecord::Schema.define(version: 20160209225730) do
   end
 
   add_index "investings", ["user_id"], name: "index_investings_on_user_id", using: :btree
+
+  create_table "survey_answers", force: :cascade do |t|
+    t.integer  "survey_question_id"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+  end
+
+  add_index "survey_answers", ["survey_question_id"], name: "index_survey_answers_on_survey_question_id", using: :btree
+  add_index "survey_answers", ["user_id"], name: "index_survey_answers_on_user_id", using: :btree
+
+  create_table "survey_questions", force: :cascade do |t|
+    t.string "q", null: false
+  end
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

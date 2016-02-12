@@ -50,6 +50,10 @@ class Company < ActiveRecord::Base
     end
   end
   
+  def owner?(test_user)
+    user_id == test_user.id
+  end
+  
   def followings_count
     142
   end

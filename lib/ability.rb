@@ -23,19 +23,24 @@ class Ability
   
   private
   
-  def process_user(action, what)
+  def process_user(action, test_user)
     case action
     when :edit
-      what.id == user.id
+      test_user.id == user.id
     else
       raise_unknown(action)
     end
   end
   
-  def process_company(action, what)
+  def process_company(action, company)
     case action
     when :edit
-      what.user_id == user.id
+      company.owner?(user)
+    when :took_survey
+      return true
+      
+      # owner
+      return false if company.owner?(user)
     else
       raise_unknown(action)
     end

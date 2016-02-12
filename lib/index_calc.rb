@@ -30,10 +30,9 @@ class IndexCal
       
       company_asstcon,
       company_asstcat,
-    ]
-      .map{|v| v || 0 }
-      .inject(&:+) / 6 * 0.7)
-      .round(2)
+    ].map{|v| v || 0 }
+    .inject(&:+) / 6 * 0.7)
+    .round(2)
   end
   
   def company_rmtcat
