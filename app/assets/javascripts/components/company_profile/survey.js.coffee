@@ -32,7 +32,7 @@
       async:  false
       data:   {answer: {answer_type: answerType}}
       success: (r)=>
-        @_next(r.id)
+        @_next()
   
   _renderQuestion: (question)->
     (span null,

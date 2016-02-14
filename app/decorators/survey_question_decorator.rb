@@ -11,6 +11,8 @@ class SurveyQuestionDecorator < Draper::Decorator
         out.gsub! /%NAME/, company.name
       when '%DATE'
         out.gsub! /%DATE/, company.founded_on.to_s(:db)
+      when '%LOCATION'
+        out.gsub! /%DATE/, company.location
       else
         raise "unknown: #{entry}"
       end

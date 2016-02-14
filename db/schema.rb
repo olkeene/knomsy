@@ -145,8 +145,11 @@ ActiveRecord::Schema.define(version: 20160211235414) do
   add_index "survey_answers", ["survey_question_id", "company_id", "user_id", "status"], name: "question_company_user_status", using: :btree
 
   create_table "survey_questions", force: :cascade do |t|
-    t.string "q", null: false
+    t.string "q",      null: false
+    t.string "target", null: false
   end
+
+  add_index "survey_questions", ["q"], name: "index_survey_questions_on_q", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
