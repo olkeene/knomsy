@@ -10,7 +10,7 @@ class SurveyQuestionDecorator < Draper::Decorator
       when '%NAME'
         out.gsub! /%NAME/, company.name
       when '%DATE'
-        out.gsub! /%DATE/, company.founded_on.try(:to_s, :db)
+        out.gsub! /%DATE/, company.founded_on.try(:to_s, :db) || ''
       when '%LOCATION'
         out.gsub! /%DATE/, company.location
       else
