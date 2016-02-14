@@ -34,25 +34,29 @@ class SurveyAnswer < ActiveRecord::Base
   
   #TODO specs
   def mark_for_index
-    return if completed? || for_index?
+    return unless not_completed?
     
-    scope = company.survey_answers.user_not_completed(user)
+    not_completed_scope = company.survey_answers.user_not_completed(user)
     
-    answers_count   = scope.count
+    answers_count   = not_completed_scope.count
     questions_count = SurveyQuestion.count
     
     if answers_count == questions_count
-      answer_ids   = scope.pluck(:id)
-      update_scope = SurveyAnswer.where(id: answer_ids)
+      not_completed_answer_ids   = not_completed_scope.pluck(:id)
+      company_user_answers_scope = company.survey_answers.user(user)
         
+      # mark all previous as voted
+      company_user_answers_scope
+        .where.not(id: not_completed_answer_ids)
+        .update_all status: self.class.statuses[:completed]
+      
       # mark for index
-      update_scope.update_all status: self.class.statuses[:for_index]
+      company_user_answers_scope
+        .where(id: not_completed_answer_ids)
+        .update_all status: self.class.statuses[:for_index]
         
       company.recalc_index(true)
       company.save!
-      
-      # mark as voted
-      update_scope.update_all status: self.class.statuses[:completed]
     elsif answers_count > questions_count
       raise "issue with callback. Company_id: #{company_id}, answer_id: #{id}"
     end
