@@ -42,13 +42,17 @@ class SurveyAnswer < ActiveRecord::Base
     questions_count = SurveyQuestion.count
     
     if answers_count == questions_count
-      scope.update_all status: self.class.statuses[:for_index]
+      answer_ids   = scope.pluck(:id)
+      update_scope = SurveyAnswer.where(id: answer_ids)
+        
+      # mark for index
+      update_scope.update_all status: self.class.statuses[:for_index]
         
       company.recalc_index(true)
       company.save!
       
       # mark as voted
-      scope.update_all status: self.class.statuses[:completed]
+      update_scope.update_all status: self.class.statuses[:completed]
     elsif answers_count > questions_count
       raise "issue with callback. Company_id: #{company_id}, answer_id: #{id}"
     end
