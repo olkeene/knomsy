@@ -53,10 +53,6 @@ class User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
   
-  def cover_url=(v)
-    'TODO'
-  end
-    
   def rating
     2
   end
