@@ -33,6 +33,8 @@
       data:   {answer: {answer_type: answerType}}
       success: (r)=>
         @_next()
+      error: (r)=>
+        @_next()
   
   _renderQuestion: (question)->
     (span null,

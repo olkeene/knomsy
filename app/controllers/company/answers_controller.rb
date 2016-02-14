@@ -1,4 +1,5 @@
 class Company::AnswersController < Company::BaseController
+  before_action :can_vote!
   before_action :find_question!
   
   def create

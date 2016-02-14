@@ -27,8 +27,15 @@ RSpec.describe Ability do
         expect(subject.can?(:took_survey, company)).to eq(true)
       end
       
-      it 'should not allow' do
+      it 'should not allow if owner' do
         company = Company.new(user_id: user.id)
+        
+        expect(subject.can?(:took_survey, company)).to eq(false)
+      end
+      
+      it 'should not allow if voted' do
+        company = create :company, user_id: user.id + 1
+        answer  = create :survey_answer, company: company, user: user, status: 'completed'
         
         expect(subject.can?(:took_survey, company)).to eq(false)
       end

@@ -1,6 +1,4 @@
 class SurveyAnswer < ActiveRecord::Base
-  # TYPES = {yes: 1, no: 2, partly: 3, dont_know: 4}
-  
   enum answer_type: [:yes, :no, :partly, :dont_know]
   enum status:      [:not_completed, :for_index, :completed]
   
@@ -17,6 +15,9 @@ class SurveyAnswer < ActiveRecord::Base
   
   scope :user_not_completed, ->(user){ 
     all.user(user).not_completed
+  }
+  scope :user_completed, ->(user){ 
+    all.user(user).completed
   }
   scope :company_user_not_completed, ->(company, user){ 
     all.company(company).user(user).not_completed

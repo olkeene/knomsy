@@ -1,6 +1,7 @@
 class Ability
   attr_reader :user
 
+  class AccessDeny    < StandardError; end
   class UnknownAction < StandardError; end
   class UnknownObject < StandardError; end
   
@@ -37,9 +38,11 @@ class Ability
     when :edit
       company.owner?(user)
     when :took_survey
-      #TODO vote after 2 weeks
       # owner
       return false if company.owner?(user)
+      
+      #TODO vote after 2 weeks
+      return false if company.survey_answers.user_completed(user).exists?
       
       true
     else

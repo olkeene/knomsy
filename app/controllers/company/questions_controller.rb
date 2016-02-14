@@ -1,9 +1,9 @@
 class Company::QuestionsController < Company::BaseController
+  before_action :can_vote!
+  
   def next
-    question = if Ability.new(current_user).can?(:took_survey, @company)
-      q = SurveyQuestion.left_for(current_user, @company, params[:skip_id]).first
-      q = q.decorate(context: {company: @company}) if q
-    end
+    question = SurveyQuestion.left_for(current_user, @company, params[:skip_id]).first
+    question = question.decorate(context: {company: @company}) if question
     
     render json: question
   end
