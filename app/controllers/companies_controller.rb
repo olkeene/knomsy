@@ -1,6 +1,6 @@
 require 'ability'
 
-class User::CompaniesController < ApplicationController
+class CompaniesController < ApplicationController
   before_action :authenticate_user!,   except: :show
   
   before_action :find_scoped_company!, only: [:update]
@@ -18,7 +18,6 @@ class User::CompaniesController < ApplicationController
       gon.funding_rounds   = CompanyFunding.humanized_rounds
     end
     gon.can_took_survey  = Ability.new(current_user).can?(:took_survey, @company)
-    gon.answer_types     = SurveyAnswer::TYPES
   end
 
   def new

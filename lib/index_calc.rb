@@ -21,7 +21,7 @@ class IndexCal
   private
   
   def process_company
-    ([
+    auto = ([
       company_rmtcat,
       company_rmtcon,
       
@@ -32,7 +32,11 @@ class IndexCal
       company_asstcat,
     ].map{|v| v || 0 }
     .inject(&:+) / 6 * 0.7)
-    .round(2)
+    
+    # human correlation
+    manual_rate = object.survey_answers.for_index.sum_answers.order(nil).first.try(:sum) || 0
+    
+    (auto + manual_rate * 0.3).round(2)
   end
   
   def company_rmtcat

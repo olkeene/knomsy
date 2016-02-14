@@ -37,10 +37,11 @@ class Ability
     when :edit
       company.owner?(user)
     when :took_survey
-      return true
-      
+      #TODO vote after 2 weeks
       # owner
       return false if company.owner?(user)
+      
+      true
     else
       raise_unknown(action)
     end

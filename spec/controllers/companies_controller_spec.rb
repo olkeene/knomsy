@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User::CompaniesController, type: :controller do
+RSpec.describe CompaniesController, type: :controller do
   pending "add some examples to (or delete) #{__FILE__}"
   
   # describe "GET #new" do

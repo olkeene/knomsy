@@ -132,13 +132,17 @@ ActiveRecord::Schema.define(version: 20160211235414) do
   add_index "investings", ["user_id"], name: "index_investings_on_user_id", using: :btree
 
   create_table "survey_answers", force: :cascade do |t|
-    t.integer  "survey_question_id"
-    t.integer  "user_id"
-    t.datetime "created_at",         null: false
+    t.integer  "survey_question_id",                       null: false
+    t.integer  "company_id",                               null: false
+    t.integer  "user_id",                                  null: false
+    t.integer  "status",             limit: 2, default: 0, null: false
+    t.integer  "answer_type",        limit: 2,             null: false
+    t.datetime "created_at",                               null: false
   end
 
-  add_index "survey_answers", ["survey_question_id"], name: "index_survey_answers_on_survey_question_id", using: :btree
-  add_index "survey_answers", ["user_id"], name: "index_survey_answers_on_user_id", using: :btree
+  add_index "survey_answers", ["company_id", "status"], name: "index_survey_answers_on_company_id_and_status", using: :btree
+  add_index "survey_answers", ["survey_question_id", "company_id", "user_id", "status", "created_at"], name: "question_company_user_status_created_at", using: :btree
+  add_index "survey_answers", ["survey_question_id", "company_id", "user_id", "status"], name: "question_company_user_status", using: :btree
 
   create_table "survey_questions", force: :cascade do |t|
     t.string "q", null: false

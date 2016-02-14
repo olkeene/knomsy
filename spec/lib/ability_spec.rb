@@ -6,16 +6,32 @@ RSpec.describe Ability do
   subject { Ability.new(user) }
 
   describe 'company profile' do
-    it 'should allow to edit' do
-      company = Company.new(user_id: user.id)
+    context 'edit' do
+      it 'should allow' do
+        company = Company.new(user_id: user.id)
+        
+        expect(subject.can?(:edit, company)).to eq(true)
+      end
       
-      expect(subject.can?(:edit, company)).to eq(true)
+      it 'should not allow' do
+        company = Company.new(user_id: user.id + 1)
+        
+        expect(subject.can?(:edit, company)).to eq(false)
+      end
     end
     
-    it 'should not allow to edit' do
-      company = Company.new(user_id: user.id + 1)
+    context 'survey' do
+      it 'should allow' do
+        company = Company.new(user_id: user.id + 1)
+        
+        expect(subject.can?(:took_survey, company)).to eq(true)
+      end
       
-      expect(subject.can?(:edit, company)).to eq(false)
+      it 'should not allow' do
+        company = Company.new(user_id: user.id)
+        
+        expect(subject.can?(:took_survey, company)).to eq(false)
+      end
     end
   end
 

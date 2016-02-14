@@ -13,10 +13,63 @@ p 'Seeding categories'
   Category.create!(hash.except('pls')) unless Category.where(name: hash['name']).exists?
 end
 
+# 1. Found date
+# Was the XXX founded on XXX?
+# Is it true that the XXX was founded on XXX?
+# (XXX – name of the project)
+# (YYY– date of the project)
+# 
+# 2. mini resume
+# Does mini resume fully describes the main point of the project?
+# 
+# 3. categories
+# Had the XXX chosen the right categories? Do they match the area which project is developing in? 
+# (XXX – name of the project)
+# 
+# 4. location
+# Is it true that XXX headquarters is located in YYY?
+# (XXX – name of the project)
+# (YYY– location)
+# 
+# 5. site url
+# Is this the correct url of the project? 
+# 
+# 6. product screenshots
+# Do these screenshots belong to the working project?
+#  
+# 7. product description
+# Does the description belongs to the project? 
+# 
+# 8. Traction
+# Is it the real traction of the company?
+# 
+# 9. People – founders
+# Are these people real founders of XXX?
+# (XXX – name of the project)
+# 
+# 10. people employees
+# Are these people real employees of XXX?
+# (XXX – name of the project)
+# 
+# 11. people investors
+# Are these people real investors of XXX?
+# (XXX – name of the project)
+# 
+# 12. Funding, each round
+# Can you say for sure that XXX has received this investment round? 
+# 
+# 13. media - video/screens
+# Do these media belong to the working project?
+# 
+# 14. media – description
+# Does the description belongs to the project?
+
 p 'Seeding questions'
 [
-  
-].each do |hash|
-  SurveyQuestion.create!(hash) unless SurveyQuestion.where(name: hash[:name]).exists?
+  'Is that true that the %NAME was founded on %DATE?',
+  'Does the mini resume fully describes the main point of the project?',
+  'Had the %NAME chosen the right categories? Are they match to the project\'s area?'
+].each do |q|
+  SurveyQuestion.create!(q: q) unless SurveyQuestion.where(q: q).exists?
 end
 

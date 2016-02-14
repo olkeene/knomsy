@@ -5,51 +5,56 @@
     company: React.PropTypes.object.isRequired
   
   getInitialState: ->
-    questions = @_questions()
-    currentQ  = questions.shift()
-    
-    questions:   questions
-    currentQ:    currentQ
-  
-  # initial data
-  _questions: ->
-    # ajax...
-    [{id: 1, q: 'foo'}, {id: 2, q: 'foo2'}]
+    currentQ: @_nextQuestion()
   
   answerTypes:
     gon.answerTypes
   
-  _nextQuestion: ->
-    questions = @state.questions
-    currentQ  = questions.shift()
+  _nextQuestion: (skip_id)->
+    out = null
     
-    @setState question: questions, currentQ: currentQ
+    $.ajax 
+      url: Routes.next_company_questions_path(@props.company.id, format: 'json')
+      method: 'get'
+      async:  false
+      data:   {skip_id: skip_id}
+      success: (r)-> out = r
+    
+    out
+  
+  _next: (skip_id)->
+    @setState currentQ: @_nextQuestion(skip_id)
+    
+  _save: (question, answerType)->
+    $.ajax 
+      url: Routes.company_question_answers_path(@props.company.id, question.id, format: 'json')
+      method: 'post'
+      async:  false
+      data:   {answer: {answer_type: answerType}}
+      success: (r)=>
+        @_next(r.id)
   
   _renderQuestion: (question)->
     (span null,
       question.q
+      
       (div null,
-        (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, @answerTypes.yes), 'Yes')
-        (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, @answerTypes.no),  'No')
-        (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, @answerTypes.partly), 'Partly')
-        (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, @answerTypes.dont_know), "I don't know") )
+        (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, question, 'yes'), 'Yes')
+        (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, question, 'no'),  'No')
+        (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, question, 'partly'), 'Partly')
+        (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, question, 'dont_know'), "I don't know") )
       (div null,
-        (button className: 'btn_edit btn-next btn btn-primary', type: 'button', onClick: @_onEdit, 'Next') )
+        (button className: 'btn_edit btn-next btn btn-primary', type: 'button', onClick: @_next.bind(this, question.id), 'Next') )
     )
     
-  _render_done: ->
+  _render_done:
     'Survey has been completed!'
-    
-  _save: (answerType)->
-    console.log answerType
-    @_nextQuestion()
-    # ajax save  
     
   render: ->
     content = if @state.currentQ
       @_renderQuestion(@state.currentQ)
     else
-      @_render_done()
+      @_render_done
     
     (div className: 'profile-survey',
       (div className: "container",

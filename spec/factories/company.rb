@@ -7,6 +7,7 @@ FactoryGirl.define do
     description 'foooo'
     
     country
+    category_list { create(:category).name }
     city   'LA'
     market 'mobile'
   end

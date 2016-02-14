@@ -10,6 +10,7 @@ class Company < ActiveRecord::Base
   belongs_to :country
   belongs_to :category
   
+  has_many :survey_answers, dependent: :delete_all
   has_many :members,  class_name: :CompanyUser,    dependent: :delete_all
   has_many :fundings, class_name: :CompanyFunding, dependent: :delete_all
   accepts_nested_attributes_for :members, :fundings, allow_destroy: true
@@ -37,8 +38,6 @@ class Company < ActiveRecord::Base
   scope :with_associations, ->{ includes(:country, :category) }
   
   before_save :recalc_index
-  
-  #TODO deal with category, country, city and market fields, Make it as associations or scoped tags
   
   def founded_on=(v)
     return if v.blank?
@@ -83,14 +82,12 @@ class Company < ActiveRecord::Base
     slug
   end
   
-  private
-  
-  def recalc_index
-    return unless country_id_changed? || category_ids_changed?
-    
-    new_rating = IndexCal.new(self).calc
-    
-    self.rating_trend = (new_rating - (rating || 0))
-    self.rating = new_rating
+  def recalc_index(force = false)
+    if force || (country_id_changed? || category_ids_changed?)
+      new_rating = IndexCal.new(self).calc
+      
+      self.rating_trend = (new_rating - (rating || 0))
+      self.rating       = new_rating
+    end
   end
 end

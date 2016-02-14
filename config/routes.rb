@@ -4,8 +4,21 @@ Rails.application.routes.draw do
   scope module: :user do
     resource  :dashboard, only:   [:show]
     resources :profiles,  only:   [:show, :update]
-    resources :companies, except: [:edit, :destroy]
   end
+  
+  scope module: :company do
+    resources :companies, only: [] do
+      resources :questions, only: [] do
+        collection do
+          get :next
+        end
+        
+        resources :answers, only: :create
+      end
+    end
+  end
+  
+  resources :companies, except: [:edit, :destroy]
   
   resource :data, only: [] do
     get :roles
