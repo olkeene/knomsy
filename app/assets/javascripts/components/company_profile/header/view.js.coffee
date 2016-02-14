@@ -15,10 +15,10 @@
       (img className: "input__photo_square", src: @props.company.logo_url)
     
   _get_location: ->
-    if !_.isBlank(@props.company.city) || !_.isBlank(@props.company.country_name)
+    if !_.isBlank(@props.company.location)
       (p className: "info__location",
         (i className: "fa fa-map-marker")
-        (span null, [@props.company.country_name, @props.company.city].join(', ')))
+        (span null, @props.company.location))
 
   _get_founded: ->
     if !_.isBlank(@props.company.founded_on)

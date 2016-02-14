@@ -53,6 +53,10 @@ class Company < ActiveRecord::Base
     user_id == test_user.id
   end
   
+  def location
+    [country_name, city].compact.join(', ')
+  end
+  
   def followings_count
     142
   end
