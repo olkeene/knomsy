@@ -70,7 +70,7 @@ class User < ActiveRecord::Base
   end
   
   def country_name
-    country_id and country.name
+    country_id and country_id != 0 and country.name # != 0 tmp fix
   end
   
   private
