@@ -21,6 +21,9 @@ class IndexCal
   private
   
   def process_company
+    # for exists companies, fix non-valid for new records
+    return 0 if !country || !category
+     
     auto = ([
       company_rmtcat,
       company_rmtcon,
