@@ -3,6 +3,7 @@
 @CompanyProfile_Survey = React.createFactory React.createClass
   propTypes: 
     company: React.PropTypes.object.isRequired
+    onDone:  React.PropTypes.func.isRequired
   
   getInitialState: ->
     currentQ: @_nextQuestion()
@@ -46,14 +47,18 @@
         (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, question, 'dont_know'), "I don't know") )
     )
     
-  _render_done:
+  _render_done: ->
+    setTimeout(
+      ()=> @props.onDone(true),
+      5000) # 5 seconds
+    
     'Survey has been completed!'
     
   render: ->
     content = if @state.currentQ
       @_renderQuestion(@state.currentQ)
     else
-      @_render_done
+      @_render_done()
     
     (div className: 'profile-survey',
       (div className: "container",

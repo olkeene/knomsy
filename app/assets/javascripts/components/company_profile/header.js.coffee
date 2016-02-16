@@ -11,9 +11,12 @@
     options.company = company if company
     
     @setState options
+  
+  onUpdate: (company) ->
+    @setState company: company
     
   render: ->
     if @state.edit_mode
       CompanyProfile_Header_Form(company: @state.company, saveProfile: @props.saveProfile, onCancel: @onCancel)
     else
-      CompanyProfile_Header_View(company: @state.company, onEdit: @onEdit, canEditCompany: @props.canEditCompany)
+      CompanyProfile_Header_View(company: @state.company, onEdit: @onEdit, onUpdate: @onUpdate, canEditCompany: @props.canEditCompany)

@@ -67,9 +67,20 @@
   
   _canTookSurvey: ->
     gon.canTookSurvey
+    
+  _refreshIndex: ->
+    $.ajax 
+      url: Routes.company_path(@props.company.id, format: 'json')
+      method: 'get'
+      success: (r)=>
+        @props.onUpdate(r)
   
-  _surveyBtn: ->
+  _surveyBtn: (refreshIndex = false)->
     return unless @_canTookSurvey()
+    
+    if refreshIndex
+      @_refreshIndex() 
+      @setState surveyUp: false
     
     if @state.surveyUp
       (button type: "button", className: "btn_edit btn-finish btn btn-primary", 
@@ -89,7 +100,7 @@
   _surveyWidget: ->
     return unless @state.surveyUp
     
-    CompanyProfile_Survey(company: @props.company)
+    CompanyProfile_Survey(company: @props.company, onDone: @_surveyBtn)
   
   render: ->
     header_styles = unless _.isBlank(@props.company.cover_url)
