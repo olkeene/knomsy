@@ -43,6 +43,14 @@ module ApplicationHelper
     nil
   end
   
+  def home_btn_path
+    if signed_in?
+      profile_path(current_user)
+    else
+      root_path
+    end
+  end
+  
   private
   
   def bootstrap_class_for flash_type
