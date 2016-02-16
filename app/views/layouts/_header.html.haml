@@ -30,7 +30,7 @@
   .container
     %ul.nav.navbar-nav
       %li
-        = link_to 'Home', root_url
+        = link_to 'Home', profile_path(current_user)
       %li
         = link_to 'Dashboard', dashboard_url
       %li
