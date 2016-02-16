@@ -50,17 +50,24 @@ class CompaniesController < ApplicationController
   end
   
   def permitted_params
-    params.permit(company: [
-      :name, :short_desc, 
-      :country_id, :city, :market, :category_list, :short_name, :terms_of_service,
-      :founded_on,
-      :logo,          :cover,        :remove_logo,   :remove_cover,
-      :description,   :role_list,
-      :gplay_link,    :itunes_link,  :dribbble_link, :fb_link, :gh_link, :gplus_link, 
-      :linkedin_link, :twitter_link, :youtube_link,  :website,
-      members_attributes:  [:id, :_destroy, :name, :role, :title],
-      fundings_attributes: [:id, :_destroy, :round, :funded_on, :amount, :investor_list, :link, :visible]
-    ])
+    if @company.new_record?
+      params.permit(company: [
+        :name, :description, 
+        :country_id, :city, :market, :category_list, :short_name, :terms_of_service
+      ])
+    else
+      params.permit(company: [
+        :name,          :short_desc, 
+        :country_id,    :city, :market, :category_list, :terms_of_service,
+        :founded_on,
+        :logo,          :cover, :remove_logo, :remove_cover,
+        :description,   :role_list,
+        :gplay_link,    :itunes_link, :dribbble_link, :fb_link, :gh_link, :gplus_link, 
+        :linkedin_link, :twitter_link, :youtube_link, :website,
+        members_attributes:  [:id, :_destroy, :name, :role, :title],
+        fundings_attributes: [:id, :_destroy, :round, :funded_on, :amount, :investor_list, :link, :visible]
+      ])
+    end
   end
   
   def build_company
