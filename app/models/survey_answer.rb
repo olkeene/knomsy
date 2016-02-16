@@ -2,7 +2,7 @@ class SurveyAnswer < ActiveRecord::Base
   ANSWER_TIME_LIMIT = 5.minutes
   
   enum answer_type: [:yes, :no, :partly, :dont_know]
-  enum status:      [:not_completed, :for_index, :completed]
+  enum status:      [:not_completed, :for_index, :archive]
   
   belongs_to :user,    required: true
   belongs_to :company, required: true
@@ -16,11 +16,11 @@ class SurveyAnswer < ActiveRecord::Base
   scope :for_index,        ->{ where status: statuses[:for_index] }
   scope :last_voted,       ->{ order created_at: :desc }
   
+  scope :user_for_index, ->(user){ 
+    all.user(user).for_index
+  }
   scope :user_not_completed, ->(user){ 
     all.user(user).not_completed
-  }
-  scope :user_completed, ->(user){ 
-    all.user(user).completed
   }
   scope :company_user_not_completed, ->(company, user){ 
     all.company(company).user(user).not_completed
@@ -40,8 +40,7 @@ class SurveyAnswer < ActiveRecord::Base
     return unless not_completed?
     
     not_completed_scope = company.survey_answers.user_not_completed(user)
-    
-    answers_count = not_completed_scope.count
+    answers_count       = not_completed_scope.count
     
     if answers_count == SurveyQuestion::COUNT
       not_completed_answer_ids   = not_completed_scope.pluck(:id)
@@ -50,10 +49,10 @@ class SurveyAnswer < ActiveRecord::Base
       # mark all previous as voted
       company_user_answers_scope
         .where.not(id: not_completed_answer_ids)
-        .update_all status: self.class.statuses[:completed]
+        .update_all status: self.class.statuses[:archive]
       
       # mark for index
-      company_user_answers_scope
+      SurveyAnswer
         .where(id: not_completed_answer_ids)
         .update_all status: self.class.statuses[:for_index]
         

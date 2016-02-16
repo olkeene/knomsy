@@ -10,20 +10,19 @@
   answerTypes:
     gon.answerTypes
   
-  _nextQuestion: (skip_id)->
+  _nextQuestion: ()->
     out = null
     
     $.ajax 
       url: Routes.next_company_questions_path(@props.company.id, format: 'json')
       method: 'get'
       async:  false
-      data:   {skip_id: skip_id}
       success: (r)-> out = r
     
     out
   
-  _next: (skip_id)->
-    @setState currentQ: @_nextQuestion(skip_id)
+  _next: ()->
+    @setState currentQ: @_nextQuestion()
     
   _save: (question, answerType)->
     $.ajax 
@@ -45,8 +44,6 @@
         (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, question, 'no'),  'No')
         (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, question, 'partly'), 'Partly')
         (button className: 'btn btn-primary', type: 'button', onClick: @_save.bind(this, question, 'dont_know'), "I don't know") )
-      (div null,
-        (button className: 'btn_edit btn-next btn btn-primary', type: 'button', onClick: @_next.bind(this, question.id), 'Next') )
     )
     
   _render_done:

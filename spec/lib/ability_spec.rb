@@ -32,14 +32,14 @@ RSpec.describe Ability do
         
         it "if voted #{SurveyAnswer::ANSWER_TIME_LIMIT / 60} mins.ago" do
           company = create :company, user: other_user
-          answer  = create :survey_answer, company: company, user: user, status: 'completed', created_at: SurveyAnswer::ANSWER_TIME_LIMIT.ago
+          answer  = create :survey_answer, company: company, user: user, status: 'archive', created_at: SurveyAnswer::ANSWER_TIME_LIMIT.ago
           
           expect(subject.can?(:took_survey, company)).to eq(true)
         end
         
         it "if voted > #{SurveyAnswer::ANSWER_TIME_LIMIT  / 60} mins.ago" do
           company = create :company, user: other_user
-          answer  = create :survey_answer, company: company, user: user, status: 'completed', created_at: (SurveyAnswer::ANSWER_TIME_LIMIT + 1).ago
+          answer  = create :survey_answer, company: company, user: user, status: 'archive', created_at: (SurveyAnswer::ANSWER_TIME_LIMIT + 1).ago
           
           expect(subject.can?(:took_survey, company)).to eq(true)
         end

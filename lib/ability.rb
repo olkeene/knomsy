@@ -42,7 +42,7 @@ class Ability
       return false if company.owner?(user)
       
       # last voted
-      if last_vote = company.survey_answers.user_completed(user).last_voted.first
+      if last_vote = company.survey_answers.user_for_index(user).last_voted.first
         return false if last_vote.created_at > SurveyAnswer::ANSWER_TIME_LIMIT.ago
       end
       

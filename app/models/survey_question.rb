@@ -5,11 +5,9 @@ class SurveyQuestion < ActiveRecord::Base
   
   has_many :answers, class_name: :SurveyAnswer, foreign_key: :survey_question_id
   
-  scope :left_for, ->(user, company, skip_id = nil){ 
+  scope :left_for, ->(user, company){ 
     # skip active answered questions 
-    scope = where.not(id: 
-      company.survey_answers.user(user).not_completed.distinct.pluck(:survey_question_id))
-    scope = scope.where.not(id: skip_id) if skip_id
-    scope 
+    where.not(id: 
+      company.survey_answers.user(user).not_completed.pluck(:survey_question_id))
   }
 end
