@@ -18,8 +18,8 @@
         @ajax_before_save_callback()
       success: (resp) =>
         @ajax_after_save_callback()
-        gon.company = resp
-        response = resp
+        gon.company = resp unless resp.errors
+        response    = resp
         
     _.extend jOptions, options
       

@@ -18,7 +18,7 @@
         @ajax_before_save_callback()
       success: (resp) =>
         @ajax_after_save_callback()
-        gon.user = resp
+        gon.user = resp unless resp.errors
         response = resp
         
     _.extend jOptions, options
