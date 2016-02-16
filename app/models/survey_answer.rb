@@ -41,10 +41,9 @@ class SurveyAnswer < ActiveRecord::Base
     
     not_completed_scope = company.survey_answers.user_not_completed(user)
     
-    answers_count   = not_completed_scope.count
-    questions_count = SurveyQuestion.count
+    answers_count = not_completed_scope.count
     
-    if answers_count == questions_count
+    if answers_count == SurveyQuestion::COUNT
       not_completed_answer_ids   = not_completed_scope.pluck(:id)
       company_user_answers_scope = company.survey_answers.user(user)
         
@@ -60,7 +59,7 @@ class SurveyAnswer < ActiveRecord::Base
         
       company.recalc_index(true)
       company.save!
-    elsif answers_count > questions_count
+    elsif answers_count > SurveyQuestion::COUNT
       raise "issue with callback. Company_id: #{company_id}, answer_id: #{id}"
     end
   end
