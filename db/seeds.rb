@@ -14,20 +14,20 @@ end
 
 p 'Seeding questions'
 [
-  {target: 'founded_on',  q: 'Is that true that the %NAME was founded on %DATE?'},
+  {target: 'founded_on',  q: 'Was the %NAME founded on %DATE?'},
   {target: 'mini_resume', q: "Does mini resume fully describes the main point of the project?"},
-  {target: 'categories',  q: "Had the %NAME chosen the right categories? Do they match the area which project is developing in? "},
+  {target: 'categories',  q: "Had the %NAME selected the appropriate categories? Do they match the area which project is developing in?"},
   {target: 'location',    q: "Is it true that %NAME headquarters is located in %LOCATION?"},
-  {target: 'url',         q: "Is this the correct url of the project?"},
-  {target: 'screenshots', q: "Are these screenshots belongs to the working project?"},
-  {target: 'description', q: "Does the description belongs to the project?"},
-  {target: 'Traction',    q: "Is it the real traction of the company?"},
-  {target: 'people',      q: "Are these people real founders of %NAME?"},
-  {target: 'people',      q: "Are these people real employees of %NAME?"},
-  {target: 'people',      q: "Are these people real investors of %NAME?"},
-  {target: 'funding',     q: "Can you say for sure that %NAME has received this investment round? "},
-  {target: 'media',       q: "Are these medias belongs to the working project?"},
-  {target: 'media',       q: "Is the description belongs to the project?"},
+  {target: 'url',         q: "Is this the correct URL for the project?"},
+  {target: 'screenshots', q: "Do these screenshots belong to the current project?"},
+  {target: 'description', q: "Does these descriptions fit to the project?"},
+  {target: 'Traction',    q: "What traction levels correlate to %NAME?"},
+  {target: 'people',      q: "Are the following people founders of %NAME?"},
+  {target: 'people',      q: "Are the following people employees of %NAME?"},
+  {target: 'people',      q: "Are the following people the investors for %NAME?"},
+  {target: 'funding',     q: "Can you confirm whether %NAME has received any investment this round?"},
+  {target: 'media',       q: "Do the following media belong to the project?"},
+  {target: 'media',       q: "Is the following description correct for the project?"},
 ].each do |hash|
   SurveyQuestion.create!(hash) unless SurveyQuestion.where(q: hash[:q]).exists?
 end
