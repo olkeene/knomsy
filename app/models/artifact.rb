@@ -8,7 +8,7 @@ class Artifact < ActiveRecord::Base
           context.class_eval do
             define_method "#{accessor}_list=" do |v|      # def skill_list=(v)
               mapping = (v || '').split(',').map do |str|
-                artifact = Artifact.where(type: Artifact.types[accessor]).
+                artifact = Artifact.where(kind: Artifact.kinds[accessor]).
                   where(name: str.strip.mb_chars.downcase).
                   first_or_initialize
                 artifact.save! if artifact.new_record?
@@ -27,12 +27,12 @@ class Artifact < ActiveRecord::Base
     end
   end
   
-  enum type: [:skill, :role, :service]
+  enum kind: [:skill, :role, :service]
   
-  validates :type, presence: true
-  validates :name, presence: true, uniqueness: {scope: :type}
+  validates :kind, presence: true
+  validates :name, presence: true, uniqueness: {scope: :kind}
   
-  scope :skills,   -> { where(kind: types[:skill]) }
-  scope :roles,    -> { where(kind: types[:role]) }
-  scope :services, -> { where(kind: types[:service]) }
+  scope :skills,   -> { where(kind: kinds[:skill]) }
+  scope :roles,    -> { where(kind: kinds[:role]) }
+  scope :services, -> { where(kind: kinds[:service]) }
 end
