@@ -23,23 +23,34 @@ RSpec.describe Ability do
     end
     
     context 'survey' do
-      it 'should allow' do
-        company = Company.new(user: other_user)
+      context 'can vote' do
+        it 'if unvotted' do
+          company = Company.new(user: other_user)
+          
+          expect(subject.can?(:took_survey, company)).to eq(true)
+        end
         
-        expect(subject.can?(:took_survey, company)).to eq(true)
+        it "if voted #{SurveyAnswer::ANSWER_TIME_LIMIT / 60} mins.ago" do
+          company = create :company, user: other_user
+          answer  = create :survey_answer, company: company, user: user, status: 'completed', created_at: SurveyAnswer::ANSWER_TIME_LIMIT.ago
+          
+          expect(subject.can?(:took_survey, company)).to eq(true)
+        end
+        
+        it "if voted > #{SurveyAnswer::ANSWER_TIME_LIMIT  / 60} mins.ago" do
+          company = create :company, user: other_user
+          answer  = create :survey_answer, company: company, user: user, status: 'completed', created_at: (SurveyAnswer::ANSWER_TIME_LIMIT + 1).ago
+          
+          expect(subject.can?(:took_survey, company)).to eq(true)
+        end
       end
       
-      it 'should not allow if owner' do
-        company = Company.new(user_id: user.id)
-        
-        expect(subject.can?(:took_survey, company)).to eq(false)
-      end
-      
-      it 'should not allow if voted' do
-        company = create :company, user: other_user
-        answer  = create :survey_answer, company: company, user: user, status: 'completed'
-        
-        expect(subject.can?(:took_survey, company)).to eq(false)
+      context 'can\'t vote' do
+        it 'if owner' do
+          company = Company.new(user_id: user.id)
+          
+          expect(subject.can?(:took_survey, company)).to eq(false)
+        end
       end
     end
   end

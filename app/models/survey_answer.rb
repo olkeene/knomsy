@@ -1,17 +1,20 @@
 class SurveyAnswer < ActiveRecord::Base
+  ANSWER_TIME_LIMIT = 5.minutes
+  
   enum answer_type: [:yes, :no, :partly, :dont_know]
   enum status:      [:not_completed, :for_index, :completed]
   
-  belongs_to :user
-  belongs_to :company
-  belongs_to :question, class_name: :SurveyQuestion, foreign_key: :survey_question_id
+  belongs_to :user,    required: true
+  belongs_to :company, required: true
+  belongs_to :question, class_name: :SurveyQuestion, foreign_key: :survey_question_id, required: true
   
-  validates :survey_question_id, :user_id, :company_id, :answer_type, presence: true
+  validates :answer_type, presence: true
   
   scope :company, ->(company){ where company: company }
   scope :user,       ->(user){ where user: user }
   scope :not_completed,    ->{ where status: statuses[:not_completed] }
   scope :for_index,        ->{ where status: statuses[:for_index] }
+  scope :last_voted,       ->{ order created_at: :desc }
   
   scope :user_not_completed, ->(user){ 
     all.user(user).not_completed

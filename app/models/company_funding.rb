@@ -6,9 +6,9 @@ class CompanyFunding < ActiveRecord::Base
     :ipo
   ]
   
-  belongs_to :company
+  belongs_to :company, required: true
   
-  validates :company_id, :round,    presence: true
+  validates :round, presence: true
   validates :funded_on, date: true, presence: true
   
   validates :amount, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 99_999_999_999}

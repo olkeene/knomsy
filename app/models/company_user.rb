@@ -1,9 +1,9 @@
 class CompanyUser < ActiveRecord::Base
   enum role: [:founder, :investor, :employee]
   
-  belongs_to :company
+  belongs_to :company, required: true
   
-  validates :company_id, :role, presence: true
+  validates :role, presence: true
   validates :name,  length: {minimum: 2, maximum: 100}
   validates :title, length: {minimum: 2, maximum: 50}
   

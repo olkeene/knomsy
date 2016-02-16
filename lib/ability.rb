@@ -41,8 +41,10 @@ class Ability
       # owner
       return false if company.owner?(user)
       
-      #TODO vote after 2 weeks
-      return false if company.survey_answers.user_completed(user).exists?
+      # last voted
+      if last_vote = company.survey_answers.user_completed(user).last_voted.first
+        return false if last_vote.created_at > SurveyAnswer::ANSWER_TIME_LIMIT.ago
+      end
       
       true
     else
