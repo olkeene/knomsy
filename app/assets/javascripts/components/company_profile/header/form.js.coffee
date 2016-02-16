@@ -8,7 +8,7 @@
     ReactDatepickerMixin, ReactFileinputMixin, AutocompleteMixin, TokenizedAutocompleteMixin]
   
   getInitialState: ->
-    @props.company
+    _.omit @props.company, 'description', 'role_list'
 
   saveProfile: ->
     params = company: @state

@@ -9,7 +9,7 @@
     onClose:     React.PropTypes.func.isRequired
   
   getInitialState: ->
-    @props.user
+    _.omit @props.user, 'about', 'what_do', 'role_list', 'skill_list', 'service_list'
     
   componentDidMount: (prevProps, prevState) ->
     @fileinput 'avatar'

@@ -9,7 +9,7 @@
     onCancel:    React.PropTypes.func.isRequired
 
   getInitialState: ->
-    @props.user
+    _.pick @props.user, 'about', 'what_do', 'role_list', 'skill_list', 'service_list'
     
   saveProfile: ->
     resp = @props.saveProfile user: @state

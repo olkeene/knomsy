@@ -7,7 +7,7 @@
   mixins: [React.addons.LinkedStateMixin, TokenizedAutocompleteMixin, CompanyProfile_BaseFormMixin]
   
   getInitialState: ->
-    @props.company
+    _.pick @props.company, 'description', 'role_list'
 
   saveProfile: ->
     resp = @props.saveProfile company: @state
