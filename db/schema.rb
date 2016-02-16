@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160211235414) do
+ActiveRecord::Schema.define(version: 20160216100337) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "artifacts", force: :cascade do |t|
     t.string  "name"
-    t.integer "type", limit: 2
+    t.integer "kind", limit: 2
   end
 
-  add_index "artifacts", ["name", "type"], name: "index_artifacts_on_name_and_type", using: :btree
-  add_index "artifacts", ["type"], name: "index_artifacts_on_type", using: :btree
+  add_index "artifacts", ["kind"], name: "index_artifacts_on_kind", using: :btree
+  add_index "artifacts", ["name", "kind"], name: "index_artifacts_on_name_and_kind", using: :btree
 
   create_table "categories", force: :cascade do |t|
     t.string  "name",                              null: false
