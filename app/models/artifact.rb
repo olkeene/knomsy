@@ -32,7 +32,7 @@ class Artifact < ActiveRecord::Base
   validates :type, presence: true
   validates :name, presence: true, uniqueness: {scope: :type}
   
-  scope :skills,   -> { where(type: types[:skill]) }
-  scope :roles,    -> { where(type: types[:role]) }
-  scope :services, -> { where(type: types[:service]) }
+  scope :skills,   -> { where(kind: types[:skill]) }
+  scope :roles,    -> { where(kind: types[:role]) }
+  scope :services, -> { where(kind: types[:service]) }
 end
