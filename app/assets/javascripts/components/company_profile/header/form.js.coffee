@@ -77,7 +77,7 @@
                   
                 (div className: "form-group",
                   (label className: "input__title", 'Country')
-                  (input type: "text", ref: 'country_name', defaultValue: @state.country_name, className: 'form-control', placeholder: "e.g. USA"))
+                  (input type: "text", ref: 'country_name', defaultValue: @state.country_name, className: 'form-control', placeholder: "e.g. United States"))
 
                 (div className: "input",
                   (label className: "input__title", 'Town')
