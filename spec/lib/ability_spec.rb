@@ -3,6 +3,8 @@ require 'ability'
 
 RSpec.describe Ability do
   let!(:user){ create :user }
+  let(:other_user){ create :user }
+  
   subject { Ability.new(user) }
 
   describe 'company profile' do
@@ -14,7 +16,7 @@ RSpec.describe Ability do
       end
       
       it 'should not allow' do
-        company = Company.new(user_id: user.id + 1)
+        company = Company.new(user: other_user)
         
         expect(subject.can?(:edit, company)).to eq(false)
       end
@@ -22,7 +24,7 @@ RSpec.describe Ability do
     
     context 'survey' do
       it 'should allow' do
-        company = Company.new(user_id: user.id + 1)
+        company = Company.new(user: other_user)
         
         expect(subject.can?(:took_survey, company)).to eq(true)
       end
@@ -34,7 +36,7 @@ RSpec.describe Ability do
       end
       
       it 'should not allow if voted' do
-        company = create :company, user_id: user.id + 1
+        company = create :company, user: other_user
         answer  = create :survey_answer, company: company, user: user, status: 'completed'
         
         expect(subject.can?(:took_survey, company)).to eq(false)

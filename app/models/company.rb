@@ -6,8 +6,8 @@ class Company < ActiveRecord::Base
   
   Artifact::Accessors.init(self, :role)
   
-  belongs_to :user
-  belongs_to :country
+  belongs_to :user,    required: true
+  belongs_to :country, required: true
   belongs_to :category
   
   has_many :survey_answers, dependent: :delete_all
@@ -18,7 +18,6 @@ class Company < ActiveRecord::Base
   validates :name, :short_name, presence: true, length: {minimum: 2, maximum: 50}
   validates :description, length: {maximum: 500}
   
-  validates :country_id, presence: true
   validates :city, :market, length: {maximum: 255}, presence: true
   
   validates \

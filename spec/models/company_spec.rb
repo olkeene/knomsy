@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Company, type: :model do
+  it { expect validate_presence_of(:user_id) }
+  
   it { expect validate_length_of(:name).is_at_least(2).is_at_most(50) }
   it { expect validate_length_of(:description).is_at_least(0).is_at_most(500) }
   

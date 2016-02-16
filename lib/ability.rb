@@ -42,7 +42,7 @@ class Ability
       return false if company.owner?(user)
       
       #TODO vote after 2 weeks
-      # return false if company.survey_answers.user_completed(user).exists?
+      return false if company.survey_answers.user_completed(user).exists?
       
       true
     else
