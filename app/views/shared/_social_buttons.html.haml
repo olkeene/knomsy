@@ -1,7 +1,10 @@
 %ul.social-buttons.list-inline
   %li
-    %button.fa.fa-linkedin-square.btn.btn-default{"data-provider" => "linkedin", :type => "button"}
+    = link_to user_omniauth_authorize_path(:linkedin) do
+      %button.fa.fa-linkedin-square.btn.btn-default{type: 'button'}
   %li
-    %button.fa.fa-twitter-square.btn.btn-default{"data-provider" => "twitter", :type => "button"}
+    = link_to user_omniauth_authorize_path(:twitter) do
+      %button.fa.fa-twitter-square.btn.btn-default{type: 'button'}
   %li
-    %button.fa.fa-facebook-square.btn.btn-default{"data-provider" => "facebook", :type => "button"}
+    = link_to user_omniauth_authorize_path(:facebook) do
+      %button.fa.fa-facebook-square.btn.btn-default{type: 'button'}

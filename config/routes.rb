@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {registrations: 'user/registrations', sessions: 'user/sessions', passwords: 'user/passwords', confirmations: 'user/confirmations'}
+  devise_for :users, controllers: {
+    registrations:      'user/registrations', 
+    sessions:           'user/sessions', 
+    passwords:          'user/passwords', 
+    confirmations:      'user/confirmations',
+    omniauth_callbacks: 'user/omniauth_callbacks'
+  }
   
   scope module: :user do
     resource  :dashboard, only:   [:show]

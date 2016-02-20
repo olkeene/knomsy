@@ -1,0 +1,35 @@
+development: &dev
+  facebook:
+    key: 1592559640962646
+    secret: e8bc713b19db41f02d5765de006ebe51
+  linkedin:
+    key: 77n2xw2uy7itc2
+    secret: kcUQbl2ik9CpQjvQ
+  twitter:
+    key: cMkKThZGC8OZXEYOiY5xqaVbD
+    secret: DRHxumOq04zNJ7gRnfq3tZeOZ8bqAnUkJmtYwmzdlLQkdRR0rP
+
+test:
+  <<: *dev
+
+staging:
+  facebook:
+    key: 1717300745148961
+    secret: d40309f91c39f8e412892e099da68648
+  linkedin:
+    key: 77htgutfqyzf22
+    secret: eUWDGFwKYnAbbi5d
+  twitter:
+    key: 3063CJWLEBhPx54iQuFZ6zmSS
+    secret: nSMcX3RVchbVLx48HjoCH1tttG7agnOmzJFnl4heDk7rZS6ZXs
+
+production:
+  facebook:
+    key: 
+    secret: 
+  linkedin:
+    key: 
+    secret: 
+  twitter:
+    key: 
+    secret: 

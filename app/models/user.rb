@@ -7,7 +7,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :validatable, :confirmable
+         :recoverable, :validatable, :confirmable,
+         :omniauthable, omniauth_providers: [:facebook, :linkedin, :twitter]
   
   belongs_to :country
   
@@ -30,6 +31,41 @@ class User < ActiveRecord::Base
   
   mount_uploader :avatar, AvatarUploader
   mount_uploader :cover,  CoverUploader
+  
+  class << self
+    def find_or_create_with_omni(auth_hash, options = {})
+      user_email = case auth_hash.provider
+                   when 'facebook', 'linkedin', 'twitter'
+                     auth_hash.info.email
+                   else
+                     raise StandardError, "provider: #{auth_hash.provider}, auth_hash: #{auth_hash}"
+                   end
+  
+      # email is blank if unverified
+      unless user_email.present?
+        user_email = (auth_hash.info.nickname.present? ? auth_hash.info.nickname : auth_hash.uid) << "@#{auth_hash.provider}.com"
+      end
+  
+      user = where(email: user_email).first
+      
+      if user
+        # update email for case when it was blank at signup then get it verified
+        # always perform. update exist users or their changed info
+        user.update_attributes!(email: user_email)
+      else
+        first_name = auth_hash.info.first_name || 'No Name'
+        last_name  = auth_hash.info.last_name  || 'No Name'
+  
+        args = {email: user_email, first_name: first_name, last_name: last_name}
+        user = new(args)
+        user.password = user.password_confirmation = SecureRandom.hex(10)
+        user.skip_confirmation!
+        user.save!
+      end
+  
+      user
+    end
+  end
   
   # extend helper to update only assocition unless id specified
   def investing_attributes=(v)

@@ -31,6 +31,10 @@ gem 'js-routes'
 gem 'gon' # js vars
 
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-linkedin'
+gem 'omniauth-twitter'
 # gem 'simple_token_authentication' # devise auth by token
 # gem 'versionist' # api versions
 # gem 'rack-cors', require: 'rack/cors' # Cross-Origin Resource Sharing
