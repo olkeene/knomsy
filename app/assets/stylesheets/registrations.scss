@@ -1,0 +1,20 @@
+@import 'mixins';
+
+.registrations {
+  .social-auth {
+    @include white-background;
+    margin-top: 0;
+    padding: 4%;
+  }
+  
+  .form-group-inline {
+    clear: none;
+    float: left;
+    // width: 165px;
+    width: 48%;
+    
+    input {
+      width: 100%;
+    }
+  }
+}

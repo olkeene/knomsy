@@ -1,23 +1,26 @@
 %h1 Sign Up
-%p.text-md
+
+%p
   %span Already have an account?
   = link_to "Login", new_session_path(:user)
-.social-auth.panel.panel-default
-  .panel-body
-    %h5.text-md Sign in with social networks
-    = render 'shared/social_buttons'
 
-.title-crossing
-  %span.title-crossing_title Or with e-mail:
+.container
+  .col-inline.col-xs-4.col-sm-4.col-md-4.col-lg-4
+    .social-auth
+      %h6 Sign in with social networks
+      = render 'shared/social_buttons'
+        
+    .title-crossing
+      %span.title-crossing_title Or with e-mail:
+  
+    = bootstrap_form_for(resource, url: registration_path(resource_name), label_errors: false, inline_errors: true) do |f|
+      %fieldscontainer
+        = f.text_field :first_name, placeholder: 'First name', hide_label: true, autofocus: true, class: 'form-control input-lg', wrapper: {class: 'form-group-inline'}
+        = f.text_field :last_name,  placeholder: 'Last name', hide_label: true, class: 'form-control input-lg form-group-inline', wrapper: {class: 'form-group-inline', style: 'margin-left: 20px'}
+        = f.email_field :email,     placeholder: 'Email', hide_label: true, class: 'form-control input-lg'
+        = f.password_field :password, placeholder: "Password", hide_label: true, autocomplete: "off", class: 'form-control input-lg'
+        = f.submit "Sign up", class: 'btn btn-hg btn-block btn-success'
 
-= bootstrap_form_for(resource, url: registration_path(resource_name), label_errors: false, inline_errors: true) do |f|
-  %fieldscontainer
-    .form-group
-      = f.text_field :first_name, placeholder: 'First name', hide_label: true, autofocus: true, class: 'form-control input-lg'
-    .form-group
-      = f.text_field :last_name,  placeholder: 'Last name', hide_label: true, class: 'form-control input-lg'
-    .form-group
-      = f.email_field :email,     placeholder: 'Email', hide_label: true, class: 'form-control input-lg'
-    .form-group
-      = f.password_field :password, placeholder: "Password", hide_label: true, autocomplete: "off", class: 'form-control input-lg'
-  = f.submit "Sign up", class: 'btn btn-hg btn-block btn-primary'
+
+
+

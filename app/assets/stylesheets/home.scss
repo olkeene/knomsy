@@ -1,12 +1,23 @@
+@import 'mixins';
+
 .login-page {
   form {
     width: 100%;
   }
   .title-crossing {
     margin-bottom: 20px;
+    margin-top: 20px;
   }
   .form-group {
     clear: both;
+  }
+}
+
+.home {
+  .social-auth {
+    @include white-background;
+    margin-top: 0;
+    padding: 57px;
   }
 }
 

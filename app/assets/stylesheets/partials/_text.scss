@@ -1,0 +1,11 @@
+@import 'mixins';
+
+.text-md {
+  font-size: 12px;
+  text-decoration: underline;
+  text-decoration-color: $dark_grey;
+  
+  a {
+    color: $dark_grey;
+  }
+}
