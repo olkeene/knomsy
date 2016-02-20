@@ -18,10 +18,13 @@
       .on 'fileloaded', (event, file, previewId, index, reader)=>
         # reader = new FileReader()
         reader.onload = (e)=>
-          newState = {}
+          newState = _.clone(@state)
+          delete newState["remove_#{prop_name}"]
+          console.log newState
           newState[prop_name] = file
           newState["#{prop_name}PreviewEncoded"] = e.target.result
-          @setState newState
+          
+          @replaceState newState
 
         reader.readAsDataURL(file)
 
