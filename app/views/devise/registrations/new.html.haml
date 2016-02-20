@@ -16,7 +16,7 @@
     = bootstrap_form_for(resource, url: registration_path(resource_name), label_errors: false, inline_errors: true) do |f|
       %fieldscontainer
         = f.text_field :first_name, placeholder: 'First name', hide_label: true, autofocus: true, class: 'form-control input-lg', wrapper: {class: 'form-group-inline'}
-        = f.text_field :last_name,  placeholder: 'Last name', hide_label: true, class: 'form-control input-lg form-group-inline', wrapper: {class: 'form-group-inline', style: 'margin-left: 20px'}
+        = f.text_field :last_name,  placeholder: 'Last name', hide_label: true, class: 'form-control input-lg form-group-inline', wrapper: {class: 'form-group-inline', style: 'margin-left: 4%'}
         = f.email_field :email,     placeholder: 'Email', hide_label: true, class: 'form-control input-lg'
         = f.password_field :password, placeholder: "Password", hide_label: true, autocomplete: "off", class: 'form-control input-lg'
         = f.submit "Sign up", class: 'btn btn-hg btn-block btn-success'
