@@ -52,7 +52,7 @@
                 (h4 className: "form__title", 'Roles'))
 
               (div className: "col-md-8",
-                (div className: "form__input",
+                (div className: "form__input max-height",
                   (input type: "text", ref: 'role_list', placeholder: "Type here", defaultValue: @state.role_list, className: "form-control")))))
 
           (div className: "edit-body__form",
@@ -61,7 +61,7 @@
                 (h4 className: "form__title", 'Skill'))
 
               (div className: "col-md-8",
-                (div className: "form__input",
+                (div className: "form__input max-height",
                   (input type: "text", ref: 'skill_list', placeholder: "Type here", defaultValue: @state.skill_list, className: "form-control")))))
 
 
@@ -71,7 +71,7 @@
                 (h4 className: "form__title", 'Services'))
 
               (div className: "col-md-8",
-                (div className: "form__input",
+                (div className: "form__input max-height",
                   (input type: "text", ref: 'service_list', placeholder: "Type here", defaultValue: @state.service_list, className: "form-control")))))
 
 

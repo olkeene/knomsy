@@ -62,7 +62,7 @@
                 (h4 className: "form__title", 'Markets'))
 
               (div className: "col-md-8",
-                (div className: "form__input",
+                (div className: "form__input max-height",
                   (input type: "text", ref: 'market_list', placeholder: "Type here", defaultValue: @state.market_list, className: "form-control")))))
 
           (div className: "edit-body__form",
@@ -71,7 +71,7 @@
                 (h4 className: "form__title", 'Countries'))
 
               (div className: "col-md-8",
-                (div className: "form__input",
+                (div className: "form__input max-height",
                   (input type: "text", ref: 'country_list', placeholder: "Type here", defaultValue: @state.country_list, className: "form-control")))))
 
 
@@ -81,7 +81,7 @@
                 (h4 className: "form__title", 'Currencies'))
 
               (div className: "col-md-8",
-                (div className: "form__input",
+                (div className: "form__input max-height",
                   (input type: "text", ref: 'currency_list', placeholder: "Type here", defaultValue: @state.currency_list, className: "form-control")))))
 
           

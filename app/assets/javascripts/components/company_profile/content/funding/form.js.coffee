@@ -81,7 +81,7 @@
                 
               (div className: "row",
                 (div className: "col-md-7",
-                  (div className: "input",
+                  (div className: "input max-height",
                     (h4 className: "input__title", 'Investors')
                     (input type: "text", ref: 'investor_list', className: "form-control", valueLink: @linkState('investor_list')) ))
                 (div className: "col-md-5",

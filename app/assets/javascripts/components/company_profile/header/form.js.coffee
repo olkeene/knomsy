@@ -72,8 +72,9 @@
 
                 (div className: "form-group",
                   (label className: "input__title", 'Category')
-                  (div className: "form__input",
-                    (input type: "text", ref: 'category_list', defaultValue: @state.category_list, className: "form-control") ))
+                  (div className: "form__input max-height",
+                    (textarea ref: 'category_list', defaultValue: @state.category_list, rows: 1, className: "form-control")
+                  ))
                   
                 (div className: "form-group",
                   (label className: "input__title", 'Country')

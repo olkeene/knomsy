@@ -44,7 +44,7 @@
                 (h4 className: "form__title", 'Roles'))
 
               (div className: "col-md-8",
-                (div className: "form__input",
+                (div className: "form__input max-height",
                   (input type: "text", ref: 'role_list', placeholder: "Type here", defaultValue: @state.role_list, className: "form-control")))))
 
           (div className: "edit-body__btn-group edit-body__btn-group_right",
