@@ -11,7 +11,7 @@
     # (CompanyProfile_Content_Traction(company: @state.company, saveProfile: @props.saveProfile))
     # (CompanyProfile_Content_Activity(company: @state.company, saveProfile: @props.saveProfile))
 
-    (div className: 'profile-card__content container',
+    (div className: 'profile-card__content container col-lg-offset-1 col-md-offset-1 col-xs-10 col-sm-10 col-md-10 col-lg-10',
       CompanyProfile_Content_BreadCrumbs()
       (div className: 'col-xs-12 col-sm-12 col-md-10',
         CompanyProfile_Content_Product(options)

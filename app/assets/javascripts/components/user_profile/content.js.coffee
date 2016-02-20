@@ -8,7 +8,7 @@
   render: ->
     options = {user: @state.user, saveProfile: @props.saveProfile, canEditUser: @props.canEditUser}
     
-    (div className: 'profile-card__content container',
+    (div className: 'profile-card__content container col-lg-offset-1 col-md-offset-1 col-xs-12 col-sm-12 col-md-10 col-lg-10',
       UserProfile_Content_BreadCrumbs()
       (div className: 'col-xs-12 col-sm-12 col-md-10',
         UserProfile_Content_Info(options)
