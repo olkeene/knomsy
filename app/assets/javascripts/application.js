@@ -39,6 +39,10 @@
 // Dropzone.autoDiscover = false;
 
 $(document).ready(function(){
+  $(".alert").fadeTo(2000, 500).slideUp(500, function(){
+    $(this).alert('close');
+  });
+  
   var body = $('body');
   var body_class = body.attr('class');
 
