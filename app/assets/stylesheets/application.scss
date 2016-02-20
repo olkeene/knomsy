@@ -27,6 +27,11 @@
  }
 }
 
+body {
+  color: $darker_grey;
+  background: $light_grey;
+}
+
 body > .container-fluid > {
   .layout_body, .layout_footer, .layout_header {
     overflow: auto;
@@ -37,45 +42,20 @@ body > .container-fluid > {
   padding-bottom: 20px;
 }
 
-.title-crossing {
-  overflow: hidden;
-}
-
-.title-crossing_title {
-  display: inline-block;
-  padding: 0 10px;
-  position: relative;
-  &:after {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    height: 1px;
-    width: 1000%;
-    background-color: $darker_grey;
-  }
-  &:before {
-    content: "";
-    display: block;
-    position: absolute;
-    top: 50%;
-    height: 1px;
-    width: 1000%;
-    background-color: $darker_grey;
-    right: 100%;
-  }
-
-  &:after {
-    left: 100%;
-  }
-}
-
 .layout_footer {
-  margin-left: -15px;
-  margin-right: -15px;
   padding: 20px;
   background-color: #364557;
   color: #6D7A8D;
+  
+  bottom: 0;
+  // position: absolute;
+  position: relative;
+  width: 100%;
+  
+  .content-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 
   .nav > li > a {
     color: #cacfd8;
@@ -88,20 +68,7 @@ body > .container-fluid > {
   }
 }
 
-body {
-  color: $darker_grey;
-  background: $light_grey;
-}
-
 .col-inline {
   float: none;
   display: inline-block;
-}
-
-.alert {
-  position: relative;
-  left: 25%;
-  width: 50%;
-  min-width: 50%;
-  margin-top: 10px;
 }

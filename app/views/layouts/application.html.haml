@@ -6,7 +6,7 @@
     = csrf_meta_tags
     
   %body{class: body_class}
-    .container-fluid
+    .container-fluid{style: 'height: 100%'}
       %header.row
         = render 'layouts/header'
       .row.layout_body.content-fluid
@@ -16,7 +16,7 @@
           %span{class: container_sub_class}
             = yield 
      
-      = render 'layouts/footer'
+    = render 'layouts/footer'
                   
     = render 'layouts/rollbar' if Rollbar.configuration.enabled
     = Gon::Base.render_data(init: true, camel_case: true, camel_depth: :recursive)

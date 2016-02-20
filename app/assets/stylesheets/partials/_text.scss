@@ -9,3 +9,44 @@
     color: $dark_grey;
   }
 }
+
+.alert {
+  position: relative;
+  left: 25%;
+  width: 50%;
+  min-width: 50%;
+  margin-top: 10px;
+}
+
+.title-crossing {
+  overflow: hidden;
+}
+
+.title-crossing_title {
+  display: inline-block;
+  padding: 0 10px;
+  position: relative;
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 1000%;
+    background-color: $darker_grey;
+  }
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 50%;
+    height: 1px;
+    width: 1000%;
+    background-color: $darker_grey;
+    right: 100%;
+  }
+
+  &:after {
+    left: 100%;
+  }
+}
