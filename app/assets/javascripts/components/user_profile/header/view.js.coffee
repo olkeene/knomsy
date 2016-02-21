@@ -96,7 +96,7 @@
       when 'website'       then 'item__website-icon fa fa-globe'
     
     extras = if prop == 'website'
-      (span null, @props.user[prop])
+      (span null, (@props.user[prop] || '').trunc(20))
       
     (li className: 'contacts__links_item',
       (a target: '_blank', href: @props.user[prop],
