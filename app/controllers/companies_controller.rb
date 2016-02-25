@@ -56,6 +56,8 @@ class CompaniesController < ApplicationController
   end
   
   def permitted_params
+    return {} unless @company
+    
     if @company.new_record?
       params.permit(company: [
         :name, :description, 
