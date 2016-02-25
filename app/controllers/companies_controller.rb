@@ -38,7 +38,7 @@ class CompaniesController < ApplicationController
   end
   
   def update
-    if @company.update(permitted_params[:company] || {})
+    if @company.update(update_company_permitted_params[:company] || {})
       render_notice CompanySerializer.new(@company)
     else
       render_error @company.errors.to_a
@@ -55,30 +55,28 @@ class CompaniesController < ApplicationController
     @company = current_user.companies.with_associations.friendly.find(params[:id])
   end
   
-  def permitted_params
-    return {} unless @company
-    
-    if @company.new_record?
-      params.permit(company: [
-        :name, :description, 
-        :country_id, :city, :market, :category_list, :short_name, :terms_of_service
-      ])
-    else
-      params.permit(company: [
-        :name,          :short_desc, 
-        :country_id,    :city, :market, :category_list, :terms_of_service,
-        :founded_on,
-        :logo,          :cover, :remove_logo, :remove_cover,
-        :description,   :role_list,
-        :gplay_link,    :itunes_link, :dribbble_link, :fb_link, :gh_link, :gplus_link, 
-        :linkedin_link, :twitter_link, :youtube_link, :website,
-        members_attributes:  [:id, :_destroy, :name, :role, :title],
-        fundings_attributes: [:id, :_destroy, :round, :funded_on, :amount, :investor_list, :link, :visible]
-      ])
-    end
+  def new_company_permitted_params
+    params.permit(company: [
+      :name, :description, 
+      :country_id, :city, :market, :category_list, :short_name, :terms_of_service
+    ])
+  end
+  
+  def update_company_permitted_params
+    params.permit(company: [
+      :name,          :short_desc, 
+      :country_id,    :city, :market, :category_list, :terms_of_service,
+      :founded_on,
+      :logo,          :cover, :remove_logo, :remove_cover,
+      :description,   :role_list,
+      :gplay_link,    :itunes_link, :dribbble_link, :fb_link, :gh_link, :gplus_link, 
+      :linkedin_link, :twitter_link, :youtube_link, :website,
+      members_attributes:  [:id, :_destroy, :name, :role, :title],
+      fundings_attributes: [:id, :_destroy, :round, :funded_on, :amount, :investor_list, :link, :visible]
+    ])
   end
   
   def build_company
-    @company = current_user.companies.build(permitted_params[:company])
+    @company = current_user.companies.build(new_company_permitted_params[:company])
   end
 end
