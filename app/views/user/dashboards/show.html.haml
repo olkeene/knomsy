@@ -1,18 +1,2 @@
 .col-inline.col-lg-10
-  %h2 Dashboard
-    
-  .content__section
-    .section__body.section__body_view
-      .view-body
-        .view-body__form.row
-          %h4.text-left Startups
-
-          - for company in @companies do
-            .col-xs-12.col-sm-12.col-md-12.col-lg-12
-              .row
-                .col-xs-4.col-sm-4.col-md-4.col-lg-4
-                  = link_to company.name, company
-                .col-xs-4.col-sm-4.col-md-4.col-lg-4
-                  Progress
-                .col-xs-4.col-sm-4.col-md-4.col-lg-4
-                  Stat
+  = react_component 'UserDashboard', companies: @serialized_companies

@@ -1,0 +1,10 @@
+@import 'mixins';
+
+.dashboards {
+  .companies {
+    @include white-background;
+    margin-top: 0;
+    padding-bottom: 40px;
+    padding-top: 30px;
+  }
+}

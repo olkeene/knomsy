@@ -1,8 +1,8 @@
-# Public pages, login not required
 class User::DashboardsController < ApplicationController
   before_action :authenticate_user!
   
   def show
-    @companies = current_user.companies
+    @serialized_companies = ActiveModel::ArraySerializer.new \
+      current_user.companies, each_serializer: CompanySerializer
   end
 end
