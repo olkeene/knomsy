@@ -4,16 +4,16 @@
  *= require bootstrap-tokenfield
  *= require bootstrap-typeahead-rails
  *= require bootstrap-fileinput
- 
+
  *= require jquery-ui/datepicker
- 
+
  *= require font-awesome
  *= require_tree ./partials
  *= require_tree .
- 
+
  *= require_self
  */
- 
+
 @import "bootstrap";
 @import 'mixins';
 
@@ -29,7 +29,7 @@
 
 body {
   color: $darker_grey;
-  background: $light_grey;
+  background: $lighter_grey;
 }
 
 body > .container-fluid > {
@@ -46,12 +46,12 @@ body > .container-fluid > {
   padding: 20px;
   background-color: #364557;
   color: #6D7A8D;
-  
+
   bottom: 0;
   // position: absolute;
   position: relative;
   width: 100%;
-  
+
   .content-fluid {
     padding-left: 15px;
     padding-right: 15px;
