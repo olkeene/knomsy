@@ -13,6 +13,15 @@
     margin: 0 5px;
   }
 
+  .company:not(:last-child) .company__inner:after {
+    content: '';
+    clear: both;
+    display: block;
+    height: 29px;
+    margin: 0 15px 26px;
+    border-bottom: 1px solid $light_grey;
+  }
+
   .company__label {
     font-size: 14px;
     margin: 22px 0 5px;
@@ -95,8 +104,6 @@
   }
 
   .company-border {
-    margin: 0 15px 26px;
-    padding-bottom: 29px;
-    border-bottom: 1px solid $light_grey;
+
   }
 }

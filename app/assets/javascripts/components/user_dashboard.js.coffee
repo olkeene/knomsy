@@ -7,12 +7,9 @@
       _.map @props.company.category_list, (category, i)->
         (span className: "company-info__tag", key: "tag_#{i}", category)
 
-    border = unless @props.isLast
-      (div className: 'company-border')
-
     (div className: 'company',
       (div className: 'row',
-        (div className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12',
+        (div className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12 company__inner',
           (div className: 'col-xs-4 col-sm-4 col-md-4 col-lg-1 company-logo',
             (img className: 'company-logo__image', src: 'http://lorempixel.com/60/60/abstract/9/')
           )
@@ -44,7 +41,6 @@
           )
         )
       )
-      border
     )
 
 @UserDashboard = React.createClass
@@ -60,5 +56,5 @@
 
               (div className: 'companies',
                 _.map @props.companies, (company, index) =>
-                  DashboardCompany key: company.id, company: company, isLast: @props.companies.length - 1 == index)
+                  DashboardCompany key: company.id, company: company)
             )))))
