@@ -6,17 +6,23 @@ $grey:  #E1E7EC;
 $darker_grey: #6d7a8b;
 $dark_grey:   #808B9D;
 $light_grey:  #dce0e6;
+$lighter_grey: #f0f2f4;
 
 $blue: #008ED0;
+$deep_blue: #3290cc;
 $dark_blue: #286090;
 $darker_blue: #204d74;
+
+$green: #6fb50b;
 $light_green: #53d700;
 
 $red: #EE5760;
 
 @mixin white-background {
-  background-color: $white;
-  border-radius: 5px;
   margin-top: 15px;
   padding: 20px 0;
+  background: $white;
+  border: 1px solid #dddee0;
+  border-radius: 5px;
+  box-shadow: 1px 3px 1px rgba(54, 69, 87, 0.05);
 }

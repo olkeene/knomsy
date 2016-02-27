@@ -3,8 +3,107 @@
 .dashboards {
   .companies {
     @include white-background;
+    text-align: left;
     margin-top: 0;
-    padding-bottom: 40px;
-    padding-top: 30px;
+    padding-top: 20px;
+    padding-bottom: 30px;
+  }
+
+  .company {
+    margin: 0 5px;
+  }
+
+  .company:not(:last-child) .company__inner:after {
+    content: '';
+    clear: both;
+    display: block;
+    height: 29px;
+    margin: 0 15px 26px;
+    border-bottom: 1px solid $light_grey;
+  }
+
+  .company__label {
+    font-size: 14px;
+    margin: 22px 0 5px;
+    color:  #9da6b6;
+  }
+
+  .company__num {
+    font-weight: bold;
+    font-size: 18px;
+    color:  #6d7a8b;
+
+    &-up {
+      color: $green;
+    }
+  }
+
+  .company-logo {
+    padding-top: 4px;
+  }
+
+  .company-logo__image {
+    border-radius: 10px;
+  }
+
+  .company-info__name {
+    font-weight: bold;
+    font-size: 16px;
+    color: $deep_blue;
+  }
+
+  .company-info__description {
+    color: $darker_grey;
+  }
+
+  .company-info__tags {
+    margin-top: 3px;
+  }
+
+  .company-info__tag {
+    font-size: 12px;
+    display: inline-block;
+    padding: 4px 10px 3px;
+    background: #b4bac6;
+    border-radius: 5px;
+    color: $white;
+
+    &:not(:last-child) {
+      margin-right: 10px;
+    }
+  }
+
+  .company-progress__bar {
+    height: 24px;
+    background: #f0f2f4;
+    border-radius: 5px;
+
+    &-done {
+      background: linear-gradient(90deg, #ee5761 0%, #f5c623 100%);
+    }
+  }
+
+  .company-stat {
+    padding-top: 44px;
+  }
+
+  .company-stat__state {
+    display: inline-block;
+    margin-left: 8px;
+    padding: 2px 7px;
+    border-radius: 5px;
+    color: $white;
+
+    &-up {
+      background: $green;
+    }
+
+    .fa {
+      font-size: 13px;
+    }
+  }
+
+  .company-border {
+
   }
 }
