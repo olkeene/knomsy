@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class AvatarUploader < ImageUploader
+class AvatarUploader < BaseImageUploader
   version :thumb do
     eager
     resize_to_fill 25, 25, :north

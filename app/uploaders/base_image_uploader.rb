@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-class ImageUploader < BaseUploader
+class BaseImageUploader < BaseUploader
   def content_type_whitelist
     /image\//
   end
