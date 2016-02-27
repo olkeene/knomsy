@@ -10,7 +10,7 @@
       (div className: 'row',
         (div className: 'col-xs-12 col-sm-12 col-md-12 col-lg-12 company__inner',
           (div className: 'col-xs-4 col-sm-4 col-md-4 col-lg-1 company-logo',
-            (img className: 'company-logo__image', src: 'http://lorempixel.com/60/60/abstract/9/')
+            (img className: 'company-logo__image', src: @props.company.logo_thumb_url)
           )
           (div className: 'col-xs-8 col-sm-8 col-md-8 col-lg-5 company-info',
             (a className: 'company-info__name', href: Routes.company_path(@props.company.id), @props.company.name)
