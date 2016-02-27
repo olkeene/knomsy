@@ -1,7 +1,6 @@
-{span, h2, div, h4, a, img} = React.DOM
+{span, h2, div, h4, a, img, i} = React.DOM
 
 @DashboardCompany = React.createFactory React.createClass
-
   render: ->
     tags = unless _.isEmpty(@props.company.category_list)
       _.map @props.company.category_list, (category, i)->
@@ -21,7 +20,7 @@
           (div className: 'col-xs-12 col-sm-12 col-md-12 col-lg-2 company-progress',
             (div className: 'company__label', 'Progress:')
             (div className: 'company-progress__bar',
-              (div className: 'company-progress__bar company-progress__bar-done', style: {width: '80%'})
+              (div className: 'company-progress__bar company-progress__bar-done', style: {width: "#{@props.company.progress}%"})
             )
           )
           (div className: 'col-xs-4 col-sm-4 col-md-4 col-lg-1',
@@ -33,15 +32,24 @@
             (div className: 'company__num', @props.company.followings_count)
           )
           (div className: 'col-xs-4 col-sm-4 col-md-4 col-lg-2 company-stat text-right',
-            (span className: 'company__num company__num-up', '2,08')
+            (span className: 'company__num company__num-up', @props.company.rating)
             (span className: 'company-stat__state company-stat__state-up',
-              (span clasName: 'fa fa-arrow-circle-up')
-              (span null, '9.00%')
+              @_rating_with_trend()
             )
           )
         )
       )
     )
+  
+  _rating_with_trend: -> 
+    icon_class = if @props.company.rating_trend > 0
+      'fa-arrow-circle-up'
+    else
+      'fa-arrow-circle-down'
+    
+    (span null, 
+      (span className: "fa #{icon_class}")
+      (span null, "#{@props.company.rating_trend}%") )
 
 @UserDashboard = React.createClass
   render: ->

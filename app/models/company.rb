@@ -64,6 +64,10 @@ class Company < ActiveRecord::Base
     21
   end
   
+  def progress
+    Random.new.rand(1..99)
+  end
+  
   def country_name
     country_id and country.name
   end
