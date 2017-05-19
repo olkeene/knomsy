@@ -1,5 +1,5 @@
 # Knomsy
-  v1 app place where venture investors meets startups.
+  Place where venture investors meets startups, startups meets funding .
 
 ## TODO
  * use Redux
